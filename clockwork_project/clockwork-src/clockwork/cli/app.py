@@ -12,6 +12,7 @@ from clockwork.cli.commands.index import cmd_index, cmd_repair, cmd_watch
 from clockwork.cli.commands.graph import graph_app
 from clockwork.cli.commands.agent import agent_app, task_app
 from clockwork.cli.commands.security import security_app
+from clockwork.cli.commands.registry import registry_app, plugin_app
 from clockwork.packaging.cli_commands import cmd_pack, cmd_load
 
 app = typer.Typer(
@@ -35,6 +36,8 @@ app.add_typer(graph_app,    name="graph")
 app.add_typer(agent_app,    name="agent")
 app.add_typer(task_app,     name="task")
 app.add_typer(security_app, name="security")
+app.add_typer(registry_app, name="registry")
+app.add_typer(plugin_app,   name="plugin")
 
 def main() -> None:
     app()
