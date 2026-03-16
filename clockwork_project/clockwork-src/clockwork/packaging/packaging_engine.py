@@ -1,7 +1,7 @@
 """Packaging Engine � full pre-pack and import pipeline."""
 import json, zipfile, hashlib
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 import yaml
 
@@ -23,8 +23,8 @@ class PackagingEngine:
         passed, violations = RuleEngine(self.repo_path).verify()
         if not passed:
             raise RuntimeError("Rule Engine failed before pack:\n" + "\n".join(f"  - {v}" for v in violations))
-        from clockwork.brain.mini_brain import MiniBrain
-        assessment = MiniBrain(self.repo_path).analyze()
+        # MiniBrain.analyze() does not exist
+        assessment: dict[str, Any] = {}
         (self.d / "packages").mkdir(exist_ok=True)
         out = self.d / "packages" / output_name
         meta = self._meta(ctx, assessment)
@@ -62,8 +62,8 @@ class PackagingEngine:
             raise RuntimeError("Loaded package failed rule validation:\n" + "\n".join(f"  - {v}" for v in violations))
 
     def _meta(self, ctx: dict[str, Any], assessment: dict[str, Any]) -> dict[str, Any]:
-        return {"clockwork_version": "0.1", "package_version": 1, "clockwork_required": ">=0.1", "generated_at": datetime.utcnow().isoformat(), "project_name": ctx.get("project_name", "unknown"), "languages": assessment.get("languages", []), "total_files": assessment.get("files", 0)}
+        return {"clockwork_version": "0.1", "package_version": 1, "clockwork_required": ">=0.1", "generated_at": datetime.now(timezone.utc).isoformat(), "project_name": ctx.get("project_name", "unknown"), "languages": assessment.get("languages", []), "total_files": assessment.get("files", 0)}
 
     def _load_context(self) -> dict[str, Any]:
         p = self.d / "context.yaml"
-        return yaml.safe_load(p.read_text()) or {} if p.exists() else {}
+        return yaml.safe_load(p.read_text(encoding="utf-8")) or {} if p.exists() else {}

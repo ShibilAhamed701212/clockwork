@@ -148,7 +148,12 @@ class LiveContextIndex:
             on_change=self._handle_event,
             debounce_s=debounce_s,
         )
-        result = self._watcher.start()
+        try:
+            result = self._watcher.start()
+        except Exception:
+            self._storage.close()
+            self._watcher = None
+            raise
         self._watching = True
         return result
 

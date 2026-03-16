@@ -112,6 +112,7 @@ def cmd_update(
         scan_result = ScanResult.load(cw_dir)
         engine = ContextEngine(cw_dir)
         context_obj = engine.merge_scan(scan_result)
+        engine.save(context_obj)
         primary_language = context_obj.primary_language
         frameworks = list(context_obj.frameworks)
         entry_points = list(context_obj.entry_points)

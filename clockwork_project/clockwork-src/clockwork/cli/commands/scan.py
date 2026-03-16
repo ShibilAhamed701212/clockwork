@@ -121,7 +121,10 @@ def cmd_scan(
         repo_map = result.to_dict()
     except Exception as _scan_exc:
         if not as_json:
-            warn(f"Full scanner unavailable ({type(_scan_exc).__name__}: {_scan_exc}), falling back to built-in scanner.")
+            try:
+                warn(f"Full scanner unavailable ({type(_scan_exc).__name__}: {_scan_exc}), falling back to built-in scanner.")
+            except UnicodeEncodeError:
+                warn(f"Full scanner unavailable ({type(_scan_exc).__name__}), falling back.")
         repo_map = _scan_repository(root, ignore_dirs)
         output_path = cw_dir / "repo_map.json"
         output_path.write_text(

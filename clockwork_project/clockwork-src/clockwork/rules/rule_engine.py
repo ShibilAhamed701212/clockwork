@@ -2,7 +2,7 @@
 """Rule Engine - real static analysis for all 3 rules."""
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 import yaml
 
@@ -84,29 +84,37 @@ class RuleEngine:
     def _check_core_modules_present(self, file_paths: list[str]) -> str | None:
         is_cw = any("clockwork/cli" in p or "clockwork\\cli" in p for p in file_paths)
         if not is_cw: return None
-        missing = [f for f in PROTECTED_CORE_FILES if not any(f.replace("/","\\") in p or f in p for p in file_paths)]
+        missing = [f for f in PROTECTED_CORE_FILES
+                   if not (self.repo_path / f).exists()
+                   and not (self.repo_path / f.replace("/", "\\")).exists()]
         if missing:
-            return f"Rule [no_delete_core_modules]: Core module(s) missing: {', '.join(missing[:3])}"
+            return f"Rule [no_delete_core_modules]: Core module(s) missing from disk: {', '.join(missing[:3])}"
         return None
 
     def _log_validation(self, passed: bool, violations: list[str]) -> None:
         p = self.clockwork_dir / "validation_log.json"
-        try: ex = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
-        except: ex = []
-        ex.append({"timestamp": datetime.utcnow().isoformat(), "passed": passed, "violations": violations})
+        try:
+            ex = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+        except (json.JSONDecodeError, OSError):
+            ex = []
+        ex.append({"timestamp": datetime.now(timezone.utc).isoformat(), "passed": passed, "violations": violations})
         p.write_text(json.dumps(ex, indent=2), encoding="utf-8")
 
     def _log_rule(self, rules: list[dict[str, Any]], passed: bool, violations: list[str]) -> None:
         p = self.clockwork_dir / "logs" / "rule_log.json"
         p.parent.mkdir(exist_ok=True)
-        try: ex = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
-        except: ex = []
-        ex.append({"timestamp": datetime.utcnow().isoformat(), "rules_evaluated": len(rules), "passed": passed, "violations": violations})
+        try:
+            ex = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+        except (json.JSONDecodeError, OSError):
+            ex = []
+        ex.append({"timestamp": datetime.now(timezone.utc).isoformat(), "rules_evaluated": len(rules), "passed": passed, "violations": violations})
         p.write_text(json.dumps(ex, indent=2), encoding="utf-8")
 
     def _log_agent_action(self, action: str, passed: bool, violations: list[str]) -> None:
         p = self.clockwork_dir / "agent_history.json"
-        try: ex = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
-        except: ex = []
-        ex.append({"timestamp": datetime.utcnow().isoformat(), "agent": "rule_engine", "action": action, "result": "passed" if passed else "failed", "violations": violations})
+        try:
+            ex = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+        except (json.JSONDecodeError, OSError):
+            ex = []
+        ex.append({"timestamp": datetime.now(timezone.utc).isoformat(), "agent": "rule_engine", "action": action, "result": "passed" if passed else "failed", "violations": violations})
         p.write_text(json.dumps(ex, indent=2), encoding="utf-8")

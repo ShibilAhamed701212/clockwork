@@ -1,6 +1,6 @@
 ﻿from __future__ import annotations
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Optional
 
@@ -34,7 +34,7 @@ class RuleViolation:
     severity: RuleSeverity
     message: str
     file_path: Optional[str] = None
-    timestamp: datetime = field(default_factory=datetime.utcnow)
+    timestamp: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     overridden: bool = False
 
     def to_dict(self) -> dict:

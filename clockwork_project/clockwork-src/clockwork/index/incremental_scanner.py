@@ -144,10 +144,12 @@ class IncrementalScanner:
 
     def _go_imports(self, source: str) -> list[str]:
         imports: list[str] = []
-        for m in re.finditer(r'"([^"]+)"', source):
-            candidate = m.group(1)
-            if "/" in candidate or "." in candidate:
-                imports.append(candidate)
+        block = re.search(r'import\s*\(([^)]+)\)', source, re.DOTALL)
+        if block:
+            for m in re.finditer(r'"([^"]+)"', block.group(1)):
+                imports.append(m.group(1))
+        for m in re.finditer(r'^\s*import\s+"([^"]+)"', source, re.MULTILINE):
+            imports.append(m.group(1))
         return list(dict.fromkeys(imports))
 
 

@@ -2,7 +2,7 @@
 import json
 import logging
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from clockwork.rules.evaluators import ArchitectureEvaluator, ContextEvaluator, DevelopmentEvaluator, SafetyEvaluator
 from clockwork.rules.loader import RuleLoader
@@ -39,7 +39,7 @@ class RuleEngine:
         return report
 
     def record_override(self, rule_id: str, reason: str, operator: str = "user") -> None:
-        entry = {"timestamp": datetime.utcnow().isoformat(), "rule_id": rule_id, "reason": reason, "operator": operator}
+        entry = {"timestamp": datetime.now(timezone.utc).isoformat(), "rule_id": rule_id, "reason": reason, "operator": operator}
         log = []
         if self._override_log_path.exists():
             try:
@@ -58,7 +58,8 @@ class RuleEngine:
     def _resolve_conflicts(violations: list[RuleViolation]) -> list[RuleViolation]:
         by_file: dict = {}
         for v in violations:
-            by_file.setdefault(v.file_path, []).append(v)
+            _fkey = v.file_path if v.file_path is not None else id(v)
+            by_file.setdefault(_fkey, []).append(v)
         resolved = []
         for file_violations in by_file.values():
             if len(file_violations) <= 1:

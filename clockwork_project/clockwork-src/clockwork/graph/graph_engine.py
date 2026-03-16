@@ -71,17 +71,17 @@ class GraphEngine:
 
         storage = GraphStorage(self.db_path)
         storage.open()
-        storage.initialise(drop_existing=True)
-
-        builder = GraphBuilder(storage)
-        stats   = builder.build(repo_map)
-
-        # persist build timestamp in graph_meta
-        storage.set_meta("built_at", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
-        storage.set_meta("stats", json.dumps(stats.to_dict()))
-        storage.commit()
-
-        self._storage = storage  # keep open for query() calls
+        try:
+            storage.initialise(drop_existing=True)
+            builder = GraphBuilder(storage)
+            stats   = builder.build(repo_map)
+            storage.set_meta("built_at", time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+            storage.set_meta("stats", json.dumps(stats.to_dict()))
+            storage.commit()
+        except Exception:
+            storage.close()
+            raise
+        self._storage = storage
         return stats
 
     def query(self) -> GraphQueryEngine:
