@@ -1,0 +1,4371 @@
+{
+  "scanned_at": "2026-03-15T16:52:22.532213+00:00",
+  "root": "D:\\var-codes\\Clockworker\\clockwork_project\\clockwork-src",
+  "project_name": "clockwork-src",
+  "clockwork_version": "0.1",
+  "total_files": 81,
+  "total_lines": 8774,
+  "total_bytes": 318459,
+  "primary_language": "Python",
+  "languages": {
+    "Python": 72,
+    "YAML": 1,
+    "TOML": 1,
+    "Markdown": 1
+  },
+  "language_details": [
+    {
+      "name": "Python",
+      "file_count": 72,
+      "total_lines": 8690,
+      "total_bytes": 313523,
+      "extensions": [
+        ".py"
+      ]
+    },
+    {
+      "name": "YAML",
+      "file_count": 1,
+      "total_lines": 25,
+      "total_bytes": 575,
+      "extensions": [
+        ".yaml"
+      ]
+    },
+    {
+      "name": "TOML",
+      "file_count": 1,
+      "total_lines": 44,
+      "total_bytes": 845,
+      "extensions": [
+        ".toml"
+      ]
+    },
+    {
+      "name": "Markdown",
+      "file_count": 1,
+      "total_lines": 15,
+      "total_bytes": 227,
+      "extensions": [
+        ".md"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "clockwork\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 0,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:37:21.416797+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 209,
+      "lines": 5,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:52:58.410583+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\base.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2425,
+      "lines": 85,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:52:59.176982+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\brain_manager.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6056,
+      "lines": 155,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:53:03.127283+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\external_brain.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6072,
+      "lines": 161,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:53:01.755487+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\mini_brain.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 74,
+      "lines": 3,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [
+        "clockwork.brain.minibrain.MiniBrain"
+      ],
+      "last_modified": "2026-03-15T06:33:01.718260+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\minibrain.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 8932,
+      "lines": 235,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:53:00.014477+00:00"
+    },
+    {
+      "path": "clockwork\\brain\\ollama_brain.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 4740,
+      "lines": 133,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:53:00.709887+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 211,
+      "lines": 10,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [
+        "clockwork.cli.app.app"
+      ],
+      "last_modified": "2026-03-15T16:37:21.419869+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\app.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2456,
+      "lines": 62,
+      "is_entry_point": true,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "main",
+          "kind": "function",
+          "line": 56,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "typer",
+        "clockwork.cli.commands.init.cmd_init",
+        "clockwork.cli.commands.scan.cmd_scan",
+        "clockwork.cli.commands.update.cmd_update",
+        "clockwork.cli.commands.verify.cmd_verify",
+        "clockwork.cli.commands.handoff.cmd_handoff",
+        "clockwork.cli.commands.graph.cmd_graph",
+        "clockwork.packaging.cli_commands.cmd_pack",
+        "clockwork.packaging.cli_commands.cmd_load"
+      ],
+      "last_modified": "2026-03-15T16:37:21.422980+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_graph.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 492,
+      "lines": 13,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 7,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.graph.graph_engine.GraphEngine"
+      ],
+      "last_modified": "2026-03-15T03:46:06.506306+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_handoff.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1392,
+      "lines": 54,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:33:44.882184+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_init.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1112,
+      "lines": 25,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 8,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.context.initializer.initialize_clockwork_dir"
+      ],
+      "last_modified": "2026-03-15T03:46:06.483912+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_load.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 540,
+      "lines": 13,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 7,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.packaging.packaging_engine.PackagingEngine"
+      ],
+      "last_modified": "2026-03-15T03:46:06.501280+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_pack.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 562,
+      "lines": 13,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 7,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.packaging.packaging_engine.PackagingEngine"
+      ],
+      "last_modified": "2026-03-15T03:46:06.498279+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_plugin.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1474,
+      "lines": 34,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "install",
+          "kind": "function",
+          "line": 9,
+          "parent": null
+        },
+        {
+          "name": "list_plugins",
+          "kind": "function",
+          "line": 23,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console"
+      ],
+      "last_modified": "2026-03-15T03:46:06.509205+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_scan.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1306,
+      "lines": 30,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 9,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.scanner.repository_scanner.RepositoryScanner",
+        "clockwork.graph.graph_engine.GraphEngine",
+        "json"
+      ],
+      "last_modified": "2026-03-15T03:46:06.487431+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_update.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 496,
+      "lines": 13,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 7,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.context.context_engine.ContextEngine"
+      ],
+      "last_modified": "2026-03-15T03:46:06.493766+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\cmd_verify.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1283,
+      "lines": 30,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "run",
+          "kind": "function",
+          "line": 9,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "pathlib.Path",
+        "typer",
+        "rich.console.Console",
+        "clockwork.rules.rule_engine.RuleEngine",
+        "clockwork.brain.mini_brain.MiniBrain"
+      ],
+      "last_modified": "2026-03-15T03:46:06.492251+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 129,
+      "lines": 5,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:37:21.443738+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\graph.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5022,
+      "lines": 165,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "cmd_graph",
+          "kind": "function",
+          "line": 24,
+          "parent": null
+        },
+        {
+          "name": "_build_graph",
+          "kind": "function",
+          "line": 71,
+          "parent": null
+        },
+        {
+          "name": "insert_node",
+          "kind": "function",
+          "line": 105,
+          "parent": null
+        },
+        {
+          "name": "insert_edge",
+          "kind": "function",
+          "line": 114,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "sqlite3",
+        "time",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "clockwork.cli.output.header",
+        "clockwork.cli.output.success",
+        "clockwork.cli.output.info",
+        "clockwork.cli.output.error",
+        "clockwork.cli.output.step",
+        "clockwork.cli.output.rule"
+      ],
+      "last_modified": "2026-03-15T16:37:21.478915+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\handoff.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5432,
+      "lines": 182,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "cmd_handoff",
+          "kind": "function",
+          "line": 24,
+          "parent": null
+        },
+        {
+          "name": "_build_handoff",
+          "kind": "function",
+          "line": 85,
+          "parent": null
+        },
+        {
+          "name": "_build_brief",
+          "kind": "function",
+          "line": 104,
+          "parent": null
+        },
+        {
+          "name": "_append_agent_history",
+          "kind": "function",
+          "line": 167,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "yaml",
+        "clockwork.cli.output.header",
+        "clockwork.cli.output.success",
+        "clockwork.cli.output.info",
+        "clockwork.cli.output.error",
+        "clockwork.cli.output.step",
+        "clockwork.cli.output.rule"
+      ],
+      "last_modified": "2026-03-15T16:37:21.469845+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\init.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 4502,
+      "lines": 168,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "cmd_init",
+          "kind": "function",
+          "line": 107,
+          "parent": null
+        },
+        {
+          "name": "_create_clockwork_dir",
+          "kind": "function",
+          "line": 144,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "clockwork.cli.output.header",
+        "clockwork.cli.output.success",
+        "clockwork.cli.output.info",
+        "clockwork.cli.output.warn",
+        "clockwork.cli.output.error",
+        "clockwork.cli.output.step",
+        "clockwork.cli.output.rule"
+      ],
+      "last_modified": "2026-03-15T16:37:21.448745+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\scan.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7533,
+      "lines": 241,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "cmd_scan",
+          "kind": "function",
+          "line": 81,
+          "parent": null
+        },
+        {
+          "name": "_load_ignore_dirs",
+          "kind": "function",
+          "line": 157,
+          "parent": null
+        },
+        {
+          "name": "_scan_repository",
+          "kind": "function",
+          "line": 170,
+          "parent": null
+        },
+        {
+          "name": "_is_entry_point",
+          "kind": "function",
+          "line": 230,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "time",
+        "collections.defaultdict",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "yaml",
+        "clockwork.cli.output.header",
+        "clockwork.cli.output.success",
+        "clockwork.cli.output.info",
+        "clockwork.cli.output.warn",
+        "clockwork.cli.output.error",
+        "clockwork.cli.output.step",
+        "clockwork.cli.output.result_block",
+        "clockwork.cli.output.rule",
+        "clockwork.cli.output.json_output",
+        "clockwork.scanner.RepositoryScanner"
+      ],
+      "last_modified": "2026-03-15T16:37:21.454752+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\update.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 8016,
+      "lines": 222,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "cmd_update",
+          "kind": "function",
+          "line": 62,
+          "parent": null
+        },
+        {
+          "name": "_derive_primary_language",
+          "kind": "function",
+          "line": 145,
+          "parent": null
+        },
+        {
+          "name": "_detect_frameworks",
+          "kind": "function",
+          "line": 153,
+          "parent": null
+        },
+        {
+          "name": "_parse_requirements",
+          "kind": "function",
+          "line": 181,
+          "parent": null
+        },
+        {
+          "name": "_parse_pyproject",
+          "kind": "function",
+          "line": 194,
+          "parent": null
+        },
+        {
+          "name": "_parse_package_json",
+          "kind": "function",
+          "line": 207,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "yaml",
+        "clockwork.cli.output.header",
+        "clockwork.cli.output.success",
+        "clockwork.cli.output.info",
+        "clockwork.cli.output.warn",
+        "clockwork.cli.output.error",
+        "clockwork.cli.output.step",
+        "clockwork.cli.output.rule",
+        "clockwork.context.ContextEngine",
+        "clockwork.scanner.models.ScanResult"
+      ],
+      "last_modified": "2026-03-15T16:37:21.459267+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\verify.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6607,
+      "lines": 203,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "VerificationResult",
+          "kind": "class",
+          "line": 40,
+          "parent": null
+        },
+        {
+          "name": "fail",
+          "kind": "method",
+          "line": 46,
+          "parent": "VerificationResult"
+        },
+        {
+          "name": "ok",
+          "kind": "method",
+          "line": 50,
+          "parent": "VerificationResult"
+        },
+        {
+          "name": "warn",
+          "kind": "method",
+          "line": 53,
+          "parent": "VerificationResult"
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 56,
+          "parent": "VerificationResult"
+        },
+        {
+          "name": "cmd_verify",
+          "kind": "function",
+          "line": 67,
+          "parent": null
+        },
+        {
+          "name": "_check_required_files",
+          "kind": "function",
+          "line": 131,
+          "parent": null
+        },
+        {
+          "name": "_check_context_schema",
+          "kind": "function",
+          "line": 141,
+          "parent": null
+        },
+        {
+          "name": "_check_repo_map",
+          "kind": "function",
+          "line": 161,
+          "parent": null
+        },
+        {
+          "name": "_check_protected_directories",
+          "kind": "function",
+          "line": 178,
+          "parent": null
+        },
+        {
+          "name": "_check_rules_parseable",
+          "kind": "function",
+          "line": 187,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "time",
+        "dataclasses.dataclass",
+        "dataclasses.field",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "yaml",
+        "clockwork.cli.output.header",
+        "clockwork.cli.output.success",
+        "clockwork.cli.output.info",
+        "clockwork.cli.output.warn",
+        "clockwork.cli.output.error",
+        "clockwork.cli.output.step",
+        "clockwork.cli.output.rule",
+        "clockwork.cli.output.result_block",
+        "clockwork.cli.output.json_output"
+      ],
+      "last_modified": "2026-03-15T16:37:21.464323+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\main.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 745,
+      "lines": 19,
+      "is_entry_point": true,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [
+        "typer",
+        "clockwork.cli.cmd_init",
+        "clockwork.cli.cmd_scan",
+        "clockwork.cli.cmd_verify",
+        "clockwork.cli.cmd_update",
+        "clockwork.cli.cmd_handoff",
+        "clockwork.cli.cmd_pack",
+        "clockwork.cli.cmd_load",
+        "clockwork.cli.cmd_graph",
+        "clockwork.cli.cmd_plugin.plugin_app"
+      ],
+      "last_modified": "2026-03-15T06:35:10.461144+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\output.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2200,
+      "lines": 84,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "_supports_color",
+          "kind": "function",
+          "line": 21,
+          "parent": null
+        },
+        {
+          "name": "_c",
+          "kind": "function",
+          "line": 25,
+          "parent": null
+        },
+        {
+          "name": "green",
+          "kind": "function",
+          "line": 31,
+          "parent": null
+        },
+        {
+          "name": "yellow",
+          "kind": "function",
+          "line": 32,
+          "parent": null
+        },
+        {
+          "name": "red",
+          "kind": "function",
+          "line": 33,
+          "parent": null
+        },
+        {
+          "name": "cyan",
+          "kind": "function",
+          "line": 34,
+          "parent": null
+        },
+        {
+          "name": "bold",
+          "kind": "function",
+          "line": 35,
+          "parent": null
+        },
+        {
+          "name": "dim",
+          "kind": "function",
+          "line": 36,
+          "parent": null
+        },
+        {
+          "name": "header",
+          "kind": "function",
+          "line": 41,
+          "parent": null
+        },
+        {
+          "name": "success",
+          "kind": "function",
+          "line": 47,
+          "parent": null
+        },
+        {
+          "name": "info",
+          "kind": "function",
+          "line": 51,
+          "parent": null
+        },
+        {
+          "name": "warn",
+          "kind": "function",
+          "line": 55,
+          "parent": null
+        },
+        {
+          "name": "error",
+          "kind": "function",
+          "line": 59,
+          "parent": null
+        },
+        {
+          "name": "step",
+          "kind": "function",
+          "line": 63,
+          "parent": null
+        },
+        {
+          "name": "json_output",
+          "kind": "function",
+          "line": 71,
+          "parent": null
+        },
+        {
+          "name": "result_block",
+          "kind": "function",
+          "line": 76,
+          "parent": null
+        },
+        {
+          "name": "rule",
+          "kind": "function",
+          "line": 83,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "sys",
+        "typing.Any",
+        "typer"
+      ],
+      "last_modified": "2026-03-15T16:37:21.427096+00:00"
+    },
+    {
+      "path": "clockwork\\context\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 818,
+      "lines": 30,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [
+        "clockwork.context.models.ProjectContext",
+        "clockwork.context.models.TaskEntry",
+        "clockwork.context.models.ChangeEntry",
+        "clockwork.context.engine.ContextEngine"
+      ],
+      "last_modified": "2026-03-15T16:37:21.531059+00:00"
+    },
+    {
+      "path": "clockwork\\context\\context_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6999,
+      "lines": 178,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "ContextError",
+          "kind": "class",
+          "line": 20,
+          "parent": null
+        },
+        {
+          "name": "ContextValidationError",
+          "kind": "class",
+          "line": 21,
+          "parent": null
+        },
+        {
+          "name": "ContextLockError",
+          "kind": "class",
+          "line": 22,
+          "parent": null
+        },
+        {
+          "name": "ContextCorruptionError",
+          "kind": "class",
+          "line": 23,
+          "parent": null
+        },
+        {
+          "name": "ContextEngine",
+          "kind": "class",
+          "line": 25,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 26,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "load",
+          "kind": "method",
+          "line": 34,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "update",
+          "kind": "method",
+          "line": 44,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "get",
+          "kind": "method",
+          "line": 57,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "set",
+          "kind": "method",
+          "line": 64,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "validate",
+          "kind": "method",
+          "line": 78,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "integrity_check",
+          "kind": "method",
+          "line": 82,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "history",
+          "kind": "method",
+          "line": 95,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "context",
+          "kind": "method",
+          "line": 101,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_validate",
+          "kind": "method",
+          "line": 103,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_merge",
+          "kind": "method",
+          "line": 113,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_acquire_lock",
+          "kind": "method",
+          "line": 122,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_release_lock",
+          "kind": "method",
+          "line": 130,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_record_history",
+          "kind": "method",
+          "line": 134,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_collect_dependency_files",
+          "kind": "method",
+          "line": 141,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_detect_language_extensions",
+          "kind": "method",
+          "line": 150,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_read_yaml",
+          "kind": "method",
+          "line": 160,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "_write_yaml",
+          "kind": "method",
+          "line": 169,
+          "parent": "ContextEngine"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "logging",
+        "time",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Any",
+        "yaml",
+        "schema.CONTEXT_SCHEMA",
+        "schema.validate_context_schema",
+        "initializer.ContextInitializer"
+      ],
+      "last_modified": "2026-03-15T04:59:10.058385+00:00"
+    },
+    {
+      "path": "clockwork\\context\\engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 10989,
+      "lines": 323,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "ContextError",
+          "kind": "class",
+          "line": 33,
+          "parent": null
+        },
+        {
+          "name": "ContextEngine",
+          "kind": "class",
+          "line": 37,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 56,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "load",
+          "kind": "method",
+          "line": 64,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "load_or_default",
+          "kind": "method",
+          "line": 90,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "save",
+          "kind": "method",
+          "line": 100,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "validate",
+          "kind": "method",
+          "line": 123,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "merge_scan",
+          "kind": "method",
+          "line": 163,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "diff",
+          "kind": "method",
+          "line": 223,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "add_task",
+          "kind": "method",
+          "line": 276,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "complete_task",
+          "kind": "method",
+          "line": 296,
+          "parent": "ContextEngine"
+        },
+        {
+          "name": "record_change",
+          "kind": "method",
+          "line": 306,
+          "parent": "ContextEngine"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "copy",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "yaml",
+        "clockwork.context.models.ProjectContext",
+        "clockwork.context.models.TaskEntry",
+        "clockwork.context.models.ChangeEntry",
+        "clockwork.context.models.ArchitectureNote",
+        "clockwork.context.models.CONTEXT_SCHEMA_VERSION",
+        "clockwork.context.models.CLOCKWORK_VERSION",
+        "clockwork.scanner.models.ScanResult",
+        "uuid"
+      ],
+      "last_modified": "2026-03-15T16:37:21.543122+00:00"
+    },
+    {
+      "path": "clockwork\\context\\initializer.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 4346,
+      "lines": 110,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "ContextInitializer",
+          "kind": "class",
+          "line": 29,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 30,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "initialize",
+          "kind": "method",
+          "line": 35,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "_detect_languages",
+          "kind": "method",
+          "line": 57,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "_detect_frameworks",
+          "kind": "method",
+          "line": 71,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "_infer_architecture",
+          "kind": "method",
+          "line": 80,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "_read_dependency_files",
+          "kind": "method",
+          "line": 88,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "_persist",
+          "kind": "method",
+          "line": 97,
+          "parent": "ContextInitializer"
+        },
+        {
+          "name": "initialize_clockwork_dir",
+          "kind": "function",
+          "line": 109,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "logging",
+        "pathlib.Path",
+        "typing.Any",
+        "yaml"
+      ],
+      "last_modified": "2026-03-15T06:36:20.710782+00:00"
+    },
+    {
+      "path": "clockwork\\context\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 10574,
+      "lines": 269,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "TaskEntry",
+          "kind": "class",
+          "line": 28,
+          "parent": null
+        },
+        {
+          "name": "mark_done",
+          "kind": "method",
+          "line": 42,
+          "parent": "TaskEntry"
+        },
+        {
+          "name": "mark_in_progress",
+          "kind": "method",
+          "line": 46,
+          "parent": "TaskEntry"
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 52,
+          "parent": "TaskEntry"
+        },
+        {
+          "name": "from_dict",
+          "kind": "method",
+          "line": 56,
+          "parent": "TaskEntry"
+        },
+        {
+          "name": "ChangeEntry",
+          "kind": "class",
+          "line": 61,
+          "parent": null
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 72,
+          "parent": "ChangeEntry"
+        },
+        {
+          "name": "from_dict",
+          "kind": "method",
+          "line": 76,
+          "parent": "ChangeEntry"
+        },
+        {
+          "name": "ArchitectureNote",
+          "kind": "class",
+          "line": 81,
+          "parent": null
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 92,
+          "parent": "ArchitectureNote"
+        },
+        {
+          "name": "from_dict",
+          "kind": "method",
+          "line": 96,
+          "parent": "ArchitectureNote"
+        },
+        {
+          "name": "ProjectContext",
+          "kind": "class",
+          "line": 103,
+          "parent": null
+        },
+        {
+          "name": "pending_tasks",
+          "kind": "method",
+          "line": 154,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "in_progress_tasks",
+          "kind": "method",
+          "line": 158,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "done_tasks",
+          "kind": "method",
+          "line": 162,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "task_by_id",
+          "kind": "method",
+          "line": 165,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "add_task",
+          "kind": "method",
+          "line": 172,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "remove_task",
+          "kind": "method",
+          "line": 178,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "record_change",
+          "kind": "method",
+          "line": 187,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "add_architecture_note",
+          "kind": "method",
+          "line": 194,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "_touch",
+          "kind": "method",
+          "line": 201,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 208,
+          "parent": "ProjectContext"
+        },
+        {
+          "name": "from_dict",
+          "kind": "method",
+          "line": 236,
+          "parent": "ProjectContext"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "dataclasses.dataclass",
+        "dataclasses.field",
+        "dataclasses.asdict",
+        "datetime.datetime",
+        "datetime.timezone",
+        "typing.Optional",
+        "typing.Any",
+        "json"
+      ],
+      "last_modified": "2026-03-15T16:37:21.534122+00:00"
+    },
+    {
+      "path": "clockwork\\context\\schema.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1893,
+      "lines": 57,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "validate_context_schema",
+          "kind": "function",
+          "line": 41,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "typing.Any"
+      ],
+      "last_modified": "2026-03-15T04:58:49.323922+00:00"
+    },
+    {
+      "path": "clockwork\\graph\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 0,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T04:36:22.984213+00:00"
+    },
+    {
+      "path": "clockwork\\graph\\graph_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1094,
+      "lines": 21,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "GraphEngine",
+          "kind": "class",
+          "line": 6,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 7,
+          "parent": "GraphEngine"
+        },
+        {
+          "name": "build",
+          "kind": "method",
+          "line": 11,
+          "parent": "GraphEngine"
+        }
+      ],
+      "imports": [
+        "json",
+        "sqlite3",
+        "pathlib.Path",
+        "typing.Any"
+      ],
+      "last_modified": "2026-03-15T03:46:06.639031+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 547,
+      "lines": 22,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:38.596464+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\aggregator.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 3376,
+      "lines": 112,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:36.830607+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\brief_generator.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1470,
+      "lines": 86,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:37.144277+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2540,
+      "lines": 79,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:38.335429+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\logger.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1283,
+      "lines": 43,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:37.863012+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1787,
+      "lines": 65,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:36.176486+00:00"
+    },
+    {
+      "path": "clockwork\\handoff\\validator.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2711,
+      "lines": 86,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:37.589386+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 379,
+      "lines": 11,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [
+        "clockwork.packaging.packer.PackagingEngine",
+        "clockwork.packaging.loader.PackageLoader",
+        "clockwork.packaging.models.PackageMetadata"
+      ],
+      "last_modified": "2026-03-15T16:37:21.563246+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\checksum.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2199,
+      "lines": 67,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "compute_file_checksum",
+          "kind": "function",
+          "line": 14,
+          "parent": null
+        },
+        {
+          "name": "compute_directory_checksum",
+          "kind": "function",
+          "line": 23,
+          "parent": null
+        },
+        {
+          "name": "write_checksum_file",
+          "kind": "function",
+          "line": 44,
+          "parent": null
+        },
+        {
+          "name": "verify_checksum_file",
+          "kind": "function",
+          "line": 49,
+          "parent": null
+        },
+        {
+          "name": "build_manifest",
+          "kind": "function",
+          "line": 57,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "hashlib",
+        "json",
+        "pathlib.Path"
+      ],
+      "last_modified": "2026-03-15T16:37:21.573742+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\cli_commands.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2778,
+      "lines": 94,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "cmd_pack",
+          "kind": "function",
+          "line": 21,
+          "parent": null
+        },
+        {
+          "name": "cmd_load",
+          "kind": "function",
+          "line": 64,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "sys",
+        "pathlib.Path",
+        "typing.Optional",
+        "typer",
+        "clockwork.packaging.packer.PackagingEngine",
+        "clockwork.packaging.packer.PackagingError",
+        "clockwork.packaging.loader.PackageLoader",
+        "clockwork.packaging.loader.LoadError"
+      ],
+      "last_modified": "2026-03-15T16:37:21.589925+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\loader.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6427,
+      "lines": 189,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "LoadError",
+          "kind": "class",
+          "line": 35,
+          "parent": null
+        },
+        {
+          "name": "PackageLoader",
+          "kind": "class",
+          "line": 39,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 49,
+          "parent": "PackageLoader"
+        },
+        {
+          "name": "load",
+          "kind": "method",
+          "line": 57,
+          "parent": "PackageLoader"
+        },
+        {
+          "name": "_extract",
+          "kind": "method",
+          "line": 103,
+          "parent": "PackageLoader"
+        },
+        {
+          "name": "_validate_integrity",
+          "kind": "method",
+          "line": 108,
+          "parent": "PackageLoader"
+        },
+        {
+          "name": "_load_metadata",
+          "kind": "method",
+          "line": 143,
+          "parent": "PackageLoader"
+        },
+        {
+          "name": "_validate_compatibility",
+          "kind": "method",
+          "line": 153,
+          "parent": "PackageLoader"
+        },
+        {
+          "name": "_merge_context",
+          "kind": "method",
+          "line": 165,
+          "parent": "PackageLoader"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "shutil",
+        "tempfile",
+        "time",
+        "zipfile",
+        "pathlib.Path",
+        "typing.Optional",
+        "clockwork.packaging.checksum.compute_directory_checksum",
+        "clockwork.packaging.checksum.verify_checksum_file",
+        "clockwork.packaging.models.PackageMetadata"
+      ],
+      "last_modified": "2026-03-15T16:37:21.582913+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 3053,
+      "lines": 104,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "PackageMetadata",
+          "kind": "class",
+          "line": 53,
+          "parent": null
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 71,
+          "parent": "PackageMetadata"
+        },
+        {
+          "name": "to_json",
+          "kind": "method",
+          "line": 75,
+          "parent": "PackageMetadata"
+        },
+        {
+          "name": "from_dict",
+          "kind": "method",
+          "line": 80,
+          "parent": "PackageMetadata"
+        },
+        {
+          "name": "from_json",
+          "kind": "method",
+          "line": 85,
+          "parent": "PackageMetadata"
+        },
+        {
+          "name": "is_compatible",
+          "kind": "method",
+          "line": 93,
+          "parent": "PackageMetadata"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "dataclasses.dataclass",
+        "dataclasses.field",
+        "dataclasses.asdict",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional"
+      ],
+      "last_modified": "2026-03-15T16:37:21.566539+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\packaging_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 3950,
+      "lines": 69,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "PackagingEngine",
+          "kind": "class",
+          "line": 10,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 11,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "pack",
+          "kind": "method",
+          "line": 15,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "load",
+          "kind": "method",
+          "line": 39,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_meta",
+          "kind": "method",
+          "line": 64,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_load_context",
+          "kind": "method",
+          "line": 67,
+          "parent": "PackagingEngine"
+        }
+      ],
+      "imports": [
+        "json",
+        "zipfile",
+        "hashlib",
+        "pathlib.Path",
+        "datetime.datetime",
+        "typing.Any",
+        "yaml",
+        "clockwork.rules.rule_engine.RuleEngine",
+        "clockwork.brain.mini_brain.MiniBrain"
+      ],
+      "last_modified": "2026-03-15T03:46:06.626519+00:00"
+    },
+    {
+      "path": "clockwork\\packaging\\packer.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7115,
+      "lines": 221,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "PackagingError",
+          "kind": "class",
+          "line": 48,
+          "parent": null
+        },
+        {
+          "name": "PackagingEngine",
+          "kind": "class",
+          "line": 52,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 64,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "pack",
+          "kind": "method",
+          "line": 79,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_validate_clockwork_dir",
+          "kind": "method",
+          "line": 129,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_validate_required_files",
+          "kind": "method",
+          "line": 137,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_collect_files",
+          "kind": "method",
+          "line": 151,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_is_sensitive",
+          "kind": "method",
+          "line": 181,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_copy_files",
+          "kind": "method",
+          "line": 193,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_build_metadata",
+          "kind": "method",
+          "line": 202,
+          "parent": "PackagingEngine"
+        },
+        {
+          "name": "_compress",
+          "kind": "method",
+          "line": 215,
+          "parent": "PackagingEngine"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "os",
+        "platform",
+        "shutil",
+        "tempfile",
+        "time",
+        "zipfile",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "clockwork.packaging.checksum.compute_directory_checksum",
+        "clockwork.packaging.checksum.write_checksum_file",
+        "clockwork.packaging.checksum.build_manifest",
+        "clockwork.packaging.models.PackageMetadata",
+        "clockwork.packaging.models.SENSITIVE_EXCLUSIONS",
+        "clockwork.packaging.models.REQUIRED_SOURCE_FILES",
+        "clockwork.packaging.models.OPTIONAL_SOURCE_FILES",
+        "clockwork.packaging.models.CLOCKWORK_VERSION",
+        "clockwork.packaging.models.PACKAGE_SCHEMA_VERSION"
+      ],
+      "last_modified": "2026-03-15T16:37:21.577246+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 375,
+      "lines": 13,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:12:49.803200+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\default_rules.yaml",
+      "extension": ".yaml",
+      "language": "YAML",
+      "size_bytes": 575,
+      "lines": 25,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:14:45.510739+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 4142,
+      "lines": 86,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:14:36.813227+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\evaluators.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5196,
+      "lines": 111,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:13:20.054677+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\loader.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2045,
+      "lines": 65,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:13:09.496871+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5616,
+      "lines": 152,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:12:58.120277+00:00"
+    },
+    {
+      "path": "clockwork\\rules\\rule_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6153,
+      "lines": 111,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "RuleEngine",
+          "kind": "class",
+          "line": 15,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 17,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_load_rules",
+          "kind": "method",
+          "line": 21,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_load_repo_map",
+          "kind": "method",
+          "line": 27,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "verify",
+          "kind": "method",
+          "line": 31,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_evaluate_rule",
+          "kind": "method",
+          "line": 45,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_check_schema_without_migration",
+          "kind": "method",
+          "line": 57,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_check_api_layer_bypass",
+          "kind": "method",
+          "line": 65,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_check_core_modules_present",
+          "kind": "method",
+          "line": 84,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_log_validation",
+          "kind": "method",
+          "line": 92,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_log_rule",
+          "kind": "method",
+          "line": 99,
+          "parent": "RuleEngine"
+        },
+        {
+          "name": "_log_agent_action",
+          "kind": "method",
+          "line": 107,
+          "parent": "RuleEngine"
+        }
+      ],
+      "imports": [
+        "json",
+        "pathlib.Path",
+        "datetime.datetime",
+        "typing.Any",
+        "yaml"
+      ],
+      "last_modified": "2026-03-15T04:08:04.402827+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 752,
+      "lines": 33,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [
+        "clockwork.scanner.models.FileEntry",
+        "clockwork.scanner.models.DirectoryEntry",
+        "clockwork.scanner.models.ScanResult",
+        "clockwork.scanner.models.LanguageSummary",
+        "clockwork.scanner.scanner.RepositoryScanner",
+        "clockwork.scanner.language.LanguageDetector",
+        "clockwork.scanner.symbols.SymbolExtractor"
+      ],
+      "last_modified": "2026-03-15T16:37:21.488543+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\filters.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7168,
+      "lines": 196,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "ScanFilter",
+          "kind": "class",
+          "line": 102,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 109,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "should_skip_directory",
+          "kind": "method",
+          "line": 125,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "should_skip_file",
+          "kind": "method",
+          "line": 132,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "is_sensitive",
+          "kind": "method",
+          "line": 158,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "is_entry_point",
+          "kind": "method",
+          "line": 164,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "is_test_file",
+          "kind": "method",
+          "line": 168,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "is_config_file",
+          "kind": "method",
+          "line": 185,
+          "parent": "ScanFilter"
+        },
+        {
+          "name": "is_dependency_file",
+          "kind": "method",
+          "line": 189,
+          "parent": "ScanFilter"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "pathlib.Path",
+        "typing.Optional",
+        "re"
+      ],
+      "last_modified": "2026-03-15T16:37:21.507568+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\frameworks.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 10106,
+      "lines": 285,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "FrameworkDetector",
+          "kind": "class",
+          "line": 136,
+          "parent": null
+        },
+        {
+          "name": "detect",
+          "kind": "method",
+          "line": 142,
+          "parent": "FrameworkDetector"
+        },
+        {
+          "name": "_parse_requirements",
+          "kind": "method",
+          "line": 198,
+          "parent": "FrameworkDetector"
+        },
+        {
+          "name": "_parse_pyproject",
+          "kind": "method",
+          "line": 212,
+          "parent": "FrameworkDetector"
+        },
+        {
+          "name": "_parse_setup_py",
+          "kind": "method",
+          "line": 224,
+          "parent": "FrameworkDetector"
+        },
+        {
+          "name": "_parse_package_json",
+          "kind": "method",
+          "line": 235,
+          "parent": "FrameworkDetector"
+        },
+        {
+          "name": "_parse_go_mod",
+          "kind": "method",
+          "line": 261,
+          "parent": "FrameworkDetector"
+        },
+        {
+          "name": "_parse_cargo_toml",
+          "kind": "method",
+          "line": 274,
+          "parent": "FrameworkDetector"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "re",
+        "pathlib.Path",
+        "typing.Optional"
+      ],
+      "last_modified": "2026-03-15T16:37:21.520019+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\language.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6087,
+      "lines": 202,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "LanguageDetector",
+          "kind": "class",
+          "line": 125,
+          "parent": null
+        },
+        {
+          "name": "detect",
+          "kind": "method",
+          "line": 131,
+          "parent": "LanguageDetector"
+        },
+        {
+          "name": "_detect_shebang",
+          "kind": "method",
+          "line": 155,
+          "parent": "LanguageDetector"
+        },
+        {
+          "name": "detect_primary_language",
+          "kind": "method",
+          "line": 180,
+          "parent": "LanguageDetector"
+        },
+        {
+          "name": "extension_for",
+          "kind": "method",
+          "line": 200,
+          "parent": "LanguageDetector"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "pathlib.Path",
+        "typing.Optional"
+      ],
+      "last_modified": "2026-03-15T16:37:21.500052+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6801,
+      "lines": 201,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "SymbolInfo",
+          "kind": "class",
+          "line": 22,
+          "parent": null
+        },
+        {
+          "name": "FileEntry",
+          "kind": "class",
+          "line": 32,
+          "parent": null
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 52,
+          "parent": "FileEntry"
+        },
+        {
+          "name": "DirectoryEntry",
+          "kind": "class",
+          "line": 60,
+          "parent": null
+        },
+        {
+          "name": "LanguageSummary",
+          "kind": "class",
+          "line": 74,
+          "parent": null
+        },
+        {
+          "name": "average_file_size",
+          "kind": "method",
+          "line": 84,
+          "parent": "LanguageSummary"
+        },
+        {
+          "name": "ScanResult",
+          "kind": "class",
+          "line": 93,
+          "parent": null
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "line": 137,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "to_json",
+          "kind": "method",
+          "line": 142,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "from_dict",
+          "kind": "method",
+          "line": 146,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "from_json",
+          "kind": "method",
+          "line": 168,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "save",
+          "kind": "method",
+          "line": 175,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "load",
+          "kind": "method",
+          "line": 182,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "files_by_language",
+          "kind": "method",
+          "line": 191,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "entry_point_files",
+          "kind": "method",
+          "line": 194,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "test_file_entries",
+          "kind": "method",
+          "line": 197,
+          "parent": "ScanResult"
+        },
+        {
+          "name": "config_file_entries",
+          "kind": "method",
+          "line": 200,
+          "parent": "ScanResult"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "dataclasses.dataclass",
+        "dataclasses.field",
+        "dataclasses.asdict",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional"
+      ],
+      "last_modified": "2026-03-15T16:37:21.494045+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\repository_scanner.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1802,
+      "lines": 31,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "RepositoryScanner",
+          "kind": "class",
+          "line": 11,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 12,
+          "parent": "RepositoryScanner"
+        },
+        {
+          "name": "scan",
+          "kind": "method",
+          "line": 16,
+          "parent": "RepositoryScanner"
+        }
+      ],
+      "imports": [
+        "json",
+        "os",
+        "pathlib.Path",
+        "datetime.datetime",
+        "typing.Any"
+      ],
+      "last_modified": "2026-03-15T03:46:06.602461+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\scanner.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 10676,
+      "lines": 288,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "RepositoryScanner",
+          "kind": "class",
+          "line": 44,
+          "parent": null
+        },
+        {
+          "name": "__init__",
+          "kind": "method",
+          "line": 58,
+          "parent": "RepositoryScanner"
+        },
+        {
+          "name": "scan",
+          "kind": "method",
+          "line": 80,
+          "parent": "RepositoryScanner"
+        },
+        {
+          "name": "_load_config_ignores",
+          "kind": "method",
+          "line": 265,
+          "parent": "RepositoryScanner"
+        },
+        {
+          "name": "_count_lines",
+          "kind": "function",
+          "line": 282,
+          "parent": null
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "time",
+        "collections.defaultdict",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "typing.Optional",
+        "yaml",
+        "clockwork.scanner.filters.ScanFilter",
+        "clockwork.scanner.filters.DEPENDENCY_FILES",
+        "clockwork.scanner.frameworks.FrameworkDetector",
+        "clockwork.scanner.language.LanguageDetector",
+        "clockwork.scanner.models.DirectoryEntry",
+        "clockwork.scanner.models.FileEntry",
+        "clockwork.scanner.models.LanguageSummary",
+        "clockwork.scanner.models.ScanResult",
+        "clockwork.scanner.models.SymbolInfo",
+        "clockwork.scanner.symbols.SymbolExtractor"
+      ],
+      "last_modified": "2026-03-15T16:37:21.525534+00:00"
+    },
+    {
+      "path": "clockwork\\scanner\\symbols.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 8715,
+      "lines": 244,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "SymbolExtractor",
+          "kind": "class",
+          "line": 28,
+          "parent": null
+        },
+        {
+          "name": "extract",
+          "kind": "method",
+          "line": 38,
+          "parent": "SymbolExtractor"
+        },
+        {
+          "name": "_extract_python",
+          "kind": "method",
+          "line": 68,
+          "parent": "SymbolExtractor"
+        },
+        {
+          "name": "_extract_js_ts",
+          "kind": "method",
+          "line": 142,
+          "parent": "SymbolExtractor"
+        },
+        {
+          "name": "_extract_go",
+          "kind": "method",
+          "line": 178,
+          "parent": "SymbolExtractor"
+        },
+        {
+          "name": "_extract_java",
+          "kind": "method",
+          "line": 222,
+          "parent": "SymbolExtractor"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "ast",
+        "re",
+        "pathlib.Path",
+        "typing.Optional",
+        "clockwork.scanner.models.SymbolInfo"
+      ],
+      "last_modified": "2026-03-15T16:37:21.513595+00:00"
+    },
+    {
+      "path": "clockwork.egg-info\\dependency_links.txt",
+      "extension": ".txt",
+      "language": "Other",
+      "size_bytes": 1,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:21.027214+00:00"
+    },
+    {
+      "path": "clockwork.egg-info\\entry_points.txt",
+      "extension": ".txt",
+      "language": "Other",
+      "size_bytes": 53,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:21.027214+00:00"
+    },
+    {
+      "path": "clockwork.egg-info\\PKG-INFO",
+      "extension": "",
+      "language": "Other",
+      "size_bytes": 799,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:21.025221+00:00"
+    },
+    {
+      "path": "clockwork.egg-info\\requires.txt",
+      "extension": ".txt",
+      "language": "Other",
+      "size_bytes": 119,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:21.027214+00:00"
+    },
+    {
+      "path": "clockwork.egg-info\\SOURCES.txt",
+      "extension": ".txt",
+      "language": "Other",
+      "size_bytes": 2289,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:21.159186+00:00"
+    },
+    {
+      "path": "clockwork.egg-info\\top_level.txt",
+      "extension": ".txt",
+      "language": "Other",
+      "size_bytes": 28,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:21.029185+00:00"
+    },
+    {
+      "path": "pyproject.toml",
+      "extension": ".toml",
+      "language": "TOML",
+      "size_bytes": 845,
+      "lines": 44,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": true,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:46:11.361131+00:00"
+    },
+    {
+      "path": "README.md",
+      "extension": ".md",
+      "language": "Markdown",
+      "size_bytes": 227,
+      "lines": 15,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T03:25:57.792309+00:00"
+    },
+    {
+      "path": "tests\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 0,
+      "lines": 0,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T16:37:21.593921+00:00"
+    },
+    {
+      "path": "tests\\test_brain.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 9142,
+      "lines": 206,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:53:05.238736+00:00"
+    },
+    {
+      "path": "tests\\test_cli.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 12062,
+      "lines": 292,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "_init_repo",
+          "kind": "function",
+          "line": 24,
+          "parent": null
+        },
+        {
+          "name": "_init_and_scan",
+          "kind": "function",
+          "line": 31,
+          "parent": null
+        },
+        {
+          "name": "TestInit",
+          "kind": "class",
+          "line": 52,
+          "parent": null
+        },
+        {
+          "name": "test_creates_clockwork_dir",
+          "kind": "method",
+          "line": 53,
+          "parent": "TestInit"
+        },
+        {
+          "name": "test_creates_required_files",
+          "kind": "method",
+          "line": 57,
+          "parent": "TestInit"
+        },
+        {
+          "name": "test_creates_subdirectories",
+          "kind": "method",
+          "line": 63,
+          "parent": "TestInit"
+        },
+        {
+          "name": "test_context_yaml_is_valid",
+          "kind": "method",
+          "line": 68,
+          "parent": "TestInit"
+        },
+        {
+          "name": "test_tasks_is_empty_list",
+          "kind": "method",
+          "line": 74,
+          "parent": "TestInit"
+        },
+        {
+          "name": "test_agent_history_is_empty_list",
+          "kind": "method",
+          "line": 79,
+          "parent": "TestInit"
+        },
+        {
+          "name": "TestScan",
+          "kind": "class",
+          "line": 87,
+          "parent": null
+        },
+        {
+          "name": "test_scan_creates_repo_map",
+          "kind": "method",
+          "line": 88,
+          "parent": "TestScan"
+        },
+        {
+          "name": "test_repo_map_valid_json",
+          "kind": "method",
+          "line": 92,
+          "parent": "TestScan"
+        },
+        {
+          "name": "test_detects_python_language",
+          "kind": "method",
+          "line": 99,
+          "parent": "TestScan"
+        },
+        {
+          "name": "test_detects_entry_points",
+          "kind": "method",
+          "line": 104,
+          "parent": "TestScan"
+        },
+        {
+          "name": "test_excludes_sensitive_files",
+          "kind": "method",
+          "line": 110,
+          "parent": "TestScan"
+        },
+        {
+          "name": "test_excludes_clockwork_dir",
+          "kind": "method",
+          "line": 116,
+          "parent": "TestScan"
+        },
+        {
+          "name": "test_file_entries_have_required_fields",
+          "kind": "method",
+          "line": 122,
+          "parent": "TestScan"
+        },
+        {
+          "name": "TestUpdate",
+          "kind": "class",
+          "line": 133,
+          "parent": null
+        },
+        {
+          "name": "test_update_sets_primary_language",
+          "kind": "method",
+          "line": 134,
+          "parent": "TestUpdate"
+        },
+        {
+          "name": "test_update_writes_context",
+          "kind": "method",
+          "line": 141,
+          "parent": "TestUpdate"
+        },
+        {
+          "name": "test_framework_detection_typer",
+          "kind": "method",
+          "line": 157,
+          "parent": "TestUpdate"
+        },
+        {
+          "name": "TestVerify",
+          "kind": "class",
+          "line": 170,
+          "parent": null
+        },
+        {
+          "name": "test_passes_on_valid_repo",
+          "kind": "method",
+          "line": 171,
+          "parent": "TestVerify"
+        },
+        {
+          "name": "test_fails_on_missing_context",
+          "kind": "method",
+          "line": 185,
+          "parent": "TestVerify"
+        },
+        {
+          "name": "test_warns_on_missing_repo_map",
+          "kind": "method",
+          "line": 196,
+          "parent": "TestVerify"
+        },
+        {
+          "name": "TestHandoff",
+          "kind": "class",
+          "line": 210,
+          "parent": null
+        },
+        {
+          "name": "test_handoff_creates_files",
+          "kind": "method",
+          "line": 211,
+          "parent": "TestHandoff"
+        },
+        {
+          "name": "test_handoff_json_structure",
+          "kind": "method",
+          "line": 225,
+          "parent": "TestHandoff"
+        },
+        {
+          "name": "test_brief_contains_project_name",
+          "kind": "method",
+          "line": 234,
+          "parent": "TestHandoff"
+        },
+        {
+          "name": "test_handoff_note_appears_in_brief",
+          "kind": "method",
+          "line": 242,
+          "parent": "TestHandoff"
+        },
+        {
+          "name": "TestGraph",
+          "kind": "class",
+          "line": 253,
+          "parent": null
+        },
+        {
+          "name": "test_graph_creates_db",
+          "kind": "method",
+          "line": 254,
+          "parent": "TestGraph"
+        },
+        {
+          "name": "test_graph_db_has_tables",
+          "kind": "method",
+          "line": 263,
+          "parent": "TestGraph"
+        },
+        {
+          "name": "test_graph_contains_language_nodes",
+          "kind": "method",
+          "line": 279,
+          "parent": "TestGraph"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "sqlite3",
+        "pathlib.Path",
+        "pytest",
+        "yaml",
+        "clockwork.cli.commands.init._create_clockwork_dir",
+        "clockwork.cli.commands.scan._scan_repository",
+        "clockwork.cli.commands.scan._load_ignore_dirs",
+        "clockwork.cli.commands.update._derive_primary_language",
+        "clockwork.cli.commands.update._detect_frameworks",
+        "clockwork.cli.commands.verify.VerificationResult",
+        "clockwork.cli.commands.verify._check_required_files",
+        "clockwork.cli.commands.verify._check_context_schema",
+        "clockwork.cli.commands.verify._check_repo_map",
+        "clockwork.cli.commands.handoff._build_handoff",
+        "clockwork.cli.commands.handoff._build_brief",
+        "clockwork.cli.commands.graph._build_graph"
+      ],
+      "last_modified": "2026-03-15T16:37:21.624609+00:00"
+    },
+    {
+      "path": "tests\\test_context.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 19585,
+      "lines": 500,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "_make_cw_dir",
+          "kind": "function",
+          "line": 41,
+          "parent": null
+        },
+        {
+          "name": "_make_scan_result",
+          "kind": "function",
+          "line": 51,
+          "parent": null
+        },
+        {
+          "name": "TestTaskEntry",
+          "kind": "class",
+          "line": 77,
+          "parent": null
+        },
+        {
+          "name": "test_defaults",
+          "kind": "method",
+          "line": 78,
+          "parent": "TestTaskEntry"
+        },
+        {
+          "name": "test_mark_done",
+          "kind": "method",
+          "line": 84,
+          "parent": "TestTaskEntry"
+        },
+        {
+          "name": "test_mark_in_progress",
+          "kind": "method",
+          "line": 90,
+          "parent": "TestTaskEntry"
+        },
+        {
+          "name": "test_roundtrip",
+          "kind": "method",
+          "line": 96,
+          "parent": "TestTaskEntry"
+        },
+        {
+          "name": "TestChangeEntry",
+          "kind": "class",
+          "line": 108,
+          "parent": null
+        },
+        {
+          "name": "test_defaults",
+          "kind": "method",
+          "line": 109,
+          "parent": "TestChangeEntry"
+        },
+        {
+          "name": "test_roundtrip",
+          "kind": "method",
+          "line": 114,
+          "parent": "TestChangeEntry"
+        },
+        {
+          "name": "TestProjectContext",
+          "kind": "class",
+          "line": 130,
+          "parent": null
+        },
+        {
+          "name": "test_default_construction",
+          "kind": "method",
+          "line": 131,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_add_and_retrieve_task",
+          "kind": "method",
+          "line": 139,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_add_task_replaces_existing",
+          "kind": "method",
+          "line": 146,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_remove_task",
+          "kind": "method",
+          "line": 153,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_remove_nonexistent_task",
+          "kind": "method",
+          "line": 160,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_pending_tasks_property",
+          "kind": "method",
+          "line": 164,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_done_tasks_property",
+          "kind": "method",
+          "line": 170,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_record_change",
+          "kind": "method",
+          "line": 177,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_change_rolling_window",
+          "kind": "method",
+          "line": 182,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_add_architecture_note",
+          "kind": "method",
+          "line": 189,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_architecture_note_dedup",
+          "kind": "method",
+          "line": 195,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_to_dict_roundtrip",
+          "kind": "method",
+          "line": 202,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "test_extra_fields_preserved",
+          "kind": "method",
+          "line": 214,
+          "parent": "TestProjectContext"
+        },
+        {
+          "name": "TestContextEngine",
+          "kind": "class",
+          "line": 234,
+          "parent": null
+        },
+        {
+          "name": "test_save_creates_file",
+          "kind": "method",
+          "line": 235,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_load_roundtrip",
+          "kind": "method",
+          "line": 242,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_load_raises_on_missing",
+          "kind": "method",
+          "line": 249,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_load_raises_on_invalid_yaml",
+          "kind": "method",
+          "line": 256,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_load_or_default_returns_default",
+          "kind": "method",
+          "line": 264,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_save_preserves_tasks",
+          "kind": "method",
+          "line": 271,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_save_preserves_changes",
+          "kind": "method",
+          "line": 281,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "test_save_preserves_extra_fields",
+          "kind": "method",
+          "line": 290,
+          "parent": "TestContextEngine"
+        },
+        {
+          "name": "TestContextValidation",
+          "kind": "class",
+          "line": 312,
+          "parent": null
+        },
+        {
+          "name": "test_valid_context_no_issues",
+          "kind": "method",
+          "line": 313,
+          "parent": "TestContextValidation"
+        },
+        {
+          "name": "test_missing_project_name_flagged",
+          "kind": "method",
+          "line": 319,
+          "parent": "TestContextValidation"
+        },
+        {
+          "name": "test_invalid_task_status_flagged",
+          "kind": "method",
+          "line": 328,
+          "parent": "TestContextValidation"
+        },
+        {
+          "name": "test_version_mismatch_flagged",
+          "kind": "method",
+          "line": 337,
+          "parent": "TestContextValidation"
+        },
+        {
+          "name": "TestMergeScan",
+          "kind": "class",
+          "line": 351,
+          "parent": null
+        },
+        {
+          "name": "test_merge_updates_language",
+          "kind": "method",
+          "line": 352,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "test_merge_updates_file_count",
+          "kind": "method",
+          "line": 359,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "test_merge_updates_frameworks",
+          "kind": "method",
+          "line": 366,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "test_merge_preserves_summary",
+          "kind": "method",
+          "line": 373,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "test_merge_preserves_tasks",
+          "kind": "method",
+          "line": 383,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "test_merge_records_change_event",
+          "kind": "method",
+          "line": 393,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "test_merge_raises_on_wrong_type",
+          "kind": "method",
+          "line": 413,
+          "parent": "TestMergeScan"
+        },
+        {
+          "name": "TestContextDiff",
+          "kind": "class",
+          "line": 424,
+          "parent": null
+        },
+        {
+          "name": "test_diff_detects_file_count_change",
+          "kind": "method",
+          "line": 425,
+          "parent": "TestContextDiff"
+        },
+        {
+          "name": "test_diff_detects_framework_change",
+          "kind": "method",
+          "line": 435,
+          "parent": "TestContextDiff"
+        },
+        {
+          "name": "test_diff_empty_when_unchanged",
+          "kind": "method",
+          "line": 444,
+          "parent": "TestContextDiff"
+        },
+        {
+          "name": "test_diff_detects_task_change",
+          "kind": "method",
+          "line": 451,
+          "parent": "TestContextDiff"
+        },
+        {
+          "name": "TestTaskHelpers",
+          "kind": "class",
+          "line": 466,
+          "parent": null
+        },
+        {
+          "name": "test_add_task_helper",
+          "kind": "method",
+          "line": 467,
+          "parent": "TestTaskHelpers"
+        },
+        {
+          "name": "test_complete_task_helper",
+          "kind": "method",
+          "line": 475,
+          "parent": "TestTaskHelpers"
+        },
+        {
+          "name": "test_complete_missing_task",
+          "kind": "method",
+          "line": 485,
+          "parent": "TestTaskHelpers"
+        },
+        {
+          "name": "test_record_change_helper",
+          "kind": "method",
+          "line": 490,
+          "parent": "TestTaskHelpers"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pathlib.Path",
+        "pytest",
+        "yaml",
+        "clockwork.context.models.ProjectContext",
+        "clockwork.context.models.TaskEntry",
+        "clockwork.context.models.ChangeEntry",
+        "clockwork.context.models.ArchitectureNote",
+        "clockwork.context.models.CONTEXT_SCHEMA_VERSION",
+        "clockwork.context.models.CLOCKWORK_VERSION",
+        "clockwork.context.engine.ContextEngine",
+        "clockwork.context.engine.ContextError",
+        "clockwork.scanner.RepositoryScanner",
+        "clockwork.scanner.models.ScanResult"
+      ],
+      "last_modified": "2026-03-15T16:37:21.613522+00:00"
+    },
+    {
+      "path": "tests\\test_handoff.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5058,
+      "lines": 145,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T06:04:40.016005+00:00"
+    },
+    {
+      "path": "tests\\test_packaging.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 11103,
+      "lines": 275,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "_make_clockwork_dir",
+          "kind": "function",
+          "line": 39,
+          "parent": null
+        },
+        {
+          "name": "TestPackageMetadata",
+          "kind": "class",
+          "line": 57,
+          "parent": null
+        },
+        {
+          "name": "test_default_values",
+          "kind": "method",
+          "line": 58,
+          "parent": "TestPackageMetadata"
+        },
+        {
+          "name": "test_serialise_roundtrip",
+          "kind": "method",
+          "line": 64,
+          "parent": "TestPackageMetadata"
+        },
+        {
+          "name": "test_is_compatible_passes",
+          "kind": "method",
+          "line": 70,
+          "parent": "TestPackageMetadata"
+        },
+        {
+          "name": "test_is_compatible_fails_wrong_schema",
+          "kind": "method",
+          "line": 77,
+          "parent": "TestPackageMetadata"
+        },
+        {
+          "name": "test_is_compatible_fails_wrong_version",
+          "kind": "method",
+          "line": 81,
+          "parent": "TestPackageMetadata"
+        },
+        {
+          "name": "TestChecksums",
+          "kind": "class",
+          "line": 90,
+          "parent": null
+        },
+        {
+          "name": "test_file_checksum_stable",
+          "kind": "method",
+          "line": 91,
+          "parent": "TestChecksums"
+        },
+        {
+          "name": "test_directory_checksum_stable",
+          "kind": "method",
+          "line": 99,
+          "parent": "TestChecksums"
+        },
+        {
+          "name": "test_directory_checksum_detects_change",
+          "kind": "method",
+          "line": 106,
+          "parent": "TestChecksums"
+        },
+        {
+          "name": "test_write_and_verify_checksum",
+          "kind": "method",
+          "line": 113,
+          "parent": "TestChecksums"
+        },
+        {
+          "name": "test_build_manifest_keys",
+          "kind": "method",
+          "line": 119,
+          "parent": "TestChecksums"
+        },
+        {
+          "name": "TestPackagingEngine",
+          "kind": "class",
+          "line": 130,
+          "parent": null
+        },
+        {
+          "name": "test_pack_produces_file",
+          "kind": "method",
+          "line": 131,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_pack_is_valid_zip",
+          "kind": "method",
+          "line": 138,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_pack_contains_required_files",
+          "kind": "method",
+          "line": 144,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_pack_excludes_sensitive_files",
+          "kind": "method",
+          "line": 155,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_pack_fails_without_init",
+          "kind": "method",
+          "line": 166,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_pack_fails_missing_required_files",
+          "kind": "method",
+          "line": 171,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_metadata_project_name",
+          "kind": "method",
+          "line": 177,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "test_sensitive_filter",
+          "kind": "method",
+          "line": 185,
+          "parent": "TestPackagingEngine"
+        },
+        {
+          "name": "TestPackageLoader",
+          "kind": "class",
+          "line": 196,
+          "parent": null
+        },
+        {
+          "name": "_pack_and_get_path",
+          "kind": "method",
+          "line": 197,
+          "parent": "TestPackageLoader"
+        },
+        {
+          "name": "test_load_restores_files",
+          "kind": "method",
+          "line": 202,
+          "parent": "TestPackageLoader"
+        },
+        {
+          "name": "test_load_fails_on_missing_file",
+          "kind": "method",
+          "line": 215,
+          "parent": "TestPackageLoader"
+        },
+        {
+          "name": "test_load_fails_on_corrupt_archive",
+          "kind": "method",
+          "line": 220,
+          "parent": "TestPackageLoader"
+        },
+        {
+          "name": "test_load_fails_on_tampered_checksum",
+          "kind": "method",
+          "line": 227,
+          "parent": "TestPackageLoader"
+        },
+        {
+          "name": "test_load_fails_incompatible_version",
+          "kind": "method",
+          "line": 245,
+          "parent": "TestPackageLoader"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "zipfile",
+        "pathlib.Path",
+        "datetime.datetime",
+        "datetime.timezone",
+        "pytest",
+        "clockwork.packaging.models.PackageMetadata",
+        "clockwork.packaging.models.CLOCKWORK_VERSION",
+        "clockwork.packaging.models.PACKAGE_SCHEMA_VERSION",
+        "clockwork.packaging.models.SENSITIVE_EXCLUSIONS",
+        "clockwork.packaging.checksum.compute_file_checksum",
+        "clockwork.packaging.checksum.compute_directory_checksum",
+        "clockwork.packaging.checksum.write_checksum_file",
+        "clockwork.packaging.checksum.verify_checksum_file",
+        "clockwork.packaging.checksum.build_manifest",
+        "clockwork.packaging.packer.PackagingEngine",
+        "clockwork.packaging.packer.PackagingError",
+        "clockwork.packaging.loader.PackageLoader",
+        "clockwork.packaging.loader.LoadError",
+        "shutil",
+        "io",
+        "tempfile"
+      ],
+      "last_modified": "2026-03-15T16:37:21.619087+00:00"
+    },
+    {
+      "path": "tests\\test_rules.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 8111,
+      "lines": 206,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-15T05:16:02.726373+00:00"
+    },
+    {
+      "path": "tests\\test_scanner.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 16482,
+      "lines": 449,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [
+        {
+          "name": "_make_repo",
+          "kind": "function",
+          "line": 37,
+          "parent": null
+        },
+        {
+          "name": "TestLanguageDetector",
+          "kind": "class",
+          "line": 93,
+          "parent": null
+        },
+        {
+          "name": "test_extension_detection",
+          "kind": "method",
+          "line": 94,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "test_filename_detection",
+          "kind": "method",
+          "line": 103,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "test_shebang_detection",
+          "kind": "method",
+          "line": 109,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "test_shebang_bash",
+          "kind": "method",
+          "line": 115,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "test_unknown_returns_other",
+          "kind": "method",
+          "line": 121,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "test_primary_language_prefers_code",
+          "kind": "method",
+          "line": 125,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "test_primary_language_empty",
+          "kind": "method",
+          "line": 130,
+          "parent": "TestLanguageDetector"
+        },
+        {
+          "name": "TestScanFilter",
+          "kind": "class",
+          "line": 139,
+          "parent": null
+        },
+        {
+          "name": "setup_method",
+          "kind": "method",
+          "line": 140,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_sensitive_env",
+          "kind": "method",
+          "line": 143,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_sensitive_credentials",
+          "kind": "method",
+          "line": 146,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_sensitive_pem",
+          "kind": "method",
+          "line": 149,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_not_sensitive",
+          "kind": "method",
+          "line": 152,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_skip_pyc",
+          "kind": "method",
+          "line": 155,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_skip_png",
+          "kind": "method",
+          "line": 158,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_keep_python",
+          "kind": "method",
+          "line": 161,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_entry_point_main",
+          "kind": "method",
+          "line": 164,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_entry_point_appjs",
+          "kind": "method",
+          "line": 167,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_not_entry_point",
+          "kind": "method",
+          "line": 170,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_test_file_prefix",
+          "kind": "method",
+          "line": 173,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_test_file_spec",
+          "kind": "method",
+          "line": 176,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_not_test_file",
+          "kind": "method",
+          "line": 179,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_skip_dir_node_modules",
+          "kind": "method",
+          "line": 182,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_skip_dir_git",
+          "kind": "method",
+          "line": 187,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "test_keep_src_dir",
+          "kind": "method",
+          "line": 192,
+          "parent": "TestScanFilter"
+        },
+        {
+          "name": "TestSymbolExtractor",
+          "kind": "class",
+          "line": 202,
+          "parent": null
+        },
+        {
+          "name": "setup_method",
+          "kind": "method",
+          "line": 203,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_python_class",
+          "kind": "method",
+          "line": 206,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_python_function",
+          "kind": "method",
+          "line": 214,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_python_imports",
+          "kind": "method",
+          "line": 222,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_python_method_has_parent",
+          "kind": "method",
+          "line": 229,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_python_syntax_error_returns_empty",
+          "kind": "method",
+          "line": 238,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_js_class_and_function",
+          "kind": "method",
+          "line": 245,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_js_imports",
+          "kind": "method",
+          "line": 257,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_go_structs_and_funcs",
+          "kind": "method",
+          "line": 263,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "test_unsupported_language_returns_empty",
+          "kind": "method",
+          "line": 275,
+          "parent": "TestSymbolExtractor"
+        },
+        {
+          "name": "TestFrameworkDetector",
+          "kind": "class",
+          "line": 287,
+          "parent": null
+        },
+        {
+          "name": "setup_method",
+          "kind": "method",
+          "line": 288,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "test_requirements_txt",
+          "kind": "method",
+          "line": 291,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "test_package_json",
+          "kind": "method",
+          "line": 298,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "test_dockerfile_detected",
+          "kind": "method",
+          "line": 306,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "test_go_mod",
+          "kind": "method",
+          "line": 311,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "test_cargo_toml",
+          "kind": "method",
+          "line": 318,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "test_empty_repo_no_frameworks",
+          "kind": "method",
+          "line": 326,
+          "parent": "TestFrameworkDetector"
+        },
+        {
+          "name": "TestRepositoryScanner",
+          "kind": "class",
+          "line": 335,
+          "parent": null
+        },
+        {
+          "name": "test_scan_returns_result",
+          "kind": "method",
+          "line": 336,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_total_files_positive",
+          "kind": "method",
+          "line": 342,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_python_detected",
+          "kind": "method",
+          "line": 347,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_primary_language_python",
+          "kind": "method",
+          "line": 352,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_sensitive_files_excluded",
+          "kind": "method",
+          "line": 357,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_binary_files_excluded",
+          "kind": "method",
+          "line": 364,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_entry_points_detected",
+          "kind": "method",
+          "line": 370,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_test_files_detected",
+          "kind": "method",
+          "line": 376,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_frameworks_detected",
+          "kind": "method",
+          "line": 381,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_python_symbols_extracted",
+          "kind": "method",
+          "line": 386,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_line_counts_nonzero",
+          "kind": "method",
+          "line": 395,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_directory_tree_populated",
+          "kind": "method",
+          "line": 400,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "test_save_and_load",
+          "kind": "method",
+          "line": 405,
+          "parent": "TestRepositoryScanner"
+        },
+        {
+          "name": "TestScanResultSerialisation",
+          "kind": "class",
+          "line": 421,
+          "parent": null
+        },
+        {
+          "name": "test_json_roundtrip",
+          "kind": "method",
+          "line": 422,
+          "parent": "TestScanResultSerialisation"
+        },
+        {
+          "name": "test_files_by_language",
+          "kind": "method",
+          "line": 431,
+          "parent": "TestScanResultSerialisation"
+        },
+        {
+          "name": "test_entry_point_files_method",
+          "kind": "method",
+          "line": 438,
+          "parent": "TestScanResultSerialisation"
+        },
+        {
+          "name": "test_test_file_entries_method",
+          "kind": "method",
+          "line": 444,
+          "parent": "TestScanResultSerialisation"
+        }
+      ],
+      "imports": [
+        "__future__.annotations",
+        "json",
+        "textwrap",
+        "pathlib.Path",
+        "pytest",
+        "clockwork.scanner.language.LanguageDetector",
+        "clockwork.scanner.language.EXTENSION_MAP",
+        "clockwork.scanner.language.FILENAME_MAP",
+        "clockwork.scanner.filters.ScanFilter",
+        "clockwork.scanner.symbols.SymbolExtractor",
+        "clockwork.scanner.frameworks.FrameworkDetector",
+        "clockwork.scanner.scanner.RepositoryScanner",
+        "clockwork.scanner.models.ScanResult",
+        "clockwork.scanner.models.FileEntry",
+        "clockwork.scanner.models.SymbolInfo"
+      ],
+      "last_modified": "2026-03-15T16:37:21.610508+00:00"
+    }
+  ],
+  "directories": [
+    {
+      "path": "clockwork",
+      "file_count": 1,
+      "subdirectory_count": 8,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\brain",
+      "file_count": 7,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\cli",
+      "file_count": 13,
+      "subdirectory_count": 1,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\cli\\commands",
+      "file_count": 7,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\context",
+      "file_count": 6,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\graph",
+      "file_count": 2,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\handoff",
+      "file_count": 7,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\packaging",
+      "file_count": 7,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\rules",
+      "file_count": 7,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python",
+        "YAML"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\scanner",
+      "file_count": 8,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork.egg-info",
+      "file_count": 6,
+      "subdirectory_count": 0,
+      "languages": [],
+      "has_init": false,
+      "has_tests": false
+    },
+    {
+      "path": ".",
+      "file_count": 2,
+      "subdirectory_count": 5,
+      "languages": [
+        "TOML",
+        "Markdown"
+      ],
+      "has_init": false,
+      "has_tests": false
+    },
+    {
+      "path": "tests",
+      "file_count": 8,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": true
+    }
+  ],
+  "directory_tree": {
+    "clockwork": [
+      "__init__.py"
+    ],
+    "clockwork\\brain": [
+      "__init__.py",
+      "base.py",
+      "brain_manager.py",
+      "external_brain.py",
+      "mini_brain.py",
+      "minibrain.py",
+      "ollama_brain.py"
+    ],
+    "clockwork\\cli": [
+      "__init__.py",
+      "app.py",
+      "cmd_graph.py",
+      "cmd_handoff.py",
+      "cmd_init.py",
+      "cmd_load.py",
+      "cmd_pack.py",
+      "cmd_plugin.py",
+      "cmd_scan.py",
+      "cmd_update.py",
+      "cmd_verify.py",
+      "main.py",
+      "output.py"
+    ],
+    "clockwork\\cli\\commands": [
+      "__init__.py",
+      "graph.py",
+      "handoff.py",
+      "init.py",
+      "scan.py",
+      "update.py",
+      "verify.py"
+    ],
+    "clockwork\\context": [
+      "__init__.py",
+      "context_engine.py",
+      "engine.py",
+      "initializer.py",
+      "models.py",
+      "schema.py"
+    ],
+    "clockwork\\graph": [
+      "__init__.py",
+      "graph_engine.py"
+    ],
+    "clockwork\\handoff": [
+      "__init__.py",
+      "aggregator.py",
+      "brief_generator.py",
+      "engine.py",
+      "logger.py",
+      "models.py",
+      "validator.py"
+    ],
+    "clockwork\\packaging": [
+      "__init__.py",
+      "checksum.py",
+      "cli_commands.py",
+      "loader.py",
+      "models.py",
+      "packaging_engine.py",
+      "packer.py"
+    ],
+    "clockwork\\rules": [
+      "__init__.py",
+      "default_rules.yaml",
+      "engine.py",
+      "evaluators.py",
+      "loader.py",
+      "models.py",
+      "rule_engine.py"
+    ],
+    "clockwork\\scanner": [
+      "__init__.py",
+      "filters.py",
+      "frameworks.py",
+      "language.py",
+      "models.py",
+      "repository_scanner.py",
+      "scanner.py",
+      "symbols.py"
+    ],
+    "clockwork.egg-info": [
+      "dependency_links.txt",
+      "entry_points.txt",
+      "PKG-INFO",
+      "requires.txt",
+      "SOURCES.txt",
+      "top_level.txt"
+    ],
+    ".": [
+      "pyproject.toml",
+      "README.md"
+    ],
+    "tests": [
+      "__init__.py",
+      "test_brain.py",
+      "test_cli.py",
+      "test_context.py",
+      "test_handoff.py",
+      "test_packaging.py",
+      "test_rules.py",
+      "test_scanner.py"
+    ]
+  },
+  "entry_points": [
+    "clockwork\\cli\\app.py",
+    "clockwork\\cli\\main.py"
+  ],
+  "test_files": [
+    "tests\\__init__.py",
+    "tests\\test_brain.py",
+    "tests\\test_cli.py",
+    "tests\\test_context.py",
+    "tests\\test_handoff.py",
+    "tests\\test_packaging.py",
+    "tests\\test_rules.py",
+    "tests\\test_scanner.py"
+  ],
+  "config_files": [
+    "pyproject.toml"
+  ],
+  "frameworks": [
+    "Typer",
+    "pytest"
+  ],
+  "dependency_files": [
+    "pyproject.toml"
+  ]
+}

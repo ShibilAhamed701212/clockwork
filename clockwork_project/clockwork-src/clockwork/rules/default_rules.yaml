@@ -1,0 +1,25 @@
+﻿rules:
+  forbid_core_file_deletion: true
+  require_tests_for_new_modules: true
+  enforce_architecture_layers: true
+  protected_files:
+    - ".clockwork/context.yaml"
+    - ".clockwork/rules.md"
+    - ".clockwork/rules.yaml"
+    - ".clockwork/repo_map.json"
+  protected_directories:
+    - "core/"
+    - "database/"
+  forbid_file_patterns:
+    - "*.env"
+    - ".env"
+    - "credentials.json"
+    - "secrets*"
+  require_tests_for:
+    - "backend/"
+    - "services/"
+    - "clockwork/"
+  dependency_files:
+    - "requirements.txt"
+    - "pyproject.toml"
+    - "package.json"

@@ -1,0 +1,10 @@
+.venv/
+.env
+.agent/
+.kluster/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+clockwork_export.txt
+clockwork_full_export.txt
