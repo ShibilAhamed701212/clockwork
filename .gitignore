@@ -8,3 +8,5 @@ __pycache__/
 *.egg-info/
 clockwork_export.txt
 clockwork_full_export.txt
+.clockwork/
+*.db
