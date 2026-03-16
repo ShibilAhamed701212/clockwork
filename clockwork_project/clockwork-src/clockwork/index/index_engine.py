@@ -365,7 +365,7 @@ class LiveContextIndex:
 _IGNORE_DIRS = {
     ".git", "__pycache__", "node_modules", ".venv", "venv",
     "dist", "build", ".clockwork", ".idea", ".vscode",
-    "eggs", "*.egg-info",
+    "eggs",
 }
 
 

@@ -88,6 +88,7 @@ class GraphStorage:
         self._conn = sqlite3.connect(str(self.db_path))
         self._conn.row_factory = sqlite3.Row
         self._conn.execute("PRAGMA foreign_keys = ON")
+        self._conn.execute("PRAGMA foreign_keys = ON")
 
     def close(self) -> None:
         """Commit and close the connection."""

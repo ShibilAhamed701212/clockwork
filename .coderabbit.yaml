@@ -1,0 +1,17 @@
+# .coderabbit.yaml
+# Learn more about configuring CodeRabbit at: https://coderabbit.ai/docs
+language: "en-US"
+
+reviews:
+  # Set to true to enable CodeRabbit code reviews
+  enable: true
+  profile: "standard"
+  auto_review:
+    enabled: true
+    # Set to true to review draft PRs
+    drafts: false
+  request_changes_workflow: true
+  high_level_summary: true
+  
+chat:
+  auto_reply: true

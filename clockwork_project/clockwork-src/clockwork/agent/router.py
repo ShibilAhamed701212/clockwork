@@ -148,9 +148,10 @@ class ValidationPipeline:
         try:
             from clockwork.rules import RuleEngine
             engine = RuleEngine(self.repo_root)
-            passed, violations = engine.verify()
-            if not passed:
-                errors.extend(violations)
+            report = engine.evaluate(list(task.proposed_changes))
+            if not report.passed:
+                errors.extend([str(v) for v in report.blocking_violations])
+            warnings.extend([str(v) for v in report.warnings])
         except ImportError:
             warnings.append("Rule Engine not available — skipping rule checks.")
         except Exception as exc:
@@ -168,14 +169,16 @@ class ValidationPipeline:
             try:
                 from clockwork.graph import GraphEngine
                 engine = GraphEngine(self.repo_root)
-                q      = engine.query()
-                for change in task.proposed_changes:
-                    if change.lower().startswith("delete "):
-                        fp = change[7:].strip()
-                        safe, reasons = q.is_safe_to_delete(fp)
-                        if not safe:
-                            errors.extend(reasons)
-                engine.close()
+                try:
+                    q = engine.query()
+                    for change in task.proposed_changes:
+                        if change.lower().startswith("delete "):
+                            fp = change[7:].strip()
+                            safe, reasons = q.is_safe_to_delete(fp)
+                            if not safe:
+                                errors.extend(reasons)
+                finally:
+                    engine.close()
             except Exception as exc:
                 warnings.append(f"Brain graph check error: {exc}")
         return errors, warnings

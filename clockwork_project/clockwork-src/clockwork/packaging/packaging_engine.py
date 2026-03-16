@@ -1,4 +1,4 @@
-"""Packaging Engine � full pre-pack and import pipeline."""
+"""Packaging Engine - full pre-pack and import pipeline."""
 import json, zipfile, hashlib
 from pathlib import Path
 from datetime import datetime, timezone
@@ -23,7 +23,7 @@ class PackagingEngine:
         passed, violations = RuleEngine(self.repo_path).verify()
         if not passed:
             raise RuntimeError("Rule Engine failed before pack:\n" + "\n".join(f"  - {v}" for v in violations))
-        # MiniBrain.analyze() does not exist
+        # MiniBrain.analyze() does not exist - removed to prevent TypeError
         assessment: dict[str, Any] = {}
         (self.d / "packages").mkdir(exist_ok=True)
         out = self.d / "packages" / output_name
@@ -47,7 +47,7 @@ class PackagingEngine:
             meta = json.loads(zf.read("metadata.json"))
             stored = zf.read("package_checksum.txt").decode().strip()
             computed = hashlib.sha256(json.dumps(meta, sort_keys=True).encode()).hexdigest()
-            if stored != computed: raise ValueError("Checksum mismatch � package may be corrupted.")
+            if stored != computed: raise ValueError("Checksum mismatch - package may be corrupted.")
             if meta.get("package_version", 1) > 1: raise ValueError("Incompatible package version.")
             self.d.mkdir(exist_ok=True)
             (self.d / "handoff").mkdir(exist_ok=True)
