@@ -1,24 +1,34 @@
 {
-  "scanned_at": "2026-03-15T16:52:22.532213+00:00",
+  "scanned_at": "2026-03-16T07:20:37.620685+00:00",
   "root": "D:\\var-codes\\Clockworker\\clockwork_project\\clockwork-src",
   "project_name": "clockwork-src",
   "clockwork_version": "0.1",
-  "total_files": 81,
-  "total_lines": 8774,
-  "total_bytes": 318459,
+  "total_files": 107,
+  "total_lines": 16376,
+  "total_bytes": 585695,
   "primary_language": "Python",
   "languages": {
-    "Python": 72,
+    "Python": 97,
+    "Config": 1,
     "YAML": 1,
     "TOML": 1,
     "Markdown": 1
   },
   "language_details": [
     {
+      "name": "Config",
+      "file_count": 1,
+      "total_lines": 2,
+      "total_bytes": 14,
+      "extensions": [
+        ""
+      ]
+    },
+    {
       "name": "Python",
-      "file_count": 72,
-      "total_lines": 8690,
-      "total_bytes": 313523,
+      "file_count": 97,
+      "total_lines": 16290,
+      "total_bytes": 580618,
       "extensions": [
         ".py"
       ]
@@ -53,6 +63,19 @@
   ],
   "files": [
     {
+      "path": ".gitignore",
+      "extension": "",
+      "language": "Config",
+      "size_bytes": 14,
+      "lines": 2,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:18:14.966138+00:00"
+    },
+    {
       "path": "clockwork\\__init__.py",
       "extension": ".py",
       "language": "Python",
@@ -64,6 +87,84 @@
       "symbols": [],
       "imports": [],
       "last_modified": "2026-03-15T16:37:21.416797+00:00"
+    },
+    {
+      "path": "clockwork\\agent\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1422,
+      "lines": 52,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.790223+00:00"
+    },
+    {
+      "path": "clockwork\\agent\\lock_manager.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6402,
+      "lines": 191,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.800756+00:00"
+    },
+    {
+      "path": "clockwork\\agent\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7957,
+      "lines": 221,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.792207+00:00"
+    },
+    {
+      "path": "clockwork\\agent\\registry.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7830,
+      "lines": 220,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.795747+00:00"
+    },
+    {
+      "path": "clockwork\\agent\\router.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6612,
+      "lines": 196,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.805265+00:00"
+    },
+    {
+      "path": "clockwork\\agent\\runtime.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 8342,
+      "lines": 233,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.808404+00:00"
     },
     {
       "path": "clockwork\\brain\\__init__.py",
@@ -177,253 +278,14 @@
       "path": "clockwork\\cli\\app.py",
       "extension": ".py",
       "language": "Python",
-      "size_bytes": 2456,
-      "lines": 62,
+      "size_bytes": 1981,
+      "lines": 47,
       "is_entry_point": true,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "main",
-          "kind": "function",
-          "line": 56,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "__future__.annotations",
-        "typer",
-        "clockwork.cli.commands.init.cmd_init",
-        "clockwork.cli.commands.scan.cmd_scan",
-        "clockwork.cli.commands.update.cmd_update",
-        "clockwork.cli.commands.verify.cmd_verify",
-        "clockwork.cli.commands.handoff.cmd_handoff",
-        "clockwork.cli.commands.graph.cmd_graph",
-        "clockwork.packaging.cli_commands.cmd_pack",
-        "clockwork.packaging.cli_commands.cmd_load"
-      ],
-      "last_modified": "2026-03-15T16:37:21.422980+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_graph.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 492,
-      "lines": 13,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 7,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.graph.graph_engine.GraphEngine"
-      ],
-      "last_modified": "2026-03-15T03:46:06.506306+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_handoff.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 1392,
-      "lines": 54,
-      "is_entry_point": false,
       "is_test": false,
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T06:33:44.882184+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_init.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 1112,
-      "lines": 25,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 8,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.context.initializer.initialize_clockwork_dir"
-      ],
-      "last_modified": "2026-03-15T03:46:06.483912+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_load.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 540,
-      "lines": 13,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 7,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.packaging.packaging_engine.PackagingEngine"
-      ],
-      "last_modified": "2026-03-15T03:46:06.501280+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_pack.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 562,
-      "lines": 13,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 7,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.packaging.packaging_engine.PackagingEngine"
-      ],
-      "last_modified": "2026-03-15T03:46:06.498279+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_plugin.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 1474,
-      "lines": 34,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "install",
-          "kind": "function",
-          "line": 9,
-          "parent": null
-        },
-        {
-          "name": "list_plugins",
-          "kind": "function",
-          "line": 23,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console"
-      ],
-      "last_modified": "2026-03-15T03:46:06.509205+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_scan.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 1306,
-      "lines": 30,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 9,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.scanner.repository_scanner.RepositoryScanner",
-        "clockwork.graph.graph_engine.GraphEngine",
-        "json"
-      ],
-      "last_modified": "2026-03-15T03:46:06.487431+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_update.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 496,
-      "lines": 13,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 7,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.context.context_engine.ContextEngine"
-      ],
-      "last_modified": "2026-03-15T03:46:06.493766+00:00"
-    },
-    {
-      "path": "clockwork\\cli\\cmd_verify.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 1283,
-      "lines": 30,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "run",
-          "kind": "function",
-          "line": 9,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "pathlib.Path",
-        "typer",
-        "rich.console.Console",
-        "clockwork.rules.rule_engine.RuleEngine",
-        "clockwork.brain.mini_brain.MiniBrain"
-      ],
-      "last_modified": "2026-03-15T03:46:06.492251+00:00"
+      "last_modified": "2026-03-16T07:12:30.504883+00:00"
     },
     {
       "path": "clockwork\\cli\\commands\\__init__.py",
@@ -439,56 +301,30 @@
       "last_modified": "2026-03-15T16:37:21.443738+00:00"
     },
     {
-      "path": "clockwork\\cli\\commands\\graph.py",
+      "path": "clockwork\\cli\\commands\\agent.py",
       "extension": ".py",
       "language": "Python",
-      "size_bytes": 5022,
-      "lines": 165,
+      "size_bytes": 9804,
+      "lines": 284,
       "is_entry_point": false,
       "is_test": false,
       "is_config": false,
-      "symbols": [
-        {
-          "name": "cmd_graph",
-          "kind": "function",
-          "line": 24,
-          "parent": null
-        },
-        {
-          "name": "_build_graph",
-          "kind": "function",
-          "line": 71,
-          "parent": null
-        },
-        {
-          "name": "insert_node",
-          "kind": "function",
-          "line": 105,
-          "parent": null
-        },
-        {
-          "name": "insert_edge",
-          "kind": "function",
-          "line": 114,
-          "parent": null
-        }
-      ],
-      "imports": [
-        "__future__.annotations",
-        "json",
-        "sqlite3",
-        "time",
-        "pathlib.Path",
-        "typing.Optional",
-        "typer",
-        "clockwork.cli.output.header",
-        "clockwork.cli.output.success",
-        "clockwork.cli.output.info",
-        "clockwork.cli.output.error",
-        "clockwork.cli.output.step",
-        "clockwork.cli.output.rule"
-      ],
-      "last_modified": "2026-03-15T16:37:21.478915+00:00"
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.813403+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\graph.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 10671,
+      "lines": 308,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.852996+00:00"
     },
     {
       "path": "clockwork\\cli\\commands\\handoff.py",
@@ -544,6 +380,19 @@
       "last_modified": "2026-03-15T16:37:21.469845+00:00"
     },
     {
+      "path": "clockwork\\cli\\commands\\index.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7130,
+      "lines": 225,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.339600+00:00"
+    },
+    {
       "path": "clockwork\\cli\\commands\\init.py",
       "extension": ".py",
       "language": "Python",
@@ -583,6 +432,19 @@
         "clockwork.cli.output.rule"
       ],
       "last_modified": "2026-03-15T16:37:21.448745+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\registry.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 9065,
+      "lines": 258,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:12:30.146273+00:00"
     },
     {
       "path": "clockwork\\cli\\commands\\scan.py",
@@ -642,6 +504,19 @@
         "clockwork.scanner.RepositoryScanner"
       ],
       "last_modified": "2026-03-15T16:37:21.454752+00:00"
+    },
+    {
+      "path": "clockwork\\cli\\commands\\security.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6411,
+      "lines": 200,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.722795+00:00"
     },
     {
       "path": "clockwork\\cli\\commands\\update.py",
@@ -973,171 +848,6 @@
         "clockwork.context.engine.ContextEngine"
       ],
       "last_modified": "2026-03-15T16:37:21.531059+00:00"
-    },
-    {
-      "path": "clockwork\\context\\context_engine.py",
-      "extension": ".py",
-      "language": "Python",
-      "size_bytes": 6999,
-      "lines": 178,
-      "is_entry_point": false,
-      "is_test": false,
-      "is_config": false,
-      "symbols": [
-        {
-          "name": "ContextError",
-          "kind": "class",
-          "line": 20,
-          "parent": null
-        },
-        {
-          "name": "ContextValidationError",
-          "kind": "class",
-          "line": 21,
-          "parent": null
-        },
-        {
-          "name": "ContextLockError",
-          "kind": "class",
-          "line": 22,
-          "parent": null
-        },
-        {
-          "name": "ContextCorruptionError",
-          "kind": "class",
-          "line": 23,
-          "parent": null
-        },
-        {
-          "name": "ContextEngine",
-          "kind": "class",
-          "line": 25,
-          "parent": null
-        },
-        {
-          "name": "__init__",
-          "kind": "method",
-          "line": 26,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "load",
-          "kind": "method",
-          "line": 34,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "update",
-          "kind": "method",
-          "line": 44,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "get",
-          "kind": "method",
-          "line": 57,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "set",
-          "kind": "method",
-          "line": 64,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "validate",
-          "kind": "method",
-          "line": 78,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "integrity_check",
-          "kind": "method",
-          "line": 82,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "history",
-          "kind": "method",
-          "line": 95,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "context",
-          "kind": "method",
-          "line": 101,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_validate",
-          "kind": "method",
-          "line": 103,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_merge",
-          "kind": "method",
-          "line": 113,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_acquire_lock",
-          "kind": "method",
-          "line": 122,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_release_lock",
-          "kind": "method",
-          "line": 130,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_record_history",
-          "kind": "method",
-          "line": 134,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_collect_dependency_files",
-          "kind": "method",
-          "line": 141,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_detect_language_extensions",
-          "kind": "method",
-          "line": 150,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_read_yaml",
-          "kind": "method",
-          "line": 160,
-          "parent": "ContextEngine"
-        },
-        {
-          "name": "_write_yaml",
-          "kind": "method",
-          "line": 169,
-          "parent": "ContextEngine"
-        }
-      ],
-      "imports": [
-        "__future__.annotations",
-        "json",
-        "logging",
-        "time",
-        "datetime.datetime",
-        "datetime.timezone",
-        "pathlib.Path",
-        "typing.Any",
-        "yaml",
-        "schema.CONTEXT_SCHEMA",
-        "schema.validate_context_schema",
-        "initializer.ContextInitializer"
-      ],
-      "last_modified": "2026-03-15T04:59:10.058385+00:00"
     },
     {
       "path": "clockwork\\context\\engine.py",
@@ -1504,51 +1214,79 @@
       "path": "clockwork\\graph\\__init__.py",
       "extension": ".py",
       "language": "Python",
-      "size_bytes": 0,
-      "lines": 0,
+      "size_bytes": 999,
+      "lines": 38,
       "is_entry_point": false,
       "is_test": false,
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T04:36:22.984213+00:00"
+      "last_modified": "2026-03-16T06:22:56.850461+00:00"
+    },
+    {
+      "path": "clockwork\\graph\\builder.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 13852,
+      "lines": 373,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.735996+00:00"
     },
     {
       "path": "clockwork\\graph\\graph_engine.py",
       "extension": ".py",
       "language": "Python",
-      "size_bytes": 1094,
-      "lines": 21,
+      "size_bytes": 4120,
+      "lines": 128,
       "is_entry_point": false,
       "is_test": false,
       "is_config": false,
-      "symbols": [
-        {
-          "name": "GraphEngine",
-          "kind": "class",
-          "line": 6,
-          "parent": null
-        },
-        {
-          "name": "__init__",
-          "kind": "method",
-          "line": 7,
-          "parent": "GraphEngine"
-        },
-        {
-          "name": "build",
-          "kind": "method",
-          "line": 11,
-          "parent": "GraphEngine"
-        }
-      ],
-      "imports": [
-        "json",
-        "sqlite3",
-        "pathlib.Path",
-        "typing.Any"
-      ],
-      "last_modified": "2026-03-15T03:46:06.639031+00:00"
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.848588+00:00"
+    },
+    {
+      "path": "clockwork\\graph\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 4150,
+      "lines": 131,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.725978+00:00"
+    },
+    {
+      "path": "clockwork\\graph\\queries.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7189,
+      "lines": 183,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.745028+00:00"
+    },
+    {
+      "path": "clockwork\\graph\\storage.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 11306,
+      "lines": 321,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.730448+00:00"
     },
     {
       "path": "clockwork\\handoff\\__init__.py",
@@ -1640,6 +1378,84 @@
       "symbols": [],
       "imports": [],
       "last_modified": "2026-03-15T06:04:37.589386+00:00"
+    },
+    {
+      "path": "clockwork\\index\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1022,
+      "lines": 40,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.285305+00:00"
+    },
+    {
+      "path": "clockwork\\index\\incremental_scanner.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6339,
+      "lines": 172,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.318297+00:00"
+    },
+    {
+      "path": "clockwork\\index\\index_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 13233,
+      "lines": 372,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.334557+00:00"
+    },
+    {
+      "path": "clockwork\\index\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 2677,
+      "lines": 98,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.312441+00:00"
+    },
+    {
+      "path": "clockwork\\index\\storage.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6016,
+      "lines": 193,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.315093+00:00"
+    },
+    {
+      "path": "clockwork\\index\\watcher.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 8256,
+      "lines": 253,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.321299+00:00"
     },
     {
       "path": "clockwork\\packaging\\__init__.py",
@@ -2044,6 +1860,58 @@
         "clockwork.packaging.models.PACKAGE_SCHEMA_VERSION"
       ],
       "last_modified": "2026-03-15T16:37:21.577246+00:00"
+    },
+    {
+      "path": "clockwork\\registry\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1294,
+      "lines": 52,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:12:30.132653+00:00"
+    },
+    {
+      "path": "clockwork\\registry\\cache.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 9359,
+      "lines": 256,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:12:30.137733+00:00"
+    },
+    {
+      "path": "clockwork\\registry\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5758,
+      "lines": 162,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:12:30.135217+00:00"
+    },
+    {
+      "path": "clockwork\\registry\\registry_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 13387,
+      "lines": 326,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:12:30.140250+00:00"
     },
     {
       "path": "clockwork\\rules\\__init__.py",
@@ -2710,6 +2578,84 @@
       "last_modified": "2026-03-15T16:37:21.513595+00:00"
     },
     {
+      "path": "clockwork\\security\\__init__.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 1531,
+      "lines": 59,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.700314+00:00"
+    },
+    {
+      "path": "clockwork\\security\\file_guard.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 9036,
+      "lines": 243,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.708980+00:00"
+    },
+    {
+      "path": "clockwork\\security\\logger.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 4025,
+      "lines": 121,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.705970+00:00"
+    },
+    {
+      "path": "clockwork\\security\\models.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 5634,
+      "lines": 154,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.702863+00:00"
+    },
+    {
+      "path": "clockwork\\security\\scanner.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 7078,
+      "lines": 152,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:06:32.535555+00:00"
+    },
+    {
+      "path": "clockwork\\security\\security_engine.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 6047,
+      "lines": 188,
+      "is_entry_point": false,
+      "is_test": false,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.717279+00:00"
+    },
+    {
       "path": "clockwork.egg-info\\dependency_links.txt",
       "extension": ".txt",
       "language": "Other",
@@ -2720,7 +2666,7 @@
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T16:46:21.027214+00:00"
+      "last_modified": "2026-03-16T06:24:41.985455+00:00"
     },
     {
       "path": "clockwork.egg-info\\entry_points.txt",
@@ -2733,7 +2679,7 @@
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T16:46:21.027214+00:00"
+      "last_modified": "2026-03-16T06:24:41.985455+00:00"
     },
     {
       "path": "clockwork.egg-info\\PKG-INFO",
@@ -2746,7 +2692,7 @@
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T16:46:21.025221+00:00"
+      "last_modified": "2026-03-16T06:24:41.984451+00:00"
     },
     {
       "path": "clockwork.egg-info\\requires.txt",
@@ -2759,20 +2705,20 @@
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T16:46:21.027214+00:00"
+      "last_modified": "2026-03-16T06:24:41.985455+00:00"
     },
     {
       "path": "clockwork.egg-info\\SOURCES.txt",
       "extension": ".txt",
       "language": "Other",
-      "size_bytes": 2289,
+      "size_bytes": 2416,
       "lines": 0,
       "is_entry_point": false,
       "is_test": false,
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T16:46:21.159186+00:00"
+      "last_modified": "2026-03-16T06:24:42.147634+00:00"
     },
     {
       "path": "clockwork.egg-info\\top_level.txt",
@@ -2785,7 +2731,7 @@
       "is_config": false,
       "symbols": [],
       "imports": [],
-      "last_modified": "2026-03-15T16:46:21.029185+00:00"
+      "last_modified": "2026-03-16T06:24:42.073621+00:00"
     },
     {
       "path": "pyproject.toml",
@@ -2825,6 +2771,19 @@
       "symbols": [],
       "imports": [],
       "last_modified": "2026-03-15T16:37:21.593921+00:00"
+    },
+    {
+      "path": "tests\\test_agent.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 14460,
+      "lines": 394,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:54:07.822072+00:00"
     },
     {
       "path": "tests\\test_brain.py",
@@ -3445,6 +3404,19 @@
       "last_modified": "2026-03-15T16:37:21.613522+00:00"
     },
     {
+      "path": "tests\\test_graph.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 13841,
+      "lines": 390,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:22:56.856144+00:00"
+    },
+    {
       "path": "tests\\test_handoff.py",
       "extension": ".py",
       "language": "Python",
@@ -3456,6 +3428,19 @@
       "symbols": [],
       "imports": [],
       "last_modified": "2026-03-15T06:04:40.016005+00:00"
+    },
+    {
+      "path": "tests\\test_index.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 12425,
+      "lines": 346,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T06:46:12.348828+00:00"
     },
     {
       "path": "tests\\test_packaging.py",
@@ -3668,6 +3653,19 @@
         "tempfile"
       ],
       "last_modified": "2026-03-15T16:37:21.619087+00:00"
+    },
+    {
+      "path": "tests\\test_registry.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 11078,
+      "lines": 311,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:12:30.150279+00:00"
     },
     {
       "path": "tests\\test_rules.py",
@@ -4101,13 +4099,48 @@
         "clockwork.scanner.models.SymbolInfo"
       ],
       "last_modified": "2026-03-15T16:37:21.610508+00:00"
+    },
+    {
+      "path": "tests\\test_security.py",
+      "extension": ".py",
+      "language": "Python",
+      "size_bytes": 13584,
+      "lines": 360,
+      "is_entry_point": false,
+      "is_test": true,
+      "is_config": false,
+      "symbols": [],
+      "imports": [],
+      "last_modified": "2026-03-16T07:04:29.728322+00:00"
     }
   ],
   "directories": [
     {
+      "path": ".",
+      "file_count": 3,
+      "subdirectory_count": 5,
+      "languages": [
+        "Config",
+        "Markdown",
+        "TOML"
+      ],
+      "has_init": false,
+      "has_tests": false
+    },
+    {
       "path": "clockwork",
       "file_count": 1,
-      "subdirectory_count": 8,
+      "subdirectory_count": 12,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\agent",
+      "file_count": 6,
+      "subdirectory_count": 0,
       "languages": [
         "Python"
       ],
@@ -4126,7 +4159,7 @@
     },
     {
       "path": "clockwork\\cli",
-      "file_count": 13,
+      "file_count": 4,
       "subdirectory_count": 1,
       "languages": [
         "Python"
@@ -4136,7 +4169,7 @@
     },
     {
       "path": "clockwork\\cli\\commands",
-      "file_count": 7,
+      "file_count": 11,
       "subdirectory_count": 0,
       "languages": [
         "Python"
@@ -4146,7 +4179,7 @@
     },
     {
       "path": "clockwork\\context",
-      "file_count": 6,
+      "file_count": 5,
       "subdirectory_count": 0,
       "languages": [
         "Python"
@@ -4156,7 +4189,7 @@
     },
     {
       "path": "clockwork\\graph",
-      "file_count": 2,
+      "file_count": 6,
       "subdirectory_count": 0,
       "languages": [
         "Python"
@@ -4175,8 +4208,28 @@
       "has_tests": false
     },
     {
+      "path": "clockwork\\index",
+      "file_count": 6,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
       "path": "clockwork\\packaging",
       "file_count": 7,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\registry",
+      "file_count": 4,
       "subdirectory_count": 0,
       "languages": [
         "Python"
@@ -4189,8 +4242,8 @@
       "file_count": 7,
       "subdirectory_count": 0,
       "languages": [
-        "Python",
-        "YAML"
+        "YAML",
+        "Python"
       ],
       "has_init": true,
       "has_tests": false
@@ -4198,6 +4251,16 @@
     {
       "path": "clockwork\\scanner",
       "file_count": 8,
+      "subdirectory_count": 0,
+      "languages": [
+        "Python"
+      ],
+      "has_init": true,
+      "has_tests": false
+    },
+    {
+      "path": "clockwork\\security",
+      "file_count": 6,
       "subdirectory_count": 0,
       "languages": [
         "Python"
@@ -4214,19 +4277,8 @@
       "has_tests": false
     },
     {
-      "path": ".",
-      "file_count": 2,
-      "subdirectory_count": 5,
-      "languages": [
-        "TOML",
-        "Markdown"
-      ],
-      "has_init": false,
-      "has_tests": false
-    },
-    {
       "path": "tests",
-      "file_count": 8,
+      "file_count": 13,
       "subdirectory_count": 0,
       "languages": [
         "Python"
@@ -4236,8 +4288,21 @@
     }
   ],
   "directory_tree": {
+    ".": [
+      ".gitignore",
+      "pyproject.toml",
+      "README.md"
+    ],
     "clockwork": [
       "__init__.py"
+    ],
+    "clockwork\\agent": [
+      "__init__.py",
+      "lock_manager.py",
+      "models.py",
+      "registry.py",
+      "router.py",
+      "runtime.py"
     ],
     "clockwork\\brain": [
       "__init__.py",
@@ -4251,30 +4316,24 @@
     "clockwork\\cli": [
       "__init__.py",
       "app.py",
-      "cmd_graph.py",
-      "cmd_handoff.py",
-      "cmd_init.py",
-      "cmd_load.py",
-      "cmd_pack.py",
-      "cmd_plugin.py",
-      "cmd_scan.py",
-      "cmd_update.py",
-      "cmd_verify.py",
       "main.py",
       "output.py"
     ],
     "clockwork\\cli\\commands": [
       "__init__.py",
+      "agent.py",
       "graph.py",
       "handoff.py",
+      "index.py",
       "init.py",
+      "registry.py",
       "scan.py",
+      "security.py",
       "update.py",
       "verify.py"
     ],
     "clockwork\\context": [
       "__init__.py",
-      "context_engine.py",
       "engine.py",
       "initializer.py",
       "models.py",
@@ -4282,7 +4341,11 @@
     ],
     "clockwork\\graph": [
       "__init__.py",
-      "graph_engine.py"
+      "builder.py",
+      "graph_engine.py",
+      "models.py",
+      "queries.py",
+      "storage.py"
     ],
     "clockwork\\handoff": [
       "__init__.py",
@@ -4293,6 +4356,14 @@
       "models.py",
       "validator.py"
     ],
+    "clockwork\\index": [
+      "__init__.py",
+      "incremental_scanner.py",
+      "index_engine.py",
+      "models.py",
+      "storage.py",
+      "watcher.py"
+    ],
     "clockwork\\packaging": [
       "__init__.py",
       "checksum.py",
@@ -4301,6 +4372,12 @@
       "models.py",
       "packaging_engine.py",
       "packer.py"
+    ],
+    "clockwork\\registry": [
+      "__init__.py",
+      "cache.py",
+      "models.py",
+      "registry_engine.py"
     ],
     "clockwork\\rules": [
       "__init__.py",
@@ -4321,6 +4398,14 @@
       "scanner.py",
       "symbols.py"
     ],
+    "clockwork\\security": [
+      "__init__.py",
+      "file_guard.py",
+      "logger.py",
+      "models.py",
+      "scanner.py",
+      "security_engine.py"
+    ],
     "clockwork.egg-info": [
       "dependency_links.txt",
       "entry_points.txt",
@@ -4329,19 +4414,20 @@
       "SOURCES.txt",
       "top_level.txt"
     ],
-    ".": [
-      "pyproject.toml",
-      "README.md"
-    ],
     "tests": [
       "__init__.py",
+      "test_agent.py",
       "test_brain.py",
       "test_cli.py",
       "test_context.py",
+      "test_graph.py",
       "test_handoff.py",
+      "test_index.py",
       "test_packaging.py",
+      "test_registry.py",
       "test_rules.py",
-      "test_scanner.py"
+      "test_scanner.py",
+      "test_security.py"
     ]
   },
   "entry_points": [
@@ -4350,13 +4436,18 @@
   ],
   "test_files": [
     "tests\\__init__.py",
+    "tests\\test_agent.py",
     "tests\\test_brain.py",
     "tests\\test_cli.py",
     "tests\\test_context.py",
+    "tests\\test_graph.py",
     "tests\\test_handoff.py",
+    "tests\\test_index.py",
     "tests\\test_packaging.py",
+    "tests\\test_registry.py",
     "tests\\test_rules.py",
-    "tests\\test_scanner.py"
+    "tests\\test_scanner.py",
+    "tests\\test_security.py"
   ],
   "config_files": [
     "pyproject.toml"
