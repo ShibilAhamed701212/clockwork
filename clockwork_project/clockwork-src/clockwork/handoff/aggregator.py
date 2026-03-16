@@ -90,7 +90,11 @@ def aggregate_handoff_data(clockwork_dir: Path) -> HandoffData:
 
     languages: List[str] = []
     if isinstance(repo_map, dict):
-        languages = repo_map.get("languages", [])
+        raw_langs = repo_map.get("languages", [])
+        if isinstance(raw_langs, dict):
+            languages = list(raw_langs.keys())
+        elif isinstance(raw_langs, list):
+            languages = raw_langs
         if not skills:
             skills = languages
 

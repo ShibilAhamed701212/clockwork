@@ -1,4 +1,4 @@
-"""
+﻿"""
 clockwork/cli/commands/update.py
 ----------------------------------
 `clockwork update` — merge scanner results into context.yaml.
@@ -144,9 +144,12 @@ def cmd_update(
 
 def _derive_primary_language(repo_map: dict) -> str:
     """Return the language with the most files, or empty string."""
-    languages: dict[str, int] = repo_map.get("languages", {})
+    languages = repo_map.get("languages", {})
     if not languages:
         return ""
+    # Support both dict {lang: count} and legacy list [lang, ...]
+    if isinstance(languages, list):
+        return languages[0] if languages else ""
     return max(languages, key=lambda k: languages[k])
 
 
@@ -154,9 +157,9 @@ def _detect_frameworks(root: Path, repo_map: dict) -> list[str]:
     """Heuristically detect frameworks used in the repository."""
     detected: list[str] = []
     files_in_root = {
-        p["path"].lower()
+        p["path"].lower().replace("\\", "/")
         for p in repo_map.get("files", [])
-        if "/" not in p["path"]   # only root-level files
+        if "/" not in p["path"].replace("\\", "/")   # only root-level files
     }
 
     # Static fingerprints
@@ -192,12 +195,13 @@ def _parse_requirements(path: Path) -> list[str]:
 
 
 def _parse_pyproject(path: Path) -> list[str]:
-    """Scan pyproject.toml text for known framework names."""
+    """Scan pyproject.toml dependencies for known framework names (quoted form only)."""
     found: list[str] = []
     try:
         content = path.read_text(encoding="utf-8").lower()
         for keyword, name in PYTHON_FRAMEWORK_KEYWORDS.items():
-            if keyword in content:
+            # Only match when the keyword appears as a dependency value (quoted)
+            if f'"{keyword}' in content or f"'{keyword}" in content or f"\n{keyword}" in content:
                 found.append(name)
     except OSError:
         pass

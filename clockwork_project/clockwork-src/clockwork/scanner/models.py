@@ -1,4 +1,4 @@
-"""
+﻿"""
 clockwork/scanner/models.py
 -----------------------------
 Data models for the Repository Scanner subsystem.
@@ -158,9 +158,11 @@ class ScanResult:
         lang_details = [
             LanguageSummary(**l) for l in data.get("language_details", [])
         ]
+        import dataclasses as _dc
+        _known = {f.name for f in _dc.fields(cls)}
         top = {
             k: v for k, v in data.items()
-            if k not in ("files", "directories", "language_details")
+            if k not in ("files", "directories", "language_details") and k in _known
         }
         return cls(**top, files=files, directories=dirs, language_details=lang_details)
 

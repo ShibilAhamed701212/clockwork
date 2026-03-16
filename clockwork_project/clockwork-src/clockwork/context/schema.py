@@ -1,4 +1,4 @@
-"""
+﻿"""
 Clockwork Context Schema
 """
 from __future__ import annotations
@@ -39,6 +39,13 @@ CONTEXT_SCHEMA: dict[str, Any] = {
 }
 
 def validate_context_schema(data, schema, path=""):
+    """
+    Validate a context dict against the given schema.
+
+    Note: list item types are not checked (schema only validates the container type).
+    The 'languages' field accepts both dict {lang: count} and list [lang] shapes
+    for backwards compatibility with the legacy RepositoryScanner.
+    """
     errors = []
     for key, rules in schema.items():
         full_key = f"{path}.{key}" if path else key

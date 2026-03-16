@@ -159,8 +159,9 @@ class SecurityEngine:
         violations: list[str] = []
 
         for change in proposed_changes:
-            # extract file path from "modify X" or "delete X" strings
-            fp = change.replace("modify ", "").replace("delete ", "").strip()
+            # extract file path: strip the first verb token only
+            _parts = change.strip().split(" ", 1)
+            fp = _parts[1].strip() if len(_parts) == 2 else change.strip()
 
             try:
                 guard.check_sensitive(fp)

@@ -79,7 +79,8 @@ class GraphQueryEngine:
 
     def files_by_language(self, language: str) -> list[GraphNode]:
         """Return all file nodes for the given language."""
-        assert self._s._conn
+        if self._s._conn is None:
+            raise RuntimeError("GraphStorage is not open. Call storage.open() before querying.")
         rows = self._s._conn.execute(
             "SELECT * FROM nodes WHERE kind=? AND language=? LIMIT 500",
             (NodeType.FILE, language),

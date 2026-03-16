@@ -26,6 +26,11 @@ _CODE_SCAN_SKIP: frozenset[str] = frozenset({
     "tests/test_security.py",
 })
 
+def _in_skip_set(rel: str) -> bool:
+    """Check skip set normalising separators so it works on Windows too."""
+    normalised = rel.replace("\\", "/")
+    return normalised in _CODE_SCAN_SKIP
+
 PROTECTED_CLOCKWORK_FILES: frozenset[str] = frozenset({
     ".clockwork/context.yaml",
     ".clockwork/repo_map.json",
@@ -61,7 +66,7 @@ class SecurityScanner:
                     sensitive_found.append(rel)
                     self.logger.log_sensitive_access(rel, blocked=False)
                     issues.append(f"Sensitive file found in repo: {rel}")
-                if fname.endswith(".py") and rel not in _CODE_SCAN_SKIP:
+                if fname.endswith(".py") and not _in_skip_set(rel):
                     try:
                         content = Path(abs_path).read_text(encoding="utf-8", errors="ignore")
                         for pattern, msg, level in _DANGEROUS_CODE_PATTERNS:

@@ -6,7 +6,7 @@ models.py: Data models for handoff structures.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional
 
 
@@ -29,7 +29,7 @@ class HandoffData:
     languages: List[str] = field(default_factory=list)
     task_state: str = "in_progress"
     generated_at: str = field(
-        default_factory=lambda: datetime.utcnow().isoformat()
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
 
     def to_dict(self) -> dict:
@@ -60,7 +60,7 @@ class HandoffLogEntry:
     def to_dict(self) -> dict:
         return {
             "timestamp": self.timestamp,
-            "handoff_to": self.project,
+            "handoff_to": self.handoff_to,
             "next_task": self.next_task,
             "project": self.project,
         }

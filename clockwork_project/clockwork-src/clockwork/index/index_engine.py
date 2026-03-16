@@ -293,7 +293,8 @@ class LiveContextIndex:
             storage.open()
 
             # remove old file node + its edges (cascade delete handles edges)
-            assert storage._conn
+            if storage._conn is None:
+                raise RuntimeError("GraphStorage connection is None inside _sync_graph")
             storage._conn.execute(
                 "DELETE FROM nodes WHERE kind=? AND file_path=?",
                 (NodeType.FILE, entry.file_path),

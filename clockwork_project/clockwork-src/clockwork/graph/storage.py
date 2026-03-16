@@ -84,8 +84,10 @@ class GraphStorage:
     def open(self) -> None:
         """Open (or create) the database file."""
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
+        # FK cascades enabled below after connect
         self._conn = sqlite3.connect(str(self.db_path))
         self._conn.row_factory = sqlite3.Row
+        self._conn.execute("PRAGMA foreign_keys = ON")
 
     def close(self) -> None:
         """Commit and close the connection."""

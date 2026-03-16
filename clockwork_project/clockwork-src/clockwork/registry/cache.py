@@ -140,12 +140,23 @@ class RegistryCacheManager:
 
     def load(self) -> RegistryCache:
         """Load cache from disk, returning empty cache if not found."""
+        import logging as _logging
+        _log = _logging.getLogger("clockwork.registry.cache")
         if not self.cache_path.exists():
             return RegistryCache()
         try:
             data = json.loads(self.cache_path.read_text(encoding="utf-8"))
             return RegistryCache.from_dict(data)
-        except Exception:
+        except json.JSONDecodeError as exc:
+            _log.warning("Registry cache corrupted (%s); returning empty cache. Original preserved at %s.bak", exc, self.cache_path)
+            try:
+                import shutil as _shutil
+                _shutil.copy2(self.cache_path, str(self.cache_path) + ".bak")
+            except OSError:
+                pass
+            return RegistryCache()
+        except Exception as exc:
+            _log.warning("Failed to load registry cache: %s", exc)
             return RegistryCache()
 
     def save(self, cache: RegistryCache) -> None:

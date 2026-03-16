@@ -1,4 +1,4 @@
-"""
+﻿"""
 tests/test_packaging.py
 ------------------------
 Unit tests for the Clockwork Packaging Engine (spec 07).
@@ -247,9 +247,16 @@ class TestPackageLoader:
         src.mkdir()
         pkg = self._pack_and_get_path(src)
 
-        # Patch metadata to incompatible version
-        import io
+        # Patch metadata to incompatible version.
+        # NOTE: the checksum recompute must happen AFTER the write context manager
+        # exits, because ZipFile only finalises (writes end-of-central-directory)
+        # on __exit__.  Reading the file while it is still open for writing raises
+        # BadZipFile because the zip is not yet valid.
+        import tempfile as _tempfile
+        from clockwork.packaging.checksum import compute_directory_checksum as _cdc
         patched = tmp_path / "patched.clockwork"
+
+        # Step 1: copy all entries except the old checksum, patching metadata.
         with zipfile.ZipFile(pkg, "r") as zin, zipfile.ZipFile(patched, "w") as zout:
             for item in zin.infolist():
                 data = zin.read(item.filename)
@@ -260,13 +267,14 @@ class TestPackageLoader:
                     data = json.dumps(meta).encode()
                 if item.filename != "package_checksum.txt":
                     zout.writestr(item, data)
-            # recompute checksum for the patched content
-            from clockwork.packaging.checksum import compute_directory_checksum
-            import tempfile, shutil
-            with tempfile.TemporaryDirectory() as td:
-                zipfile.ZipFile(patched).extractall(td)
-                chk = compute_directory_checksum(Path(td))
-                zout.writestr("package_checksum.txt", chk)
+        # zout is now closed and the zip is finalised.
+
+        # Step 2: recompute checksum from the now-valid zip, then append it.
+        with _tempfile.TemporaryDirectory() as td:
+            zipfile.ZipFile(patched).extractall(td)
+            chk = _cdc(Path(td))
+        with zipfile.ZipFile(patched, "a") as zappend:
+            zappend.writestr("package_checksum.txt", chk)
 
         target = tmp_path / "target"
         target.mkdir()

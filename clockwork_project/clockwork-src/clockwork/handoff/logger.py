@@ -6,7 +6,7 @@ logger.py: Appends handoff events to .clockwork/handoff_log.json.
 from __future__ import annotations
 
 import json
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .models import HandoffData
@@ -33,7 +33,7 @@ def log_handoff(clockwork_dir: Path, data: HandoffData, target_agent: str = "unk
             entries = []
 
     entry = {
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "handoff_to": target_agent,
         "project": data.project,
         "next_task": data.next_task,

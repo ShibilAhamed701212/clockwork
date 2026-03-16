@@ -1,4 +1,4 @@
-"""
+﻿"""
 clockwork/cli/commands/scan.py
 --------------------------------
 `clockwork scan` — analyse repository structure and write repo_map.json.
@@ -72,8 +72,11 @@ SENSITIVE_FILES: set[str] = {
 DEFAULT_IGNORE_DIRS: set[str] = {
     ".git", "__pycache__", "node_modules", ".venv", "venv",
     "dist", "build", ".clockwork", ".idea", ".vscode",
-    "eggs", "*.egg-info",
+    "eggs",
 }
+
+# Directories whose names end with this suffix are also ignored
+_IGNORE_DIR_SUFFIXES: tuple[str, ...] = (".egg-info",)
 
 
 # ── Command ────────────────────────────────────────────────────────────────
@@ -112,11 +115,13 @@ def cmd_scan(
     # Prefer the full RepositoryScanner subsystem; fall back to inline scanner
     try:
         from clockwork.scanner import RepositoryScanner
-        scanner = RepositoryScanner(repo_root=root, verbose=False)
+        scanner = RepositoryScanner(repo_root=root)
         result = scanner.scan()
         output_path = result.save(cw_dir)
         repo_map = result.to_dict()
-    except Exception:
+    except Exception as _scan_exc:
+        if not as_json:
+            warn(f"Full scanner unavailable ({type(_scan_exc).__name__}: {_scan_exc}), falling back to built-in scanner.")
         repo_map = _scan_repository(root, ignore_dirs)
         output_path = cw_dir / "repo_map.json"
         output_path.write_text(
@@ -178,8 +183,10 @@ def _scan_repository(root: Path, ignore_dirs: set[str]) -> dict:
     dir_tree: dict[str, list[str]] = defaultdict(list)
 
     for path in sorted(root.rglob("*")):
-        # Skip ignored directories
+        # Skip ignored directories (exact match or suffix match)
         if any(part in ignore_dirs for part in path.parts):
+            continue
+        if any(part.endswith(_IGNORE_DIR_SUFFIXES) for part in path.parts):
             continue
 
         # Skip sensitive filenames

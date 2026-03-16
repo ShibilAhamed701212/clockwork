@@ -1,7 +1,7 @@
-"""Repository Scanner."""
+﻿"""Repository Scanner."""
 import json, os
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 IGNORED_DIRS = {".git",".clockwork","__pycache__","node_modules",".venv","venv"}
@@ -23,9 +23,16 @@ class RepositoryScanner:
                 fp = Path(root) / fn
                 rel = fp.relative_to(self.repo_path)
                 lang = LANGUAGE_MAP.get(fp.suffix.lower(), "Unknown")
-                files.append({"path": str(rel), "language": lang, "size_bytes": fp.stat().st_size})
+                try:
+                    import hashlib as _hl
+                    _fhash = _hl.sha256(fp.read_bytes()).hexdigest()
+                    _fsize = fp.stat().st_size
+                except OSError:
+                    _fhash = ""
+                    _fsize = 0
+                files.append({"path": str(rel), "language": lang, "size_bytes": _fsize, "file_hash": _fhash})
                 lang_counts[lang] = lang_counts.get(lang, 0) + 1
-        languages = [l for l,_ in sorted(lang_counts.items(), key=lambda x: x[1], reverse=True) if l != "Unknown"]
-        result: dict[str,Any] = {"generated_at": datetime.utcnow().isoformat(), "total_files": len(files), "languages": languages, "language_counts": lang_counts, "files": files}
-        (self.clockwork_dir / "repo_map.json").write_text(json.dumps(result, indent=2))
+        languages: dict[str, int] = {l: c for l, c in sorted(lang_counts.items(), key=lambda x: x[1], reverse=True) if l != "Unknown"}
+        result: dict[str,Any] = {"generated_at": datetime.now(timezone.utc).isoformat(), "total_files": len(files), "languages": languages, "files": files}
+        (self.clockwork_dir / "repo_map.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
         return result
