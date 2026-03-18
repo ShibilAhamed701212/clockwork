@@ -1,348 +1,937 @@
+# 🚨 CLOCKWORK SYSTEM PROMPT — READ FULLY BEFORE ANY ACTION
+
+⚠️ CRITICAL INSTRUCTION:
+You MUST read this ENTIRE document from top to bottom.
+DO NOT start coding until you have COMPLETELY read EVERYTHING in this file.
+
+- Do NOT skip sections
+- Do NOT assume missing context
+- This file is PART of a 14-file system
+- You are continuing a system, NOT starting fresh
+
+---
+
+## 🧠 SYSTEM IDENTITY
+
+You are building a unified autonomous system called **Clockwork**.
+
+This is NOT a single script.
+This is a FULL-SCALE, INTERCONNECTED ARCHITECTURE.
+
+Each `.md` file contributes ONE PART of the SAME SYSTEM.
+
+---
+
+## 📁 ROOT PROJECT LOCATION (STRICT)
+
+All code MUST be created inside:
+
+`D:\var-codes\Clockworker`
+
+---
+
+## 🏗️ COMPLETE PROJECT STRUCTURE (SOURCE OF TRUTH)
+
+You MUST follow this EXACT structure:
+
+clockwork/
+│
+├── cli/
+│ ├── main.py
+│ ├── commands/
+│ │ ├── init.py
+│ │ ├── scan.py
+│ │ ├── verify.py
+│ │ ├── update.py
+│ │ ├── handoff.py
+│ │ ├── pack.py
+│ │ ├── load.py
+│ │ ├── graph.py
+│ │ ├── watch.py
+│ │ ├── repair.py
+│ │ └── agent.py
+│ └── utils/
+│ ├── parser.py
+│ └── output.py
+│
+├── scanner/
+│ ├── scanner.py
+│ ├── directory_walker.py
+│ ├── language_detector.py
+│ ├── dependency_analyzer.py
+│ ├── architecture_inferer.py
+│ ├── relationship_mapper.py
+│ └── output/repo_map.json
+│
+├── context/
+│ ├── context_engine.py
+│ ├── context_store.py
+│ ├── context_validator.py
+│ ├── live_index/
+│ │ ├── watcher.py
+│ │ ├── event_queue.py
+│ │ ├── incremental_processor.py
+│ │ └── sync_engine.py
+│ └── schemas/context_schema.yaml
+│
+├── rules/
+│ ├── rule_engine.py
+│ ├── rule_parser.py
+│ ├── validators/
+│ │ ├── structure_rules.py
+│ │ ├── dependency_rules.py
+│ │ └── safety_rules.py
+│ └── rules.md
+│
+├── brain/
+│ ├── brain.py
+│ ├── decision_engine.py
+│ ├── planning_engine.py
+│ ├── optimization_engine.py
+│ ├── meta_reasoning.py
+│ └── prioritization.py
+│
+├── graph/
+│ ├── graph_builder.py
+│ ├── node_manager.py
+│ ├── edge_manager.py
+│ ├── query_engine.py
+│ ├── anomaly_detector.py
+│ └── storage/knowledge_graph.db
+│
+├── agents/
+│ ├── runtime.py
+│ ├── agent_registry.py
+│ ├── task_queue.py
+│ ├── task_graph.py
+│ ├── router.py
+│ ├── load_balancer.py
+│ ├── swarm/
+│ │ ├── coordinator.py
+│ │ └── consensus.py
+│ └── sandbox/executor.py
+│
+├── validation/
+│ ├── pipeline.py
+│ ├── output_validator.py
+│ ├── hallucination_guard.py
+│ └── reality_check.py
+│
+├── state/
+│ ├── state_manager.py
+│ ├── session_tracker.py
+│ ├── state_machine.py
+│ └── snapshots/snapshots.db
+│
+├── recovery/
+│ ├── recovery_engine.py
+│ ├── rollback.py
+│ ├── retry.py
+│ ├── self_healing.py
+│ ├── predictor.py
+│ └── logs/failure_log.json
+│
+├── security/
+│ ├── sandbox.py
+│ ├── access_control.py
+│ ├── command_filter.py
+│ ├── plugin_security.py
+│ ├── secrets_protection.py
+│ └── logs/security_log.json
+│
+├── packaging/
+│ ├── packer.py
+│ ├── loader.py
+│ ├── serializer.py
+│ └── format/clockwork_package.json
+│
+├── registry/
+│ ├── registry_client.py
+│ ├── plugin_manager.py
+│ ├── publisher.py
+│ ├── search.py
+│ ├── cache/registry_cache.json
+│ └── api/routes.py
+│
+├── config/
+│ ├── config.yaml
+│ └── settings.py
+│
+├── logs/
+│ ├── system.log
+│ ├── agent.log
+│ └── debug.log
+│
+├── .clockwork/
+│ ├── context.yaml
+│ ├── repo_map.json
+│ ├── knowledge_graph.db
+│ ├── tasks.json
+│ ├── agents.json
+│ └── index.db
+│
+├── tests/
+│ ├── test_scanner.py
+│ ├── test_graph.py
+│ ├── test_agents.py
+│ └── test_recovery.py
+│
+├── docs/
+│ ├── 01_foundation.md
+│ ├── 02_scanner.md
+│ ├── ...
+│ └── 14_registry.md
+│
+├── requirements.txt
+├── README.md
+└── main.py
+
+---
+
+## 🔗 SYSTEM BEHAVIOR RULES
+
+- This file is PART of a sequence → treat as continuation
+- NEVER build isolated modules
+- ALWAYS connect with existing systems
+
+---
+
+## 🔄 EXECUTION FLOW (MANDATORY)
+
+scanner → context → graph → brain → agents → validation → recovery
+
+Every feature MUST integrate into this pipeline.
+
+---
+
+## 🌐 DOCUMENTATION RULE
+
+Before coding:
+
+- Verify latest official docs
+- Use correct versions
+- Avoid outdated implementations
+
+---
+
+## 🚫 HARD RESTRICTIONS
+
+- Do NOT create files outside structure
+- Do NOT duplicate modules
+- Do NOT ignore other systems
+- Do NOT write pseudo code
+
+---
+
+## 🎯 YOUR TASK
+
+Scroll down ↓  
+Read ALL instructions in this file  
+Then implement ONLY what this file defines  
+While respecting the FULL system above
+
+---**************************************\*\*\*\***************************************\_**************************************\*\*\*\***************************************
 
 # Clockwork Project Specification
-## File 08 — Project Knowledge Graph Design
 
-Version: 0.1
-Subsystem: Knowledge Graph Engine
-Document Type: Technical Architecture Specification
+## File 08 — Knowledge Graph & Code Intelligence System
 
----
-
-# 1. Purpose
-
-The Project Knowledge Graph is the subsystem that allows Clockwork to understand a repository **beyond simple file scanning**.
-
-Instead of treating the repository as a list of files, Clockwork constructs a **graph model of the codebase**.
-
-This graph describes:
-
-• modules
-• files
-• dependencies
-• architecture layers
-• function relationships
-• service boundaries
-
-The knowledge graph enables deeper reasoning for the Clockwork Brain.
+Version: 2.0  
+Subsystem: Knowledge Graph Engine  
+Document Type: Structural Intelligence + Relationship Modeling System
 
 ---
 
-# 2. Why a Knowledge Graph is Required
+# 🚀 FEATURE MAP (FROM MASTER 62)
 
-Simple static scanning is insufficient for large repositories.
-
-AI agents frequently misunderstand:
-
-• dependency flow
-• architecture boundaries
-• module ownership
-• code relationships
-
-The Knowledge Graph allows Clockwork to answer questions such as:
-
-- Which module depends on which module?
-- Which services use this database?
-- Which functions call this function?
-- Which files belong to the same architectural layer?
+- semantic_layer
+- unified_context_fabric
+- anomaly_detection_system
+- unified_task_graph_engine
+- knowledge_compression_engine
+- introspection_engine
 
 ---
 
-# 3. Graph Model
+# 0. SYSTEM ROLE (CRITICAL)
 
-The repository graph contains **nodes and edges**.
+The Knowledge Graph Engine is the **deep structural intelligence layer of Clockwork**.
 
-Nodes represent entities.
+It acts as:
 
-Edges represent relationships.
-
-Example:
-
-Node Types:
-
-File  
-Module  
-Function  
-Class  
-Dependency  
-Service  
-
-Edge Types:
-
-imports  
-calls  
-depends_on  
-belongs_to_layer  
+> The Internal Map of Code Relationships + Architecture + Dependencies
 
 ---
 
-# 4. Example Graph Representation
+Without the graph:
 
-Example graph representation:
-
-Node: backend/app.py  
-Node: backend/database.py  
-Node: frontend/app.js  
-
-Edge: backend/app.py → imports → backend/database.py  
-
-Edge: frontend/app.js → calls → backend/api
+- system sees files, not relationships
+- AI misses architecture meaning
+- reasoning becomes shallow
 
 ---
 
-# 5. Graph Storage
+🧠 INTELLIGENCE: semantic_layer
 
-The graph must be stored in a structured format.
+The graph transforms:
 
-Recommended storage:
+````text
+Codebase → Structured Intelligence Network
+1. PURPOSE (DEEP SYSTEM DEFINITION)
 
-SQLite database
+The Knowledge Graph enables Clockwork to:
 
-File location:
+understand relationships
 
+track dependencies
+
+map architecture
+
+enable deep reasoning
+
+It answers:
+
+what depends on what?
+
+what breaks if this changes?
+
+what belongs together?
+
+2. CORE RESPONSIBILITIES
+2.1 Relationship Mapping
+
+file-to-file relationships
+
+function-to-function calls
+
+module dependencies
+
+2.2 Architecture Modeling
+
+layer detection
+
+service boundaries
+
+system structure
+
+2.3 Dependency Intelligence
+
+track all dependencies
+
+detect dependency chains
+
+2.4 Query Support
+
+allow system to ask questions
+
+enable reasoning
+
+2.5 Graph-Based Reasoning Support
+
+feed Brain decisions
+
+support validation systems
+
+3. GRAPH MODEL
+3.1 Graph Definition
+
+Graph G = (Nodes, Edges)
+
+3.2 Node Types
+
+file
+
+module
+
+function
+
+class
+
+dependency
+
+service
+
+3.3 Edge Types
+
+imports
+
+calls
+
+depends_on
+
+belongs_to_layer
+
+4. GRAPH REPRESENTATION
+4.1 Example
+backend/app.py → imports → backend/database.py
+frontend/app.js → calls → backend/api
+4.2 Conceptual Model
+Nodes = Entities
+Edges = Relationships
+Graph = System Understanding
+5. STORAGE SYSTEM
+5.1 Storage Location
 .clockwork/knowledge_graph.db
+5.2 Storage Type
 
-Tables:
+SQLite (default)
 
-nodes  
-edges  
+Graph DB (future)
+
+5.3 Tables
+
+nodes
+
+edges
+
 metadata
 
----
+6. NODE SCHEMA
+6.1 Fields
 
-# 6. Node Schema
+id
 
-Example node table:
+type
 
-id  
-type  
-name  
-file_path  
-language  
+name
+
+file_path
+
+language
+
 metadata
 
-Example node:
-
+6.2 Example
 {
  "id": 1,
  "type": "file",
  "name": "app.py",
  "file_path": "backend/app.py"
 }
+7. EDGE SCHEMA
+7.1 Fields
 
----
+source_node
 
-# 7. Edge Schema
+target_node
 
-Example edge table:
-
-source_node  
-target_node  
 relationship_type
 
-Example:
-
+7.2 Example
 backend/app.py → imports → backend/database.py
-
----
-
-# 8. Graph Generation Pipeline
-
-Knowledge graph generation pipeline:
-
-Repository Scan  
-↓  
-AST Parsing  
-↓  
-Dependency Detection  
-↓  
-Relationship Extraction  
-↓  
+8. GRAPH GENERATION PIPELINE
+8.1 Pipeline
+Repository Scan
+   ↓
+AST Parsing
+   ↓
+Dependency Detection
+   ↓
+Relationship Extraction
+   ↓
 Graph Construction
+8.2 Data Sources
+
+scanner output
+
+AST engine
+
+dependency system
+
+🔗 PART 1 END
+
+Awaiting continuation...
+
 
 ---
 
-# 9. AST Integration
+# 🚀 NEXT STEP
 
-AST parsing allows Clockwork to detect:
+Say:
+👉 **continue file08 part2**
 
-• function definitions
-• class definitions
-• imports
-• method calls
+We’ll go deeper into:
 
-Recommended library:
-
-tree-sitter
-
-Tree-sitter supports multiple languages and provides fast parsing.
+- AST intelligence
+- service detection
+- anomaly detection
+- incremental updates
 
 ---
 
-# 10. Dependency Graph
+Now you’re building:
 
-The knowledge graph must represent dependency relationships.
+> 💀 The internal “neural network” of your codebase 🚀
 
-Examples:
+ 🔥 PART 2 — DEEP ANALYSIS + ARCHITECTURE INTELLIGENCE
 
-Python imports  
-Node require statements  
-Go module imports
+---
 
-Example:
+# 9. AST INTEGRATION ENGINE
 
+The Knowledge Graph must leverage AST parsing for deep analysis.
+
+---
+
+🧠 INTELLIGENCE: semantic_layer
+
+---
+
+## 9.1 Purpose
+
+AST enables:
+
+- function detection
+- class detection
+- call relationships
+- variable usage
+
+---
+
+## 9.2 Parsing Pipeline
+
+```text id="q1p6r3"
+Source Code
+   ↓
+Parser (tree-sitter)
+   ↓
+AST Tree
+   ↓
+Entity Extraction
+9.3 Extracted Entities
+
+functions
+
+classes
+
+imports
+
+method calls
+
+10. DEPENDENCY GRAPH SYSTEM
+
+The graph must represent all dependency relationships.
+
+10.1 Dependency Types
+
+Python imports
+
+Node require/import
+
+Go modules
+
+10.2 Example
 auth_service.py → depends_on → database.py
+10.3 Dependency Chain Analysis
 
----
+The system must track:
 
-# 11. Architecture Layer Detection
+direct dependencies
 
-Clockwork must classify modules into architectural layers.
+indirect dependencies
 
-Common layers:
+11. ARCHITECTURE LAYER DETECTION
 
-frontend  
-backend  
-database  
-infrastructure  
+Clockwork must classify code into layers.
+
+11.1 Layer Types
+
+frontend
+
+backend
+
+database
+
+infrastructure
+
 scripts
 
-Example mapping:
+11.2 Mapping Model
+File Path + Dependencies → Layer
+11.3 Example
+frontend/app.js → frontend
+backend/app.py → backend
+12. SERVICE BOUNDARY DETECTION
 
-frontend/app.js → frontend layer  
-backend/app.py → backend layer
+The system must detect service boundaries.
 
----
+12.1 Detection Inputs
 
-# 12. Service Boundary Detection
+folder structure
 
-Large repositories may contain multiple services.
+dependency clusters
 
-Clockwork should detect service boundaries using:
+entry points
 
-• folder structure
-• dependency clusters
-• entry points
+12.2 Example
+services/auth/ → auth service
+services/payments/ → payments service
+12.3 Output
 
-Example:
+Each service becomes a node in the graph.
 
-services/auth/  
-services/payments/
+13. ANOMALY DETECTION SYSTEM
 
-Each becomes a service node in the graph.
+The graph must detect abnormal architecture patterns.
 
----
+🔥 FEATURE: anomaly_detection_system
 
-# 13. Query System
+13.1 Detection Targets
 
-The graph must support queries.
+circular dependencies
 
-Example queries:
+unexpected cross-layer calls
 
-Which files depend on database.py?
+orphan modules
 
-Which modules import Flask?
+13.2 Detection Model
+Expected Architecture
+   ↓
+Graph Structure
+   ↓
+Deviation Detection
+13.3 Response
 
-Which components belong to the backend layer?
+flag anomaly
 
----
+notify Brain
 
-# 14. Brain Integration
+restrict unsafe changes
 
-The Clockwork Brain uses the knowledge graph for reasoning.
+14. GRAPH QUERY SYSTEM
 
-Example usage:
+The graph must support intelligent queries.
 
-Before allowing file deletion:
+14.1 Query Examples
 
-Brain checks graph:
+Which modules depend on X?
 
-Does any other module depend on this file?
+Which functions call Y?
 
-If yes → deletion rejected.
+Which files belong to backend?
 
----
+14.2 Query Flow
+Query
+   ↓
+Graph Traversal
+   ↓
+Result Set
+15. BRAIN INTEGRATION
 
-# 15. Context Engine Integration
+The Brain must use the graph for decision-making.
 
-The Context Engine may store summary statistics from the graph.
+15.1 Example
 
-Example:
+Before deleting file:
 
-context.yaml
+Check Graph
+   ↓
+Find Dependencies
+   ↓
+Allow / Reject
+15.2 Impact Analysis
 
+Graph enables:
+
+breakage prediction
+
+dependency validation
+
+architecture enforcement
+
+16. CONTEXT ENGINE INTEGRATION
+
+The Context Engine must store graph summaries.
+
+16.1 Example
 architecture_summary:
+  backend_modules: 12
+  frontend_modules: 5
+16.2 Purpose
 
-backend_modules: 12  
-frontend_modules: 5
+quick access
 
----
+reduced computation
 
-# 16. Performance Requirements
+faster reasoning
 
-Graph generation must be efficient.
+17. INCREMENTAL GRAPH UPDATE SYSTEM
 
-Targets:
+The graph must update efficiently.
 
-Small repository → < 1 second  
-Medium repository → < 5 seconds  
-Large repository → < 15 seconds
+17.1 Update Pipeline
+Git Diff
+   ↓
+Changed Files
+   ↓
+Re-parse
+   ↓
+Graph Update
+17.2 Benefits
 
-Graph updates must be incremental.
+faster updates
 
----
+reduced computation
 
-# 17. Incremental Graph Updates
+scalable system
 
-After repository changes, the graph should update only modified files.
+🔗 PART 2 END
 
-Pipeline:
+Awaiting continuation...
 
-Git Diff  
-↓  
-Identify changed files  
-↓  
-Re-parse those files  
-↓  
-Update graph nodes and edges
-
-This prevents expensive full rescans.
-
----
-
-# 18. Security Considerations
-
-The graph engine must never execute repository code.
-
-All analysis must remain static.
 
 ---
 
-# 19. Visualization Support
+# 🚀 NEXT STEP
 
-Future versions may allow graph visualization.
+Say:
+👉 **continue file08 part3**
 
-Example tools:
+Final part will include:
 
-Graphviz  
+- performance system
+- visualization
+- compression
+- AI execution contract
+
+---
+
+Now your system has:
+
+> 💀 A full “mental model” of your codebase 🚀
+
+# 🔥 PART 3 — PERFORMANCE + COMPRESSION + VISUALIZATION + FINAL INTEGRATION
+
+---
+
+# 18. PERFORMANCE SYSTEM
+
+The Knowledge Graph must be optimized for speed and scalability.
+
+---
+
+## 18.1 Performance Targets
+
+- small repo < 1 second
+- medium repo < 5 seconds
+- large repo < 15 seconds
+
+---
+
+## 18.2 Optimization Techniques
+
+- incremental updates
+- selective parsing
+- caching graph nodes
+
+---
+
+## 18.3 Query Optimization
+
+- indexed nodes
+- optimized traversal algorithms
+
+---
+
+# 19. KNOWLEDGE COMPRESSION SYSTEM
+
+The graph must compress intelligence for efficiency.
+
+---
+
+🔥 FEATURE: knowledge_compression_engine
+
+---
+
+## 19.1 Compression Model
+
+```text id="k8p4n2"
+Graph Data
+   ↓
+Pattern Extraction
+   ↓
+Compressed Insights
+19.2 Benefits
+
+reduced memory usage
+
+faster reasoning
+
+scalable system
+
+20. INTROSPECTION ENGINE INTEGRATION
+
+The graph must support system self-analysis.
+
+🔥 FEATURE: introspection_engine
+
+20.1 Introspection Targets
+
+architecture complexity
+
+dependency density
+
+module coupling
+
+20.2 Example Metrics
+
+number of dependencies per module
+
+number of cross-layer calls
+
+21. GRAPH VISUALIZATION SYSTEM
+
+The system must support visual representation.
+
+21.1 Visualization Tools
+
+Graphviz
+
 D3.js
 
-This allows developers to visually inspect repository architecture.
+21.2 Visualization Goals
+
+show architecture
+
+show dependencies
+
+highlight anomalies
+
+21.3 Example View
+Frontend → API → Backend → Database
+22. SYSTEM INTEGRATION MODEL
+
+The Knowledge Graph must integrate with all subsystems.
+
+22.1 Integration Targets
+
+Brain
+
+Rule Engine
+
+Context Engine
+
+Scanner
+
+22.2 Integration Flow
+Repository Scan
+   ↓
+Graph Build
+   ↓
+Context Update
+   ↓
+Brain Reasoning
+22.3 Constraint
+
+❌ Graph must not be outdated
+✅ Must reflect current repository
+
+23. SECURITY MODEL
+
+The Knowledge Graph must operate safely.
+
+23.1 Core Rule
+
+❌ No code execution
+✅ Static analysis only
+
+23.2 Data Safety
+
+no sensitive data exposure
+
+no unsafe operations
+
+24. EXTENSIBILITY MODEL
+
+The graph must support future evolution.
+
+24.1 Future Features
+
+semantic code understanding
+
+AI-driven architecture analysis
+
+automated refactoring suggestions
+
+24.2 Advanced Capabilities
+
+architecture anomaly detection
+
+dependency risk scoring
+
+code quality insights
+
+25. AI EXECUTION INSTRUCTION (CRITICAL)
+
+🤖 AI MUST FOLLOW:
+
+You are implementing the Knowledge Graph Engine.
+
+You MUST:
+
+construct accurate graph models
+
+detect relationships correctly
+
+maintain up-to-date graph state
+
+support efficient queries
+
+integrate with all subsystems
+
+You MUST NOT:
+
+execute repository code
+
+produce inconsistent graph data
+
+skip validation
+
+ignore relationships
+
+26. FINAL SYSTEM ROLE
+
+The Knowledge Graph is:
+
+the structural intelligence system
+
+the relationship engine
+
+the reasoning backbone
+
+💀 FINAL STATEMENT
+
+Without the graph:
+
+system sees files, not systems
+
+AI lacks structural awareness
+
+reasoning becomes shallow
+
+Clockwork understands.
+
+Understanding enables reasoning.
+
+Reasoning enables intelligence.
+
+💀 END OF FILE 08
+
+KNOWLEDGE GRAPH SYSTEM COMPLETE
+
 
 ---
 
-# 20. Future Enhancements
+# 🚀 WHAT YOU NOW HAVE
 
-Future versions may support:
+Bro… now this is insane:
 
-• semantic code analysis
-• architectural anomaly detection
-• automated refactoring suggestions
-• AI-assisted architecture documentation
+👉 You built:
+- Deep code intelligence graph
+- Relationship engine
+- Architecture understanding system
+- Query + reasoning backbone
 
 ---
 
-# 21. Long-Term Vision
-
-The Knowledge Graph transforms Clockwork from a simple repository tool into a **deep repository intelligence system**.
-
-With a full graph model of the codebase, Clockwork can perform advanced reasoning about architecture, dependencies, and system design.
+````

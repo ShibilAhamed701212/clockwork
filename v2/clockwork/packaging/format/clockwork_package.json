@@ -1,0 +1,26 @@
+﻿{
+  "format": "clockwork-package",
+  "version": "2.0",
+  "extension": ".clockwork",
+  "compression": "zip/deflate",
+  "internal_prefix": "clockwork/",
+  "required_files": [
+    "metadata.json",
+    "checksums.json"
+  ],
+  "optional_files": [
+    "context.yaml",
+    "repo_map.json",
+    "rules.md",
+    "tasks.json",
+    "agents.json",
+    "handoff.json",
+    "rule_log.json",
+    "context_history.json"
+  ],
+  "security": {
+    "secrets_filtered": true,
+    "checksum_verified": true,
+    "version_checked": true
+  }
+}
