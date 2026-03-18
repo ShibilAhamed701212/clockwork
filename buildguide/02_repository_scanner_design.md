@@ -1,341 +1,1098 @@
+# 🚨 CLOCKWORK SYSTEM PROMPT — READ FULLY BEFORE ANY ACTION
+
+⚠️ CRITICAL INSTRUCTION:
+You MUST read this ENTIRE document from top to bottom.
+DO NOT start coding until you have COMPLETELY read EVERYTHING in this file.
+
+- Do NOT skip sections
+- Do NOT assume missing context
+- This file is PART of a 14-file system
+- You are continuing a system, NOT starting fresh
+
+---
+
+## 🧠 SYSTEM IDENTITY
+
+You are building a unified autonomous system called **Clockwork**.
+
+This is NOT a single script.
+This is a FULL-SCALE, INTERCONNECTED ARCHITECTURE.
+
+Each `.md` file contributes ONE PART of the SAME SYSTEM.
+
+---
+
+## 📁 ROOT PROJECT LOCATION (STRICT)
+
+All code MUST be created inside:
+
+`D:\var-codes\Clockworker`
+
+---
+
+## 🏗️ COMPLETE PROJECT STRUCTURE (SOURCE OF TRUTH)
+
+You MUST follow this EXACT structure:
+
+clockwork/
+│
+├── cli/
+│ ├── main.py
+│ ├── commands/
+│ │ ├── init.py
+│ │ ├── scan.py
+│ │ ├── verify.py
+│ │ ├── update.py
+│ │ ├── handoff.py
+│ │ ├── pack.py
+│ │ ├── load.py
+│ │ ├── graph.py
+│ │ ├── watch.py
+│ │ ├── repair.py
+│ │ └── agent.py
+│ └── utils/
+│ ├── parser.py
+│ └── output.py
+│
+├── scanner/
+│ ├── scanner.py
+│ ├── directory_walker.py
+│ ├── language_detector.py
+│ ├── dependency_analyzer.py
+│ ├── architecture_inferer.py
+│ ├── relationship_mapper.py
+│ └── output/repo_map.json
+│
+├── context/
+│ ├── context_engine.py
+│ ├── context_store.py
+│ ├── context_validator.py
+│ ├── live_index/
+│ │ ├── watcher.py
+│ │ ├── event_queue.py
+│ │ ├── incremental_processor.py
+│ │ └── sync_engine.py
+│ └── schemas/context_schema.yaml
+│
+├── rules/
+│ ├── rule_engine.py
+│ ├── rule_parser.py
+│ ├── validators/
+│ │ ├── structure_rules.py
+│ │ ├── dependency_rules.py
+│ │ └── safety_rules.py
+│ └── rules.md
+│
+├── brain/
+│ ├── brain.py
+│ ├── decision_engine.py
+│ ├── planning_engine.py
+│ ├── optimization_engine.py
+│ ├── meta_reasoning.py
+│ └── prioritization.py
+│
+├── graph/
+│ ├── graph_builder.py
+│ ├── node_manager.py
+│ ├── edge_manager.py
+│ ├── query_engine.py
+│ ├── anomaly_detector.py
+│ └── storage/knowledge_graph.db
+│
+├── agents/
+│ ├── runtime.py
+│ ├── agent_registry.py
+│ ├── task_queue.py
+│ ├── task_graph.py
+│ ├── router.py
+│ ├── load_balancer.py
+│ ├── swarm/
+│ │ ├── coordinator.py
+│ │ └── consensus.py
+│ └── sandbox/executor.py
+│
+├── validation/
+│ ├── pipeline.py
+│ ├── output_validator.py
+│ ├── hallucination_guard.py
+│ └── reality_check.py
+│
+├── state/
+│ ├── state_manager.py
+│ ├── session_tracker.py
+│ ├── state_machine.py
+│ └── snapshots/snapshots.db
+│
+├── recovery/
+│ ├── recovery_engine.py
+│ ├── rollback.py
+│ ├── retry.py
+│ ├── self_healing.py
+│ ├── predictor.py
+│ └── logs/failure_log.json
+│
+├── security/
+│ ├── sandbox.py
+│ ├── access_control.py
+│ ├── command_filter.py
+│ ├── plugin_security.py
+│ ├── secrets_protection.py
+│ └── logs/security_log.json
+│
+├── packaging/
+│ ├── packer.py
+│ ├── loader.py
+│ ├── serializer.py
+│ └── format/clockwork_package.json
+│
+├── registry/
+│ ├── registry_client.py
+│ ├── plugin_manager.py
+│ ├── publisher.py
+│ ├── search.py
+│ ├── cache/registry_cache.json
+│ └── api/routes.py
+│
+├── config/
+│ ├── config.yaml
+│ └── settings.py
+│
+├── logs/
+│ ├── system.log
+│ ├── agent.log
+│ └── debug.log
+│
+├── .clockwork/
+│ ├── context.yaml
+│ ├── repo_map.json
+│ ├── knowledge_graph.db
+│ ├── tasks.json
+│ ├── agents.json
+│ └── index.db
+│
+├── tests/
+│ ├── test_scanner.py
+│ ├── test_graph.py
+│ ├── test_agents.py
+│ └── test_recovery.py
+│
+├── docs/
+│ ├── 01_foundation.md
+│ ├── 02_scanner.md
+│ ├── ...
+│ └── 14_registry.md
+│
+├── requirements.txt
+├── README.md
+└── main.py
+
+---
+
+## 🔗 SYSTEM BEHAVIOR RULES
+
+- This file is PART of a sequence → treat as continuation
+- NEVER build isolated modules
+- ALWAYS connect with existing systems
+
+---
+
+## 🔄 EXECUTION FLOW (MANDATORY)
+
+scanner → context → graph → brain → agents → validation → recovery
+
+Every feature MUST integrate into this pipeline.
+
+---
+
+## 🌐 DOCUMENTATION RULE
+
+Before coding:
+
+- Verify latest official docs
+- Use correct versions
+- Avoid outdated implementations
+
+---
+
+## 🚫 HARD RESTRICTIONS
+
+- Do NOT create files outside structure
+- Do NOT duplicate modules
+- Do NOT ignore other systems
+- Do NOT write pseudo code
+
+---
+
+## 🎯 YOUR TASK
+
+Scroll down ↓  
+Read ALL instructions in this file  
+Then implement ONLY what this file defines  
+While respecting the FULL system above
+
+---******************\*\*******************\*\*\*\*******************\*\*******************\_******************\*\*******************\*\*\*\*******************\*\*******************
 
 # Clockwork Project Specification
-## File 02 — Repository Scanner Design
 
-Version: 0.1
-Subsystem: Repository Scanner
-Document Type: Technical Architecture Specification
+## File 02 — Repository Scanner System
+
+Version: 2.0  
+Subsystem: Repository Scanner  
+Document Type: System Intelligence + Structural Analysis Engine
 
 ---
 
-# 1. Purpose
+# 🚀 FEATURE MAP (FROM MASTER 62)
 
-The Repository Scanner is responsible for analyzing a software repository and building a structured understanding of the project.
+- dependency_awareness_engine
+- anomaly_detection_system
+- semantic_layer
+- unified_task_graph_engine
+- knowledge_compression_engine
+- breakage_prediction_engine
 
-This subsystem forms the foundation of Clockwork's intelligence because every other subsystem depends on the data produced by the scanner.
+---
 
-The scanner must detect:
+# 0. SYSTEM ROLE (CRITICAL)
 
-• repository structure
-• programming languages
-• dependency systems
-• architectural layers
-• file relationships
-• development domains
-• skill requirements
+The Repository Scanner is the **primary perception system of Clockwork**.
 
-The scanner produces a machine-readable representation of the repository known as the **Repository Map**.
+It acts as:
 
-Output file:
+> The Eyes + Sensor Layer of the Entire System
 
+---
+
+Clockwork cannot:
+
+- reason
+- validate
+- execute
+
+without first understanding the repository.
+
+---
+
+🧠 INTELLIGENCE: semantic_layer
+
+The scanner must not just "read files" —  
+It must **understand structure, meaning, and relationships**.
+
+---
+
+# 1. PURPOSE (DEEP SYSTEM DEFINITION)
+
+The Repository Scanner converts:
+
+````text
+Raw Codebase → Structured System Model
+
+This transformation must produce:
+
+structural understanding
+
+dependency graph
+
+architecture model
+
+capability mapping
+
+OUTPUT
 .clockwork/repo_map.json
+2. CORE RESPONSIBILITIES
+2.1 Structural Analysis
 
----
+directory tree traversal
 
-# 2. Responsibilities
+file classification
 
-The repository scanner must perform the following tasks.
+module grouping
 
-1. Walk the repository directory tree.
-2. Identify relevant project files.
-3. Detect programming languages.
-4. Detect frameworks and libraries.
-5. Identify dependency systems.
-6. Identify architectural patterns.
-7. Build a project component map.
-8. Generate a machine-readable repository model.
+2.2 Language Intelligence
 
----
+detect programming languages
 
-# 3. Scanner Execution
+calculate frequency distribution
 
-The scanner runs through the CLI command:
+2.3 Dependency Intelligence
+
+⚙️ IMPLEMENTATION: dependency_awareness_engine
+
+detect dependency systems
+
+extract dependency lists
+
+understand version constraints
+
+2.4 Architectural Inference
+
+detect system structure
+
+identify layers
+
+infer patterns
+
+2.5 Relationship Mapping
+
+file relationships
+
+module dependencies
+
+call graph
+
+2.6 Skill Mapping
+
+detect required developer skills
+
+classify expertise areas
+
+3. SCANNER EXECUTION MODEL
+
+Triggered via:
 
 clockwork scan
-
-Execution pipeline:
-
+3.1 Execution Pipeline
 Repository Root
-    ↓
+   ↓
 Directory Walker
-    ↓
-Language Detection
-    ↓
-Dependency Detection
-    ↓
-Architecture Detection
-    ↓
-Skill Detection
-    ↓
-Repository Map Generation
+   ↓
+File Classifier
+   ↓
+Language Analyzer
+   ↓
+Dependency Analyzer
+   ↓
+Architecture Inference
+   ↓
+Graph Builder
+   ↓
+Repository Map Generator
+4. DIRECTORY WALKER ENGINE
+4.1 Exclusion Rules
 
----
+.git
 
-# 4. Directory Walking
+node_modules
 
-The scanner must recursively walk the repository directory.
+pycache
 
-Excluded directories:
+.venv
 
-• .git
-• node_modules
-• __pycache__
-• .venv
-• build
-• dist
+build
 
-The scanner must respect ignore files when present:
+dist
 
-• .gitignore
-• .clockworkignore
+4.2 Ignore File Support
 
----
+.gitignore
 
-# 5. Language Detection
+.clockworkignore
 
-The scanner must detect programming languages using file extensions.
+4.3 Traversal Strategy
 
-Example mapping:
+recursive
+
+memory-efficient
+
+non-blocking
+
+5. LANGUAGE ANALYSIS ENGINE
+5.1 Language Mapping
 
 .py → Python
+
 .js → JavaScript
+
 .ts → TypeScript
-.go → Go
-.rs → Rust
-.java → Java
-.cpp → C++
-.c → C
-.rb → Ruby
 
-The scanner should maintain a language frequency map.
-
-Example:
-
+5.2 Frequency Model
 {
  "python": 42,
  "javascript": 10
 }
+5.3 Advanced Detection
 
----
+syntax patterns
 
-# 6. Dependency Detection
+keyword analysis
 
-The scanner must detect dependency management systems.
+6. DEPENDENCY ANALYSIS ENGINE
 
-Examples:
+⚙️ IMPLEMENTATION: dependency_awareness_engine
 
-Python → requirements.txt / pyproject.toml
-Node → package.json
-Rust → Cargo.toml
-Go → go.mod
+6.1 Detection Targets
 
-Dependencies must be extracted when possible.
+requirements.txt
 
-Example output:
+pyproject.toml
 
+package.json
+
+Cargo.toml
+
+go.mod
+
+6.2 Extraction Model
+Dependency File
+   ↓
+Parse Structure
+   ↓
+Extract Packages
+   ↓
+Normalize Data
+6.3 Dependency Graph
+
+nodes → packages
+
+edges → relationships
+
+7. FRAMEWORK DETECTION SYSTEM
+7.1 Detection Rules
+
+Flask → backend
+
+React → frontend
+
+FastAPI → API
+
+7.2 Classification
+
+UI frameworks
+
+backend frameworks
+
+infrastructure frameworks
+
+8. ARCHITECTURE INFERENCE ENGINE
+8.1 Detection Patterns
+
+layered
+
+microservices
+
+monolith
+
+CLI
+
+8.2 Heuristic Model
+Folder Structure + Dependencies → Architecture Type
+
+⚙️ IMPLEMENTATION: breakage_prediction_engine
+
+9. COMPONENT MAPPING SYSTEM
+9.1 Component Types
+
+backend
+
+frontend
+
+database
+
+infrastructure
+
+9.2 Mapping Output
 {
- "python_dependencies": ["flask", "sqlalchemy"],
- "node_dependencies": ["react", "express"]
+ "backend": ["app.py"],
+ "frontend": ["app.js"]
 }
 
 ---
 
-# 7. Framework Detection
+# ⚠️ RULE (VERY IMPORTANT)
 
-Frameworks should be detected from dependencies.
-
-Example rules:
-
-Flask → Python web backend
-Django → Python web backend
-React → frontend UI framework
-FastAPI → Python API framework
-
-Example output:
-
-{
- "frameworks": ["Flask", "React"]
-}
+👉 Always ensure:
+- Proper headings (`#`, `##`)
+- Code blocks closed (``` )
+- No merged sections
 
 ---
 
-# 8. Architecture Detection
+# 🚀 NEXT STEP
 
-The scanner should infer project architecture patterns.
+Say:
+👉 **continue file02 part2**
 
-Common patterns:
-
-Frontend + Backend
-Microservices
-API Server
-CLI Tool
-Library
-
-Example inference:
-
-Presence of:
-
-frontend/
-backend/
-
-indicates layered architecture.
-
-Example output:
-
-{
- "architecture": "layered"
-}
+We’ll now add:
+- Graph intelligence
+- AST parsing
+- anomaly detection
+- semantic reasoning layer
 
 ---
 
-# 9. Component Detection
+You’re doing this right bro — this is turning into a **real system spec now** 💀🔥
 
-The scanner should group files into logical components.
+# Clockwork Project Specification
+## File 02 — Repository Scanner System
 
-Examples:
-
-backend/
-frontend/
-database/
-scripts/
-
-Example repository map:
-
-{
- "backend": ["app.py", "routes.py"],
- "frontend": ["index.html", "app.js"],
- "database": ["schema.sql"]
-}
+Version: 2.0
+Subsystem: Repository Scanner
+Document Type: System Intelligence + Structural Analysis Engine
 
 ---
 
-# 10. Skill Detection
+# 🚀 FEATURE MAP (FROM MASTER 62)
 
-Clockwork must detect which developer skills are required to work on the repository.
-
-Examples:
-
-Python files → Python developer
-Dockerfile → DevOps
-SQL files → Database engineer
-React code → Frontend engineer
-
-Example output:
-
-{
- "skills": ["Python", "SQL", "React"]
-}
+- dependency_awareness_engine
+- anomaly_detection_system
+- semantic_layer
+- unified_task_graph_engine
+- knowledge_compression_engine
+- breakage_prediction_engine
 
 ---
 
-# 11. AST Parsing (Advanced)
+# 0. SYSTEM ROLE (CRITICAL)
 
-For deeper analysis the scanner should optionally parse source code using AST.
+The Repository Scanner is the **primary perception system of Clockwork**.
 
-Recommended library:
+It acts as:
 
-tree-sitter
-
-AST analysis enables:
-
-• function detection
-• class detection
-• module relationships
-
-This information will later feed the Clockwork Brain.
+> The Eyes + Sensor Layer of the Entire System
 
 ---
 
-# 12. Repository Graph
+Clockwork cannot:
+- reason
+- validate
+- execute
 
-The scanner should eventually build a graph representation of the repository.
-
-Nodes:
-
-• files
-• modules
-• dependencies
-
-Edges:
-
-• imports
-• function calls
-• module usage
-
-This graph will support advanced reasoning.
+without first understanding the repository.
 
 ---
 
-# 13. Performance Requirements
+🧠 INTELLIGENCE: semantic_layer
 
-The scanner must remain fast.
-
-Target:
-
-• small repos < 1 second
-• medium repos < 3 seconds
-• large repos < 10 seconds
-
-The scanner must avoid loading entire files into memory when unnecessary.
+The scanner must not just "read files" —
+It must **understand structure, meaning, and relationships**.
 
 ---
 
-# 14. Data Storage
+# 1. PURPOSE (DEEP SYSTEM DEFINITION)
 
-The scanner outputs repository information to:
+The Repository Scanner converts:
 
+```text
+Raw Codebase → Structured System Model
+
+This transformation must produce:
+
+structural understanding
+
+dependency graph
+
+architecture model
+
+capability mapping
+
+OUTPUT
 .clockwork/repo_map.json
+2. CORE RESPONSIBILITIES
+2.1 Structural Analysis
 
-Example structure:
+directory tree traversal
 
+file classification
+
+module grouping
+
+2.2 Language Intelligence
+
+detect programming languages
+
+calculate frequency distribution
+
+2.3 Dependency Intelligence
+
+⚙️ IMPLEMENTATION: dependency_awareness_engine
+
+detect dependency systems
+
+extract dependency lists
+
+understand version constraints
+
+2.4 Architectural Inference
+
+detect system structure
+
+identify layers
+
+infer patterns
+
+2.5 Relationship Mapping
+
+file relationships
+
+module dependencies
+
+call graph
+
+2.6 Skill Mapping
+
+detect required developer skills
+
+classify expertise areas
+
+3. SCANNER EXECUTION MODEL
+
+Triggered via:
+
+clockwork scan
+3.1 Execution Pipeline
+Repository Root
+   ↓
+Directory Walker
+   ↓
+File Classifier
+   ↓
+Language Analyzer
+   ↓
+Dependency Analyzer
+   ↓
+Architecture Inference
+   ↓
+Graph Builder
+   ↓
+Repository Map Generator
+4. DIRECTORY WALKER ENGINE
+4.1 Exclusion Rules
+
+.git
+
+node_modules
+
+pycache
+
+.venv
+
+build
+
+dist
+
+4.2 Ignore File Support
+
+.gitignore
+
+.clockworkignore
+
+4.3 Traversal Strategy
+
+recursive
+
+memory-efficient
+
+non-blocking
+
+5. LANGUAGE ANALYSIS ENGINE
+5.1 Language Mapping
+
+.py → Python
+
+.js → JavaScript
+
+.ts → TypeScript
+
+5.2 Frequency Model
 {
- "languages": {
-   "python": 40,
-   "javascript": 12
- },
- "frameworks": ["Flask"],
- "architecture": "layered",
- "skills": ["Python", "Flask", "SQL"]
+ "python": 42,
+ "javascript": 10
+}
+5.3 Advanced Detection
+
+syntax patterns
+
+keyword analysis
+
+6. DEPENDENCY ANALYSIS ENGINE
+
+⚙️ IMPLEMENTATION: dependency_awareness_engine
+
+6.1 Detection Targets
+
+requirements.txt
+
+pyproject.toml
+
+package.json
+
+Cargo.toml
+
+go.mod
+
+6.2 Extraction Model
+Dependency File
+   ↓
+Parse Structure
+   ↓
+Extract Packages
+   ↓
+Normalize Data
+6.3 Dependency Graph
+
+nodes → packages
+
+edges → relationships
+
+7. FRAMEWORK DETECTION SYSTEM
+7.1 Detection Rules
+
+Flask → backend
+
+React → frontend
+
+FastAPI → API
+
+7.2 Classification
+
+UI frameworks
+
+backend frameworks
+
+infrastructure frameworks
+
+8. ARCHITECTURE INFERENCE ENGINE
+8.1 Detection Patterns
+
+layered
+
+microservices
+
+monolith
+
+CLI
+
+8.2 Heuristic Model
+Folder Structure + Dependencies → Architecture Type
+
+⚙️ IMPLEMENTATION: breakage_prediction_engine
+
+9. COMPONENT MAPPING SYSTEM
+9.1 Component Types
+
+backend
+
+frontend
+
+database
+
+infrastructure
+
+9.2 Mapping Output
+{
+ "backend": ["app.py"],
+ "frontend": ["app.js"]
 }
 
 ---
 
-# 15. Error Handling
+# ⚠️ RULE (VERY IMPORTANT)
 
-If the scanner fails to analyze a file it must skip the file and continue.
-
-Clockwork must never crash due to a malformed file.
-
----
-
-# 16. Extensibility
-
-The scanner must support plugin detectors.
-
-Future detectors may include:
-
-• AI model files
-• infrastructure detection
-• Kubernetes configs
-• CI/CD pipelines
+👉 Always ensure:
+- Proper headings (`#`, `##`)
+- Code blocks closed (``` )
+- No merged sections
 
 ---
 
-# 17. Security Considerations
+# 🚀 NEXT STEP
 
-The scanner must never execute code from the repository.
+Say:
+👉 **continue file02 part2**
 
-All analysis must be static.
+We’ll now add:
+- Graph intelligence
+- AST parsing
+- anomaly detection
+- semantic reasoning layer
 
 ---
 
-# 18. Future Enhancements
+You’re doing this right bro — this is turning into a **real system spec now** 💀🔥
 
-Future versions of the scanner may include:
+# 🔥 PART 2 — DEEP INTELLIGENCE LAYER (SCANNER CORE)
 
-• semantic code analysis
-• test coverage detection
-• documentation analysis
-• architecture validation
+---
 
-These capabilities will strengthen Clockwork's understanding of the repository.
+# 10. ABSTRACT SYNTAX TREE (AST) ANALYSIS ENGINE
+
+The scanner must move beyond file-level analysis into **code-level structural understanding**.
+
+---
+
+🧠 INTELLIGENCE: semantic_layer
+
+---
+
+## 10.1 Purpose
+
+AST parsing enables:
+
+- function detection
+- class detection
+- variable relationships
+- module interactions
+
+---
+
+## 10.2 Parsing Strategy
+
+The scanner must:
+
+- use language-specific parsers
+- fallback to generic parsing if needed
+
+---
+
+Recommended:
+
+- tree-sitter
+
+---
+
+## 10.3 AST Extraction Model
+
+```text
+Source Code
+   ↓
+Parser
+   ↓
+AST Tree
+   ↓
+Node Extraction
+   ↓
+Structured Representation
+10.4 Extracted Entities
+
+functions
+
+classes
+
+imports
+
+exports
+
+variables
+
+11. REPOSITORY GRAPH ENGINE
+
+The scanner must construct a full graph representation of the repository.
+
+🔥 FEATURE: unified_task_graph_engine
+
+11.1 Graph Definition
+
+Graph G = (Nodes, Edges)
+
+11.2 Node Types
+
+files
+
+modules
+
+classes
+
+functions
+
+dependencies
+
+11.3 Edge Types
+
+import relationships
+
+function calls
+
+module usage
+
+dependency links
+
+11.4 Graph Construction Pipeline
+AST Data
+   ↓
+Entity Extraction
+   ↓
+Relationship Mapping
+   ↓
+Graph Construction
+11.5 Graph Use Cases
+
+dependency tracking
+
+execution planning
+
+architecture validation
+
+12. SEMANTIC UNDERSTANDING ENGINE
+
+The scanner must interpret meaning, not just structure.
+
+🧠 INTELLIGENCE: semantic_layer
+
+12.1 Semantic Targets
+
+function purpose
+
+module role
+
+data flow
+
+system intent
+
+12.2 Semantic Inference Model
+Code Patterns + Context → Meaning
+12.3 Example
+
+function named get_user_data
+→ semantic meaning: data retrieval
+
+13. ANOMALY DETECTION SYSTEM
+
+The scanner must detect abnormal patterns in the repository.
+
+🔥 FEATURE: anomaly_detection_system
+
+13.1 Detection Targets
+
+inconsistent naming
+
+irregular structure
+
+unused files
+
+suspicious dependencies
+
+13.2 Detection Model
+Expected Pattern
+   ↓
+Observed Pattern
+   ↓
+Deviation Detection
+13.3 Anomaly Types
+
+structural anomaly
+
+dependency anomaly
+
+behavioral anomaly
+
+13.4 Response
+
+flag anomaly
+
+log issue
+
+notify system
+
+14. BREAKAGE PREDICTION SYSTEM
+
+The scanner must detect potential breakages early.
+
+🔥 FEATURE: breakage_prediction_engine
+
+14.1 Prediction Scope
+
+missing dependencies
+
+circular imports
+
+invalid references
+
+14.2 Prediction Flow
+Repository Graph
+   ↓
+Dependency Check
+   ↓
+Risk Analysis
+   ↓
+Breakage Prediction
+15. KNOWLEDGE COMPRESSION ENGINE
+
+The scanner must convert raw scan data into efficient knowledge.
+
+🔥 FEATURE: knowledge_compression_engine
+
+15.1 Compression Pipeline
+Raw Scan Data
+   ↓
+Pattern Extraction
+   ↓
+Insight Generation
+   ↓
+Compact Representation
+15.2 Compression Goals
+
+reduce data size
+
+improve reasoning speed
+
+enable fast retrieval
+
+16. SKILL INTELLIGENCE SYSTEM
+
+The scanner must infer required developer skills.
+
+16.1 Skill Mapping Model
+File Type + Framework → Skill
+16.2 Examples
+
+Python → backend dev
+
+React → frontend dev
+
+SQL → database engineer
+
+16.3 Output
+{
+ "skills": ["Python", "React", "SQL"]
+}
+17. PERFORMANCE OPTIMIZATION SYSTEM
+
+The scanner must be optimized for speed.
+
+17.1 Performance Targets
+
+small repo < 1s
+
+medium repo < 3s
+
+large repo < 10s
+
+17.2 Optimization Techniques
+
+lazy loading
+
+parallel processing
+
+selective parsing
+
+17.3 Memory Optimization
+
+avoid full file loads
+
+stream processing
+
+🔗 PART 2 END
+
+Awaiting continuation...
+
+
+---
+
+# 🚀 NEXT STEP
+
+Say:
+👉 **continue file02 part3**
+
+Next we finish with:
+- Output system
+- Data schema
+- Plugin system
+- Security model
+- AI execution instructions
+
+---
+
+Now your scanner is becoming:
+
+> 💀 A real “codebase understanding engine” — not just a file reader 🚀
+````

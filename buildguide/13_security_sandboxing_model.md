@@ -1,286 +1,923 @@
+# 🚨 CLOCKWORK SYSTEM PROMPT — READ FULLY BEFORE ANY ACTION
+
+⚠️ CRITICAL INSTRUCTION:
+You MUST read this ENTIRE document from top to bottom.
+DO NOT start coding until you have COMPLETELY read EVERYTHING in this file.
+
+- Do NOT skip sections
+- Do NOT assume missing context
+- This file is PART of a 14-file system
+- You are continuing a system, NOT starting fresh
+
+---
+
+## 🧠 SYSTEM IDENTITY
+
+You are building a unified autonomous system called **Clockwork**.
+
+This is NOT a single script.
+This is a FULL-SCALE, INTERCONNECTED ARCHITECTURE.
+
+Each `.md` file contributes ONE PART of the SAME SYSTEM.
+
+---
+
+## 📁 ROOT PROJECT LOCATION (STRICT)
+
+All code MUST be created inside:
+
+`D:\var-codes\Clockworker`
+
+---
+
+## 🏗️ COMPLETE PROJECT STRUCTURE (SOURCE OF TRUTH)
+
+You MUST follow this EXACT structure:
+
+clockwork/
+│
+├── cli/
+│ ├── main.py
+│ ├── commands/
+│ │ ├── init.py
+│ │ ├── scan.py
+│ │ ├── verify.py
+│ │ ├── update.py
+│ │ ├── handoff.py
+│ │ ├── pack.py
+│ │ ├── load.py
+│ │ ├── graph.py
+│ │ ├── watch.py
+│ │ ├── repair.py
+│ │ └── agent.py
+│ └── utils/
+│ ├── parser.py
+│ └── output.py
+│
+├── scanner/
+│ ├── scanner.py
+│ ├── directory_walker.py
+│ ├── language_detector.py
+│ ├── dependency_analyzer.py
+│ ├── architecture_inferer.py
+│ ├── relationship_mapper.py
+│ └── output/repo_map.json
+│
+├── context/
+│ ├── context_engine.py
+│ ├── context_store.py
+│ ├── context_validator.py
+│ ├── live_index/
+│ │ ├── watcher.py
+│ │ ├── event_queue.py
+│ │ ├── incremental_processor.py
+│ │ └── sync_engine.py
+│ └── schemas/context_schema.yaml
+│
+├── rules/
+│ ├── rule_engine.py
+│ ├── rule_parser.py
+│ ├── validators/
+│ │ ├── structure_rules.py
+│ │ ├── dependency_rules.py
+│ │ └── safety_rules.py
+│ └── rules.md
+│
+├── brain/
+│ ├── brain.py
+│ ├── decision_engine.py
+│ ├── planning_engine.py
+│ ├── optimization_engine.py
+│ ├── meta_reasoning.py
+│ └── prioritization.py
+│
+├── graph/
+│ ├── graph_builder.py
+│ ├── node_manager.py
+│ ├── edge_manager.py
+│ ├── query_engine.py
+│ ├── anomaly_detector.py
+│ └── storage/knowledge_graph.db
+│
+├── agents/
+│ ├── runtime.py
+│ ├── agent_registry.py
+│ ├── task_queue.py
+│ ├── task_graph.py
+│ ├── router.py
+│ ├── load_balancer.py
+│ ├── swarm/
+│ │ ├── coordinator.py
+│ │ └── consensus.py
+│ └── sandbox/executor.py
+│
+├── validation/
+│ ├── pipeline.py
+│ ├── output_validator.py
+│ ├── hallucination_guard.py
+│ └── reality_check.py
+│
+├── state/
+│ ├── state_manager.py
+│ ├── session_tracker.py
+│ ├── state_machine.py
+│ └── snapshots/snapshots.db
+│
+├── recovery/
+│ ├── recovery_engine.py
+│ ├── rollback.py
+│ ├── retry.py
+│ ├── self_healing.py
+│ ├── predictor.py
+│ └── logs/failure_log.json
+│
+├── security/
+│ ├── sandbox.py
+│ ├── access_control.py
+│ ├── command_filter.py
+│ ├── plugin_security.py
+│ ├── secrets_protection.py
+│ └── logs/security_log.json
+│
+├── packaging/
+│ ├── packer.py
+│ ├── loader.py
+│ ├── serializer.py
+│ └── format/clockwork_package.json
+│
+├── registry/
+│ ├── registry_client.py
+│ ├── plugin_manager.py
+│ ├── publisher.py
+│ ├── search.py
+│ ├── cache/registry_cache.json
+│ └── api/routes.py
+│
+├── config/
+│ ├── config.yaml
+│ └── settings.py
+│
+├── logs/
+│ ├── system.log
+│ ├── agent.log
+│ └── debug.log
+│
+├── .clockwork/
+│ ├── context.yaml
+│ ├── repo_map.json
+│ ├── knowledge_graph.db
+│ ├── tasks.json
+│ ├── agents.json
+│ └── index.db
+│
+├── tests/
+│ ├── test_scanner.py
+│ ├── test_graph.py
+│ ├── test_agents.py
+│ └── test_recovery.py
+│
+├── docs/
+│ ├── 01_foundation.md
+│ ├── 02_scanner.md
+│ ├── ...
+│ └── 14_registry.md
+│
+├── requirements.txt
+├── README.md
+└── main.py
+
+---
+
+## 🔗 SYSTEM BEHAVIOR RULES
+
+- This file is PART of a sequence → treat as continuation
+- NEVER build isolated modules
+- ALWAYS connect with existing systems
+
+---
+
+## 🔄 EXECUTION FLOW (MANDATORY)
+
+scanner → context → graph → brain → agents → validation → recovery
+
+Every feature MUST integrate into this pipeline.
+
+---
+
+## 🌐 DOCUMENTATION RULE
+
+Before coding:
+
+- Verify latest official docs
+- Use correct versions
+- Avoid outdated implementations
+
+---
+
+## 🚫 HARD RESTRICTIONS
+
+- Do NOT create files outside structure
+- Do NOT duplicate modules
+- Do NOT ignore other systems
+- Do NOT write pseudo code
+
+---
+
+## 🎯 YOUR TASK
+
+Scroll down ↓  
+Read ALL instructions in this file  
+Then implement ONLY what this file defines  
+While respecting the FULL system above
+
+---********\*\*********\*\*********\*\*********\*\*\*\*********\*\*********\*\*********\*\*********\_********\*\*********\*\*********\*\*********\*\*\*\*********\*\*********\*\*********\*\*********
 
 # Clockwork Project Specification
-## File 13 — Security and Sandboxing Model
 
-Version: 0.1
-Subsystem: Security Layer
-Document Type: Technical Architecture Specification
+## File 13 — Security, Sandboxing & Zero-Trust Execution System
 
----
-
-# 1. Purpose
-
-The Security and Sandboxing Model defines how Clockwork protects the developer's machine,
-the repository, and the Clockwork runtime from malicious or unsafe behavior.
-
-Because Clockwork coordinates AI agents, plugins, and automated tools, it must assume that
-some components may behave incorrectly or maliciously.
-
-The security model ensures that:
-
-• repository integrity is preserved
-• sensitive system resources are protected
-• plugins cannot compromise the system
-• agents cannot execute harmful operations
+Version: 2.0  
+Subsystem: Security Layer  
+Document Type: Zero-Trust Architecture + Sandbox Enforcement System
 
 ---
 
-# 2. Threat Model
+# 🚀 FEATURE MAP (FROM MASTER 62)
 
-Clockwork must defend against the following threat categories.
-
-Malicious Plugins  
-Plugins attempting to execute arbitrary code or modify system files.
-
-Unsafe AI Agent Output  
-AI-generated code that attempts destructive operations.
-
-Sensitive Data Exposure  
-Access to secrets, credentials, or environment variables.
-
-Repository Corruption  
-Unauthorized deletion or modification of critical files.
+- safe_execution_sandbox
+- anti_hallucination_guard
+- reality_check_layer
+- output_validation_layer
+- controlled_edit_system
+- dependency_awareness_engine
 
 ---
 
-# 3. Security Principles
+# 0. SYSTEM ROLE (CRITICAL)
 
-Clockwork must follow the following principles.
+The Security System is the **trust boundary of Clockwork**.
 
-Least Privilege  
-Components only receive the permissions they require.
+It acts as:
 
-Static Analysis First  
-Clockwork must analyze repository changes statically before applying them.
-
-Explicit Approval  
-High-risk operations must require manual confirmation.
-
-Isolation  
-Plugins and agents must run in controlled environments.
+> The Firewall + Sandbox + Safety Gate of the Entire System
 
 ---
 
-# 4. Sandbox Environment
+Without this system:
 
-Plugins and agents must run inside a sandbox environment.
+- AI becomes dangerous
+- plugins become attack vectors
+- repository becomes vulnerable
 
-Sandbox restrictions include:
+---
 
-• limited filesystem access
-• no system command execution
-• restricted network access
-• controlled runtime memory
+🔥 FEATURE: safe_execution_sandbox
 
-Example sandbox scope:
+All execution must occur inside controlled environments.
 
-.clockwork/
+---
+
+# 1. PURPOSE (DEEP SYSTEM DEFINITION)
+
+The system enforces:
+
+````text
+All Actions → Validated → Safe → Controlled Execution
+
+It ensures:
+
+no unsafe operations
+
+no unauthorized access
+
+no system compromise
+
+2. CORE RESPONSIBILITIES
+2.1 Execution Isolation
+
+sandbox all agents
+
+sandbox plugins
+
+2.2 Threat Prevention
+
+block malicious actions
+
+prevent unsafe code
+
+2.3 Data Protection
+
+protect secrets
+
+protect system files
+
+2.4 Validation Enforcement
+
+validate all changes
+
+prevent invalid outputs
+
+2.5 System Integrity
+
+maintain safe environment
+
+3. ZERO-TRUST SECURITY MODEL
+3.1 Core Principle
+
+❌ trust nothing
+✅ verify everything
+
+3.2 Trust Boundaries
+
+agents
+
+plugins
+
+user inputs
+
+external APIs
+
+3.3 Enforcement Flow
+Input
+   ↓
+Validation
+   ↓
+Security Check
+   ↓
+Execution
+4. SANDBOX EXECUTION SYSTEM
+
+🔥 FEATURE: safe_execution_sandbox
+
+4.1 Sandbox Scope
+
 repository root
+
+.clockwork directory
+
 temporary workspace
 
----
+4.2 Restrictions
 
-# 5. File Access Restrictions
+no system-level access
 
-Clockwork must enforce file access policies.
+no unsafe commands
 
-Allowed paths:
+no unrestricted network
+
+4.3 Execution Flow
+Agent / Plugin
+   ↓
+Sandbox Environment
+   ↓
+Controlled Execution
+5. FILE ACCESS CONTROL SYSTEM
+5.1 Allowed Paths
 
 repository root
+
 .clockwork/
 
-Restricted paths:
+5.2 Restricted Paths
 
-system directories
-home directories outside project
-OS configuration directories
+OS directories
 
----
+home directories outside repo
 
-# 6. Sensitive File Protection
+system config files
 
-Certain files must be automatically protected.
-
-Examples:
+5.3 Enforcement Model
+File Request
+   ↓
+Access Check
+   ↓
+Allow / Block
+6. SENSITIVE DATA PROTECTION
+6.1 Protected Files
 
 .env
-.env.local
+
 credentials.json
+
 private keys
+
 SSH keys
 
-Clockwork must ignore or redact sensitive files during analysis.
+6.2 Protection Strategy
+
+ignore during scan
+
+redact in outputs
+
+block access
+
+7. AGENT OUTPUT VALIDATION
+
+🔥 FEATURE: output_validation_layer
+
+7.1 Rule
+
+Agents must propose changes only.
+
+7.2 Validation Flow
+Agent Output
+   ↓
+Structure Check
+   ↓
+Safety Check
+   ↓
+Approval
+7.3 Constraint
+
+❌ direct execution
+✅ validated application
+
+8. CONTROLLED EDIT SYSTEM
+
+🔥 FEATURE: controlled_edit_system
+
+8.1 Principle
+
+minimal diffs only
+
+scoped changes
+
+8.2 Flow
+Proposed Change
+   ↓
+Diff Generation
+   ↓
+Validation
+   ↓
+Apply
+🔗 PART 1 END
+
+Awaiting continuation...
+
 
 ---
 
-# 7. Agent Output Validation
+# 🚀 NEXT STEP
 
-AI agents must never directly modify repository files.
+Say:
+👉 **continue file13 part2**
 
-Instead they propose changes.
+We’ll build:
 
-Example:
-
-{
- "proposed_changes": [
-  "modify backend/auth.py"
- ]
-}
-
-Clockwork verifies proposals before applying them.
+- anti-hallucination system
+- command restrictions
+- plugin sandboxing
+- permission model
 
 ---
 
-# 8. Command Execution Restrictions
+Now you’re building:
 
-Clockwork must block dangerous system commands.
+> 💀 The system that keeps your AI from going rogue 🚀
 
-Examples:
-
-rm -rf /
-chmod system directories
-network scanning tools
-
-System commands must only run through controlled interfaces.
+# 🔥 PART 2 — ANTI-HALLUCINATION + COMMAND CONTROL + PLUGIN SECURITY
 
 ---
 
-# 9. Plugin Execution Model
+# 9. ANTI-HALLUCINATION GUARD
 
-Plugins must run inside restricted runtime environments.
-
-Recommended implementation:
-
-Python subprocess sandbox
-or containerized plugin execution.
-
-Plugins must not:
-
-• modify core Clockwork modules
-• execute arbitrary shell commands
-• access system credentials
+Clockwork must prevent incorrect AI outputs.
 
 ---
 
-# 10. Validation Pipeline
+🔥 FEATURE: anti_hallucination_guard
 
-All repository changes must pass the validation pipeline.
+---
 
-Pipeline:
+## 9.1 Problem
 
-Agent Proposal
-↓
-Rule Engine Validation
-↓
-Clockwork Brain Analysis
-↓
+AI may generate:
+
+- incorrect logic
+- fake dependencies
+- invalid assumptions
+
+---
+
+## 9.2 Solution
+
+Cross-check outputs against:
+
+- repository code
+- knowledge graph
+- dependency system
+
+---
+
+## 9.3 Validation Flow
+
+```text id="p8n3k2"
+AI Output
+   ↓
+Cross Verification
+   ↓
+Confidence Check
+   ↓
+Accept / Reject
+9.4 Result
+
+reliable outputs
+
+reduced hallucination
+
+10. REALITY CHECK LAYER
+
+🔥 FEATURE: reality_check_layer
+
+10.1 Purpose
+
+Ensure actions are executable in real-world conditions.
+
+10.2 Checks
+
+does file exist?
+
+does dependency exist?
+
+is change valid?
+
+10.3 Flow
+Proposed Action
+   ↓
+Reality Validation
+   ↓
+Approve / Reject
+11. COMMAND EXECUTION CONTROL
+11.1 Blocked Commands
+
+destructive file deletion
+
+system-level operations
+
+unauthorized shell commands
+
+11.2 Enforcement
+Command
+   ↓
 Security Filter
-↓
-Repository Update
+   ↓
+Allow / Block
+11.3 Example Block
+rm -rf /
+→ BLOCKED
+12. DEPENDENCY SAFETY SYSTEM
 
-If any stage fails, the change is rejected.
+🔥 FEATURE: dependency_awareness_engine
 
----
+12.1 Purpose
 
-# 11. Security Logging
+Ensure dependencies are safe and valid.
 
-All security events must be logged.
+12.2 Checks
 
-Log file:
+version compatibility
 
-.clockwork/security_log.json
+existence in ecosystem
 
-Example:
+conflicts
 
-{
- "timestamp": "2026-03-14",
- "event": "blocked_file_access",
- "file": "/etc/passwd"
-}
+12.3 Flow
+Dependency Change
+   ↓
+Validation
+   ↓
+Approval
+13. PLUGIN SANDBOX SYSTEM
+13.1 Execution Model
 
----
+Plugins must run in isolated environments.
 
-# 12. Plugin Verification
+13.2 Implementation Options
 
-Plugins must be verified before installation.
+subprocess isolation
 
-Verification may include:
+containerized execution
 
-• checksum verification
-• signature validation
-• trusted publisher verification
+13.3 Restrictions
 
----
+no core system modification
 
-# 13. Permission Model
+no system access
 
-Plugins and agents must declare required permissions.
+no unsafe execution
 
-Example:
-
-permissions:
+14. PERMISSION MODEL
+14.1 Permission Types
 
 filesystem_read
+
 repository_write
+
 network_access
 
-Clockwork must restrict permissions accordingly.
+14.2 Example
+permissions:
+  - filesystem_read
+  - repository_write
+14.3 Enforcement
 
----
+deny unauthorized access
 
-# 14. CLI Security Commands
+restrict execution scope
 
-Clockwork may include security tools.
+15. PLUGIN VERIFICATION SYSTEM
+15.1 Verification Methods
 
-Examples:
+checksum validation
 
+signature verification
+
+trusted source check
+
+15.2 Flow
+Plugin Install
+   ↓
+Verification
+   ↓
+Approval / Reject
+16. SECURITY ALERT SYSTEM
+16.1 Purpose
+
+Notify users of risks.
+
+16.2 Example
+WARNING:
+Attempt to modify protected file.
+Confirm? (y/n)
+16.3 Severity Levels
+
+info
+
+warning
+
+critical
+
+17. SECURITY AUDIT SYSTEM
+17.1 Purpose
+
+Analyze repository security risks.
+
+17.2 CLI Commands
 clockwork security scan
 clockwork security audit
-clockwork security repair
+17.3 Output
 
-These commands help developers inspect security risks.
+vulnerabilities
+
+unsafe patterns
+
+recommendations
+
+🔗 PART 2 END
+
+Awaiting continuation...
+
 
 ---
 
-# 15. Security Alerts
+# 🚀 NEXT STEP
 
-Clockwork should warn developers of high-risk actions.
+Say:
+👉 **continue file13 part3**
 
-Example:
+Final part will include:
 
+- logging system
+- performance model
+- system integration
+- AI execution contract
+
+---
+
+Now you’ve built:
+
+> 💀 A system that doesn’t just work… it stays SAFE 🚀
+
+# 🔥 PART 2 — ANTI-HALLUCINATION + COMMAND CONTROL + PLUGIN SECURITY
+
+---
+
+# 9. ANTI-HALLUCINATION GUARD
+
+Clockwork must prevent incorrect AI outputs.
+
+---
+
+🔥 FEATURE: anti_hallucination_guard
+
+---
+
+## 9.1 Problem
+
+AI may generate:
+
+- incorrect logic
+- fake dependencies
+- invalid assumptions
+
+---
+
+## 9.2 Solution
+
+Cross-check outputs against:
+
+- repository code
+- knowledge graph
+- dependency system
+
+---
+
+## 9.3 Validation Flow
+
+```text id="p8n3k2"
+AI Output
+   ↓
+Cross Verification
+   ↓
+Confidence Check
+   ↓
+Accept / Reject
+9.4 Result
+
+reliable outputs
+
+reduced hallucination
+
+10. REALITY CHECK LAYER
+
+🔥 FEATURE: reality_check_layer
+
+10.1 Purpose
+
+Ensure actions are executable in real-world conditions.
+
+10.2 Checks
+
+does file exist?
+
+does dependency exist?
+
+is change valid?
+
+10.3 Flow
+Proposed Action
+   ↓
+Reality Validation
+   ↓
+Approve / Reject
+11. COMMAND EXECUTION CONTROL
+11.1 Blocked Commands
+
+destructive file deletion
+
+system-level operations
+
+unauthorized shell commands
+
+11.2 Enforcement
+Command
+   ↓
+Security Filter
+   ↓
+Allow / Block
+11.3 Example Block
+rm -rf /
+→ BLOCKED
+12. DEPENDENCY SAFETY SYSTEM
+
+🔥 FEATURE: dependency_awareness_engine
+
+12.1 Purpose
+
+Ensure dependencies are safe and valid.
+
+12.2 Checks
+
+version compatibility
+
+existence in ecosystem
+
+conflicts
+
+12.3 Flow
+Dependency Change
+   ↓
+Validation
+   ↓
+Approval
+13. PLUGIN SANDBOX SYSTEM
+13.1 Execution Model
+
+Plugins must run in isolated environments.
+
+13.2 Implementation Options
+
+subprocess isolation
+
+containerized execution
+
+13.3 Restrictions
+
+no core system modification
+
+no system access
+
+no unsafe execution
+
+14. PERMISSION MODEL
+14.1 Permission Types
+
+filesystem_read
+
+repository_write
+
+network_access
+
+14.2 Example
+permissions:
+  - filesystem_read
+  - repository_write
+14.3 Enforcement
+
+deny unauthorized access
+
+restrict execution scope
+
+15. PLUGIN VERIFICATION SYSTEM
+15.1 Verification Methods
+
+checksum validation
+
+signature verification
+
+trusted source check
+
+15.2 Flow
+Plugin Install
+   ↓
+Verification
+   ↓
+Approval / Reject
+16. SECURITY ALERT SYSTEM
+16.1 Purpose
+
+Notify users of risks.
+
+16.2 Example
 WARNING:
-Attempt to modify protected file .clockwork/context.yaml
-
+Attempt to modify protected file.
 Confirm? (y/n)
+16.3 Severity Levels
+
+info
+
+warning
+
+critical
+
+17. SECURITY AUDIT SYSTEM
+17.1 Purpose
+
+Analyze repository security risks.
+
+17.2 CLI Commands
+clockwork security scan
+clockwork security audit
+17.3 Output
+
+vulnerabilities
+
+unsafe patterns
+
+recommendations
+
+🔗 PART 2 END
+
+Awaiting continuation...
+
 
 ---
 
-# 16. Performance Considerations
+# 🚀 NEXT STEP
 
-Security checks must remain efficient.
+Say:
+👉 **continue file13 part3**
 
-Targets:
+Final part will include:
 
-security validation < 200 ms
-
-Security must not slow normal development workflows.
-
----
-
-# 17. Future Enhancements
-
-Future improvements may include:
-
-• containerized agent execution
-• encrypted plugin packages
-• hardware sandboxing
-• distributed security monitoring
+- logging system
+- performance model
+- system integration
+- AI execution contract
 
 ---
 
-# 18. Long-Term Vision
+Now you’ve built:
 
-The security model ensures that Clockwork remains safe even as the ecosystem grows.
-
-As more plugins, agents, and automation systems integrate with Clockwork,
-this security architecture protects developers and repositories from unintended harm.
+> 💀 A system that doesn’t just work… it stays SAFE 🚀
+````
