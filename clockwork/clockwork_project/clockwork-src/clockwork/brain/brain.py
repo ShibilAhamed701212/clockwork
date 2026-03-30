@@ -1,3 +1,17 @@
+"""
+clockwork/brain/brain.py
+--------------------------
+v2-style ``Brain`` coordinator — thin facade over the core brain subsystem.
+
+``Brain`` carries **no independent business logic**.  All reasoning and decision
+evaluation delegates to:
+  - ``clockwork.brain.brain_manager.BrainManager`` (execution backend)
+  - ``clockwork.brain.decision_engine.DecisionEngine`` (action evaluation)
+  - ``clockwork.brain.meta_reasoning.MetaReasoning`` (decision quality)
+
+Rule: if brain reasoning logic needs to change, change it in the components above;
+this class should remain a minimal coordinator.
+"""
 from __future__ import annotations
 
 from clockwork.brain.brain_manager import BrainManager

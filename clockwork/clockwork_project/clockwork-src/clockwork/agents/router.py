@@ -1,3 +1,12 @@
+"""
+clockwork/agents/router.py
+---------------------------
+v2 compatibility facade — action-type-aware task router over the v2 registry.
+
+Routes v2-style task dicts to an ``AgentRecord`` based on an inferred capability.
+All spec-level capability matching and priority dispatch remain in
+``clockwork.agent.router.TaskRouter``; this module is a thin v2 adapter.
+"""
 from __future__ import annotations
 
 from clockwork.agents.agent_registry import AgentRecord, AgentRegistry

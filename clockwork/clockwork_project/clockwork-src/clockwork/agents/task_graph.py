@@ -1,3 +1,12 @@
+"""
+clockwork/agents/task_graph.py
+--------------------------------
+v2 compatibility facade — topological dependency graph over ``TaskItem`` objects.
+
+Provides the v2 ``TaskGraph`` interface for tracking inter-task dependencies.
+Core task orchestration logic lives in ``clockwork.agent.runtime``; this module
+is a lightweight dependency-resolution helper for v2 callers.
+"""
 from __future__ import annotations
 
 from clockwork.agents.task_queue import TaskItem
