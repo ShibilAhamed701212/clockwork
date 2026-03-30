@@ -1,8 +1,0 @@
-﻿pyyaml>=6.0
-click>=8.1.7
-watchdog>=4.0.0
-networkx>=3.3
-rich>=13.7.1
-pydantic>=2.7.0
-sqlalchemy>=2.0.30
-pytest>=8.2.0
