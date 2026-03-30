@@ -1,3 +1,16 @@
+"""
+clockwork/agents/agent_registry.py
+------------------------------------
+v2 compatibility facade — in-memory registry with pre-loaded default agents.
+
+This module provides the v2-style ``AgentRecord`` / ``AgentRegistry`` interface
+used by v2 callers (``clockwork.agents.*``).  Unlike the v1 JSON-backed registry
+(``clockwork.agent.registry.AgentRegistry``), this registry is intentionally
+in-memory and pre-populated with sensible defaults so that v2 consumers do not
+need to manage persistent storage.  It carries **no spec-level business logic** —
+all authoritative agent orchestration, persistence, and task routing remain in
+``clockwork.agent.*``.
+"""
 from __future__ import annotations
 
 import time

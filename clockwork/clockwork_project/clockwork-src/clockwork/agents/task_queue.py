@@ -1,3 +1,12 @@
+"""
+clockwork/agents/task_queue.py
+--------------------------------
+v2 compatibility facade — thread-safe priority task queue with dependency resolution.
+
+Provides the v2 ``TaskItem`` / ``TaskQueue`` interface.  Core task-state logic lives
+in ``clockwork.agent.models`` and ``clockwork.agent.registry``; this module is a thin
+in-memory queue adapter for v2 callers.
+"""
 from __future__ import annotations
 
 import threading

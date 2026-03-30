@@ -1,3 +1,16 @@
+"""
+clockwork/agents/runtime.py
+-----------------------------
+v2 compatibility facade over the canonical v1 ``AgentRuntime``.
+
+``clockwork.agents.AgentRuntime`` is a **subclass** of
+``clockwork.agent.runtime.AgentRuntime`` (the authoritative implementation).
+It adds the v2-style ``submit`` / ``run_pipeline`` surface while inheriting all
+spec-level behaviour from the v1 core unchanged.
+
+Rule: never add business logic here.  All agent orchestration, routing, locking,
+validation, and monitoring logic lives exclusively in ``clockwork.agent.*``.
+"""
 from __future__ import annotations
 
 from pathlib import Path

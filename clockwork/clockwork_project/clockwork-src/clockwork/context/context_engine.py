@@ -1,3 +1,16 @@
+"""
+clockwork/context/context_engine.py
+--------------------------------------
+v2-compatible ``ContextEngine`` facade over the core typed context engine.
+
+``ContextEngine`` carries **no independent business logic**.  All context
+persistence, schema validation, and YAML I/O delegate to:
+  - ``clockwork.context.engine.ContextEngine`` (authoritative core)
+
+Rule: if context-management logic needs to change, change it in
+``clockwork/context/engine.py``; this class should remain a minimal compatibility
+shim providing the v2-style API surface.
+"""
 from __future__ import annotations
 
 import time

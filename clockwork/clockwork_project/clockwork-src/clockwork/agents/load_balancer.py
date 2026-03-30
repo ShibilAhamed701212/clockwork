@@ -1,3 +1,12 @@
+"""
+clockwork/agents/load_balancer.py
+-----------------------------------
+v2 compatibility facade — round-robin / least-loaded task distributor.
+
+Provides the v2 ``LoadBalancer`` interface over the v2 ``AgentRegistry``.
+Core agent-selection and priority dispatch lives in ``clockwork.agent.router``;
+this module is a thin distribution helper for v2 callers.
+"""
 from __future__ import annotations
 
 from clockwork.agents.agent_registry import AgentRecord, AgentRegistry
