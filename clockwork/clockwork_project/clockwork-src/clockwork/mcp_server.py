@@ -9,10 +9,19 @@ Usage:
 """
 from __future__ import annotations
 import asyncio
+import importlib.metadata
 import json
 import sys
 from pathlib import Path
 from typing import Any
+
+
+def _server_version() -> str:
+    """Return installed package version with a safe fallback for local runs."""
+    try:
+        return importlib.metadata.version("clockwork")
+    except Exception:
+        return "0.0.0"
 
 
 def main() -> None:
@@ -210,7 +219,7 @@ class ClockworkMCPServer:
             return self._ok(req_id, {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "clockwork", "version": "0.1.0"},
+                "serverInfo": {"name": "clockwork", "version": _server_version()},
             })
 
         if method == "tools/list":
@@ -259,6 +268,7 @@ class ClockworkMCPServer:
         db_path = self.cw_dir / "knowledge_graph.db"
         if not db_path.exists():
             return {"error": "Graph not built. Run: clockwork graph"}
+        engine = None
         try:
             from clockwork.graph import GraphEngine
             engine = GraphEngine(self.repo_root)
@@ -278,9 +288,15 @@ class ClockworkMCPServer:
             if query == "files_importing":
                 nodes = q.files_importing(target)
                 return [n.to_dict() for n in nodes]
-            engine.close()
+            return {"error": f"Unknown query type: {query}"}
         except Exception as e:
             return {"error": str(e)}
+        finally:
+            if engine is not None:
+                try:
+                    engine.close()
+                except Exception:
+                    pass
 
     def _tool_check_safety(self, args: dict) -> dict:
         file_path = args.get("file_path", "")
@@ -425,7 +441,7 @@ class ClockworkMCPServer:
             await response.prepare(request)
             capabilities = {
                 "tools": self.TOOL_DEFINITIONS,
-                "serverInfo": {"name": "clockwork", "version": "0.1.0"},
+                "serverInfo": {"name": "clockwork", "version": _server_version()},
             }
             await response.write(
                 f"data: {json.dumps(capabilities)}\n\n".encode()

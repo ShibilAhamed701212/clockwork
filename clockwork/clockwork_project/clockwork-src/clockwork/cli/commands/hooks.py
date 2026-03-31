@@ -15,7 +15,15 @@ hooks_app = typer.Typer(name="hooks",
 PRE_COMMIT_CONTENT = """#!/bin/sh
 # Clockwork pre-commit hook
 # Runs clockwork verify against staged files and blocks commit on violations.
-clockwork verify --staged --json 2>/dev/null | python3 -c "
+VERIFY_OUTPUT=$(clockwork verify --staged --json 2>&1)
+VERIFY_EXIT=$?
+if [ $VERIFY_EXIT -ne 0 ]; then
+  echo "Clockwork: verification command failed; blocking commit"
+  echo "$VERIFY_OUTPUT"
+  exit 1
+fi
+
+echo "$VERIFY_OUTPUT" | python3 -c "
 import sys, json
 try:
     r = json.load(sys.stdin)
@@ -27,8 +35,12 @@ try:
             print('  !', w)
         sys.exit(1)
 except Exception:
-    pass  # fail open if clockwork errors
+    print('Clockwork: invalid verification output; blocking commit')
+    sys.exit(1)
 "
+if [ $? -ne 0 ]; then
+  exit 1
+fi
 """
 
 @hooks_app.command("install")
