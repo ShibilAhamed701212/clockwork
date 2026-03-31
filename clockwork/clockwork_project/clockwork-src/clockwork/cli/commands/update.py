@@ -1,4 +1,4 @@
-﻿"""
+"""
 clockwork/cli/commands/update.py
 ----------------------------------
 `clockwork update` — merge scanner results into context.yaml.
@@ -112,11 +112,28 @@ def cmd_update(
         scan_result = ScanResult.load(cw_dir)
         engine = ContextEngine(cw_dir)
         context_obj = engine.merge_scan(scan_result)
+
+        # Phase 4: Auto-fill empty summary/architecture using summarizer
+        try:
+            from clockwork.brain.summarizer import CodebaseSummarizer
+            summarizer = CodebaseSummarizer()
+            if not context_obj.summary:
+                step("Generating project summary...")
+                context_obj.summary = summarizer.summarize(scan_result)
+            if not context_obj.architecture_overview:
+                step("Generating architecture overview...")
+                context_obj.architecture_overview = summarizer.architecture_overview(scan_result)
+        except Exception:
+            pass  # Summarizer is best-effort
+
         engine.save(context_obj)
         primary_language = context_obj.primary_language
         frameworks = list(context_obj.frameworks)
         entry_points = list(context_obj.entry_points)
-    except Exception:
+    except Exception as exc:
+        # Phase 8.2: Surface the actual error instead of silently swallowing
+        warn(f"ContextEngine merge failed ({type(exc).__name__}: {exc})")
+        step("Falling back to raw dict merge...")
         # Fallback: manual raw-dict merge
         context["primary_language"] = primary_language
         context["frameworks"] = sorted(set(frameworks))
@@ -132,6 +149,21 @@ def cmd_update(
         except OSError as exc:
             error(f"Failed to write context.yaml: {exc}")
             raise typer.Exit(code=1)
+
+    # Phase 3.3: Auto-generate IDE files if configured
+    try:
+        config_path = cw_dir / "config.yaml"
+        if config_path.exists():
+            config = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
+            if config.get("auto_generate_ide_files", False):
+                step("Auto-generating IDE context files...")
+                from clockwork.cli.commands.generate import generate_ide_files_auto
+                ide_formats = config.get("ide_formats", None)
+                generated = generate_ide_files_auto(root, formats=ide_formats)
+                if generated:
+                    info(f"  Generated {len(generated)} IDE file(s)")
+    except Exception:
+        pass  # Auto-generation is best-effort
 
     rule()
     success("context.yaml updated")

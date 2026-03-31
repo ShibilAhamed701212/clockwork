@@ -53,6 +53,28 @@ class ContextEngine:
 
     CONTEXT_FILE = "context.yaml"
 
+    # Fields that merge_scan() must NEVER overwrite when the existing
+    # value is non-empty.  These are human-authored or agent-authored
+    # content that scanning cannot reproduce.
+    _PRESERVE_FIELDS: frozenset[str] = frozenset({
+        "summary",
+        "architecture_overview",
+        "current_tasks",
+        "architecture_notes",
+        "agent_notes",
+        "last_agent",
+    })
+
+    # Fields that merge_scan() ALWAYS overwrites from scanner data
+    _SCANNER_FIELDS: frozenset[str] = frozenset({
+        "primary_language",
+        "languages",
+        "frameworks",
+        "entry_points",
+        "total_files",
+        "total_lines",
+    })
+
     def __init__(self, clockwork_dir: Path) -> None:
         self.clockwork_dir = clockwork_dir.resolve()
         self.context_path  = self.clockwork_dir / self.CONTEXT_FILE
@@ -164,8 +186,9 @@ class ContextEngine:
         """
         Update auto-derived context fields from a ScanResult.
 
-        Preserves all human-authored fields (summary, architecture_overview,
-        current_tasks, architecture_notes, agent_notes).
+        Only overwrites fields listed in ``_SCANNER_FIELDS``.
+        Fields listed in ``_PRESERVE_FIELDS`` are never overwritten
+        when they already contain user-authored content.
 
         Returns the updated ProjectContext (also saves to disk).
         """

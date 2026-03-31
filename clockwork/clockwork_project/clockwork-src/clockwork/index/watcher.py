@@ -1,4 +1,4 @@
-﻿"""
+"""
 clockwork/index/watcher.py
 ---------------------------
 Filesystem watcher for the Live Context Index.
@@ -216,6 +216,65 @@ class RepositoryWatcher:
             )
             return False
 
+        except Exception as exc:
+            # Windows compatibility: watchdog Observer may fail on some
+            # Windows filesystem configurations.  Fall back to polling.
+            logger.warning(
+                "Watchdog observer failed (%s) — falling back to polling.", exc
+            )
+            self._start_polling_fallback()
+            return True
+
+    def _start_polling_fallback(self) -> None:
+        """
+        Start a lightweight poll-based watcher for Windows compatibility.
+        Checks file mtimes every 2 seconds and injects events.
+        """
+        self._poll_thread = threading.Thread(
+            target=self._poll_loop, daemon=True
+        )
+        self._poll_stop = threading.Event()
+        self._poll_thread.start()
+        self._watchdog_available = True
+        logger.info("Poll-based watcher started on %s", self.repo_root)
+
+    def _poll_loop(self) -> None:
+        """Poll for file changes by comparing mtimes."""
+        known: dict[str, float] = {}
+        handler = ChangeEventHandler(self._event_queue, str(self.repo_root))
+
+        # Initial snapshot
+        for path in self.repo_root.rglob("*"):
+            if path.is_file() and not handler._should_ignore(str(path)):
+                try:
+                    known[str(path)] = path.stat().st_mtime
+                except OSError:
+                    pass
+
+        poll_stop = getattr(self, "_poll_stop", None)
+        while poll_stop and not poll_stop.is_set():
+            current: dict[str, float] = {}
+            for path in self.repo_root.rglob("*"):
+                if path.is_file() and not handler._should_ignore(str(path)):
+                    try:
+                        current[str(path)] = path.stat().st_mtime
+                    except OSError:
+                        pass
+
+            # Detect changes
+            for p, mtime in current.items():
+                if p not in known:
+                    handler._enqueue(EventType.CREATED, p)
+                elif known[p] != mtime:
+                    handler._enqueue(EventType.MODIFIED, p)
+
+            for p in known:
+                if p not in current:
+                    handler._enqueue(EventType.DELETED, p)
+
+            known = current
+            poll_stop.wait(2.0)  # Poll every 2 seconds
+
     def stop(self) -> None:
         if self._observer:
             try:
@@ -223,10 +282,16 @@ class RepositoryWatcher:
                 self._observer.join()   # type: ignore
             except Exception:
                 pass
+        # Stop polling fallback if running
+        poll_stop = getattr(self, "_poll_stop", None)
+        if poll_stop:
+            poll_stop.set()
         self._processor.stop()
 
     def is_watching(self) -> bool:
-        return self._watchdog_available and self._observer is not None
+        return self._watchdog_available and (
+            self._observer is not None or hasattr(self, "_poll_thread")
+        )
 
     def inject_event(self, event: ChangeEvent) -> None:
         """Manually inject an event (useful for testing without watchdog)."""

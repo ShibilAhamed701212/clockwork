@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Optional
 
 
-CLOCKWORK_VERSION = "0.1"
+CLOCKWORK_VERSION = "0.2.0"
 PACKAGE_SCHEMA_VERSION = 1
 
 # Files that are ALWAYS excluded from packages for security reasons

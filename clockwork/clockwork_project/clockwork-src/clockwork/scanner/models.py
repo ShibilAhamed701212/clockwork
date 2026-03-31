@@ -1,4 +1,4 @@
-﻿"""
+"""
 clockwork/scanner/models.py
 -----------------------------
 Data models for the Repository Scanner subsystem.
@@ -129,6 +129,12 @@ class ScanResult:
     # Framework / dependency hints
     frameworks: list[str] = field(default_factory=list)
     dependency_files: list[str] = field(default_factory=list)
+
+    # Git metadata (populated when scanning a git repo)
+    git_branch: str = ""
+    git_commit: str = ""
+    git_is_dirty: bool = False
+    git_untracked_count: int = 0
 
     # ------------------------------------------------------------------ #
     # Serialisation

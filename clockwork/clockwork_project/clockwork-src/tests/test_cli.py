@@ -68,7 +68,7 @@ class TestInit:
     def test_context_yaml_is_valid(self, tmp_path):
         cw = _init_repo(tmp_path)
         ctx = yaml.safe_load((cw / "context.yaml").read_text())
-        assert ctx["clockwork_version"] == "0.1"
+        assert ctx["clockwork_version"] == "0.2.0"
         assert ctx["project_name"] == tmp_path.name
 
     def test_tasks_is_empty_list(self, tmp_path):

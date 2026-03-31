@@ -237,6 +237,21 @@ class RepositoryScanner:
                 f"{elapsed*1000:.0f} ms"
             )
 
+        # ── Git metadata ──────────────────────────────────────────────
+        git_branch = ""
+        git_commit = ""
+        git_is_dirty = False
+        git_untracked_count = 0
+        try:
+            from clockwork.scanner.git_diff import GitDiffScanner
+            git_scanner = GitDiffScanner(self.repo_root)
+            if git_scanner.is_git_repo():
+                git_branch = git_scanner.current_branch()
+                sha, _ = git_scanner.last_commit()
+                git_commit = sha
+        except Exception:
+            pass
+
         return ScanResult(
             scanned_at=datetime.now(timezone.utc).isoformat(),
             root=str(self.repo_root),
@@ -256,6 +271,10 @@ class RepositoryScanner:
             config_files=config_files,
             frameworks=frameworks,
             dependency_files=dep_files,
+            git_branch=git_branch,
+            git_commit=git_commit,
+            git_is_dirty=git_is_dirty,
+            git_untracked_count=git_untracked_count,
         )
 
     # ------------------------------------------------------------------ #

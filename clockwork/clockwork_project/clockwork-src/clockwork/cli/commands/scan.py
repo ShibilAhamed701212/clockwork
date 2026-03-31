@@ -1,4 +1,4 @@
-﻿"""
+"""
 clockwork/cli/commands/scan.py
 --------------------------------
 `clockwork scan` — analyse repository structure and write repo_map.json.
@@ -101,6 +101,17 @@ def cmd_scan(
         header("Clockwork Scan")
 
     if not cw_dir.is_dir():
+        if not as_json:
+            warn("Clockwork not initialised.")
+            info("Would you like to initialise now?")
+            try:
+                should_init = typer.confirm("  Run clockwork init?", default=True)
+                if should_init:
+                    from clockwork.cli.commands.init import cmd_init
+                    cmd_init(repo_root=root, force=False, interactive=False, from_existing=True)
+                    return
+            except Exception:
+                pass
         error("Clockwork not initialised.\nRun:  clockwork init")
         raise typer.Exit(code=1)
 
@@ -131,6 +142,15 @@ def cmd_scan(
             json.dumps(repo_map, indent=2, default=str),
             encoding="utf-8",
         )
+
+    # Record git scan point for diff-aware tracking
+    try:
+        from clockwork.scanner.git_diff import GitDiffScanner
+        git_scanner = GitDiffScanner(root)
+        if git_scanner.is_git_repo():
+            git_scanner.record_scan()
+    except Exception:
+        pass
 
     elapsed_ms = (time.perf_counter() - start) * 1000
 

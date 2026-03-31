@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "clockwork"
-version = "0.1.0"
+version = "0.2.0"
 description = "Local-first repository intelligence and AI agent coordination system"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -27,9 +27,22 @@ graph = [
 parse = [
     "tree-sitter>=0.21",
 ]
+mcp = [
+    "mcp>=1.0",
+]
+http = [
+    "aiohttp>=3.9",
+]
+all = [
+    "mcp>=1.0",
+    "aiohttp>=3.9",
+    "watchdog>=4.0",
+    "questionary>=2.0",
+]
 
 [project.scripts]
 clockwork = "clockwork.cli.app:main"
+clockwork-mcp = "clockwork.mcp_server:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

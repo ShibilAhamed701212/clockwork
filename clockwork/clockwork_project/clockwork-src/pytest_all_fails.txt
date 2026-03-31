@@ -1,0 +1,116 @@
+........................................................................ [ 14%]
+..................................FFFFFF................................ [ 28%]
+............................FFF.FFFFFFFF.FF............................. [ 42%]
+........................................................................ [ 56%]
+........................................................................ [ 70%]
+........................................................................ [ 84%]
+........................................................................ [ 98%]
+.......                                                                  [100%]
+================================== FAILURES ===================================
+________________ TestMCPToolHandlers.test_get_project_context _________________
+tests\test_cli_new_commands.py:146: in test_get_project_context
+    from clockwork.mcp_server import _load_context
+E   ImportError: cannot import name '_load_context' from 'clockwork.mcp_server' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\mcp_server.py)
+_____________________ TestMCPToolHandlers.test_load_rules _____________________
+tests\test_cli_new_commands.py:155: in test_load_rules
+    from clockwork.mcp_server import _load_rules
+E   ImportError: cannot import name '_load_rules' from 'clockwork.mcp_server' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\mcp_server.py)
+________________ TestMCPToolHandlers.test_handle_unknown_tool _________________
+tests\test_cli_new_commands.py:160: in test_handle_unknown_tool
+    from clockwork.mcp_server import _handle_tool
+E   ImportError: cannot import name '_handle_tool' from 'clockwork.mcp_server' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\mcp_server.py)
+__________________ TestMCPToolHandlers.test_search_codebase ___________________
+tests\test_cli_new_commands.py:165: in test_search_codebase
+    from clockwork.mcp_server import _tool_search_codebase
+E   ImportError: cannot import name '_tool_search_codebase' from 'clockwork.mcp_server' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\mcp_server.py)
+_____________ TestMCPToolHandlers.test_get_handoff_brief_missing ______________
+tests\test_cli_new_commands.py:181: in test_get_handoff_brief_missing
+    from clockwork.mcp_server import _tool_get_handoff_brief
+E   ImportError: cannot import name '_tool_get_handoff_brief' from 'clockwork.mcp_server' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\mcp_server.py)
+_____________________ TestMCPToolHandlers.test_run_verify _____________________
+tests\test_cli_new_commands.py:188: in test_run_verify
+    from clockwork.mcp_server import _tool_run_verify
+E   ImportError: cannot import name '_tool_run_verify' from 'clockwork.mcp_server' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\mcp_server.py)
+___________________________ test_repo_diff_defaults ___________________________
+tests\test_git_diff.py:27: in test_repo_diff_defaults
+    assert diff.all_changed == []
+E   AssertionError: assert all_changed == []
+E    +  where all_changed = RepoDiff(added=[], deleted=[], modified=[], staged=[], unstaged=[], untracked=[], is_git_repo=False, current_branch='', last_commit_sha='', last_commit_message='', is_dirty=False).all_changed
+_________________________ test_repo_diff_has_changes __________________________
+tests\test_git_diff.py:33: in test_repo_diff_has_changes
+    assert diff.has_changes is True
+           ^^^^^^^^^^^^^^^^
+E   AttributeError: 'RepoDiff' object has no attribute 'has_changes'
+________________________ test_repo_diff_deduplication _________________________
+tests\test_git_diff.py:40: in test_repo_diff_deduplication
+    assert "a.py" in changed
+           ^^^^^^^^^^^^^^^^^
+E   TypeError: argument of type 'method' is not iterable
+______________________________ test_non_git_repo ______________________________
+tests\test_git_diff.py:63: in test_non_git_repo
+    assert scanner.is_git_repo is False
+E   assert is_git_repo is False
+E    +  where is_git_repo = <clockwork.scanner.git_diff.GitDiffScanner object at 0x0000015C7958E650>.is_git_repo
+__________________________ test_git_repo_is_detected __________________________
+tests\test_git_diff.py:95: in test_git_repo_is_detected
+    assert scanner.is_git_repo is True
+E   assert is_git_repo is True
+E    +  where is_git_repo = <clockwork.scanner.git_diff.GitDiffScanner object at 0x0000015C7955FC90>.is_git_repo
+____________________________ test_get_branch_name _____________________________
+tests\test_git_diff.py:100: in test_get_branch_name
+    branch = scanner.get_branch_name()
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'GitDiffScanner' object has no attribute 'get_branch_name'
+______________________________ test_get_head_sha ______________________________
+tests\test_git_diff.py:106: in test_get_head_sha
+    sha = scanner.get_head_sha()
+          ^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'GitDiffScanner' object has no attribute 'get_head_sha'
+____________________________ test_get_head_message ____________________________
+tests\test_git_diff.py:112: in test_get_head_message
+    msg = scanner.get_head_message()
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'GitDiffScanner' object has no attribute 'get_head_message'
+________________________________ test_is_dirty ________________________________
+tests\test_git_diff.py:118: in test_is_dirty
+    assert scanner.is_dirty() is False
+           ^^^^^^^^^^^^^^^^
+E   AttributeError: 'GitDiffScanner' object has no attribute 'is_dirty'
+____________________________ test_untracked_count _____________________________
+tests\test_git_diff.py:129: in test_untracked_count
+    assert scanner.untracked_count() == 0
+           ^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'GitDiffScanner' object has no attribute 'untracked_count'
+____________________ test_record_and_diff_since_last_scan _____________________
+tests\test_git_diff.py:141: in test_record_and_diff_since_last_scan
+    scanner.record_scan(cw_dir)
+E   TypeError: GitDiffScanner.record_scan() takes 1 positional argument but 2 were given
+__________________________ test_hooks_install_no_git __________________________
+tests\test_git_diff.py:173: in test_hooks_install_no_git
+    from clockwork.cli.commands.hooks import _HOOK_MARKER
+E   ImportError: cannot import name '_HOOK_MARKER' from 'clockwork.cli.commands.hooks' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\cli\commands\hooks.py)
+________________________ test_hooks_install_and_remove ________________________
+tests\test_git_diff.py:179: in test_hooks_install_and_remove
+    from clockwork.cli.commands.hooks import _PRE_COMMIT_HOOK, _HOOK_MARKER
+E   ImportError: cannot import name '_PRE_COMMIT_HOOK' from 'clockwork.cli.commands.hooks' (D:\var-codes\Clockworker\clockwork\clockwork_project\clockwork-src\clockwork\cli\commands\hooks.py)
+=========================== short test summary info ===========================
+FAILED tests/test_cli_new_commands.py::TestMCPToolHandlers::test_get_project_context
+FAILED tests/test_cli_new_commands.py::TestMCPToolHandlers::test_load_rules
+FAILED tests/test_cli_new_commands.py::TestMCPToolHandlers::test_handle_unknown_tool
+FAILED tests/test_cli_new_commands.py::TestMCPToolHandlers::test_search_codebase
+FAILED tests/test_cli_new_commands.py::TestMCPToolHandlers::test_get_handoff_brief_missing
+FAILED tests/test_cli_new_commands.py::TestMCPToolHandlers::test_run_verify
+FAILED tests/test_git_diff.py::test_repo_diff_defaults - AssertionError: asse...
+FAILED tests/test_git_diff.py::test_repo_diff_has_changes - AttributeError: '...
+FAILED tests/test_git_diff.py::test_repo_diff_deduplication - TypeError: argu...
+FAILED tests/test_git_diff.py::test_non_git_repo - assert is_git_repo is False
+FAILED tests/test_git_diff.py::test_git_repo_is_detected - assert is_git_repo...
+FAILED tests/test_git_diff.py::test_get_branch_name - AttributeError: 'GitDif...
+FAILED tests/test_git_diff.py::test_get_head_sha - AttributeError: 'GitDiffSc...
+FAILED tests/test_git_diff.py::test_get_head_message - AttributeError: 'GitDi...
+FAILED tests/test_git_diff.py::test_is_dirty - AttributeError: 'GitDiffScanne...
+FAILED tests/test_git_diff.py::test_untracked_count - AttributeError: 'GitDif...
+FAILED tests/test_git_diff.py::test_record_and_diff_since_last_scan - TypeErr...
+FAILED tests/test_git_diff.py::test_hooks_install_no_git - ImportError: canno...
+FAILED tests/test_git_diff.py::test_hooks_install_and_remove - ImportError: c...
+19 failed, 492 passed in 24.62s

@@ -5,7 +5,9 @@ from datetime import datetime, timezone
 from typing import Any
 import yaml
 
-PACKAGE_FILES = ["context.yaml","repo_map.json","rules.yaml","rules.md","tasks.json","skills.json","agent_history.json","handoff/handoff.json","handoff/next_agent_brief.md"]
+PACKAGE_FILES_REQUIRED = ["context.yaml", "repo_map.json", "rules.md", "config.yaml"]
+PACKAGE_FILES_OPTIONAL = ["rules.yaml", "tasks.json", "skills.json", "agent_history.json", "handoff/handoff.json", "handoff/next_agent_brief.md"]
+PACKAGE_FILES = PACKAGE_FILES_REQUIRED + PACKAGE_FILES_OPTIONAL
 
 class PackagingEngine:
     def __init__(self, repo_path: Path) -> None:

@@ -10,12 +10,10 @@ Pipeline (spec §6):
     ↓
     Brain Analysis   (stub — full Brain subsystem implemented separately)
 
-Currently implements:
-  • context.yaml schema validation
-  • repo_map.json presence and structure check
-  • rules.md presence check
-  • Protected file integrity check
-  • Basic rule text parsing for violations
+Now diff-aware:
+  • Default: only checks files changed since last scan
+  • --full: bypasses diff, checks everything
+  • --staged: checks only staged files (pre-commit mode)
 """
 
 from __future__ import annotations
@@ -44,6 +42,7 @@ class VerificationResult:
     checks: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     failures: list[str] = field(default_factory=list)
+    changed_files: list[str] = field(default_factory=list)
 
     def fail(self, reason: str) -> None:
         self.passed = False
@@ -61,6 +60,7 @@ class VerificationResult:
             "checks": self.checks,
             "warnings": self.warnings,
             "failures": self.failures,
+            "changed_files": self.changed_files,
         }
 
 
@@ -79,11 +79,20 @@ def cmd_verify(
         False, "--deep",
         help="Run additional validation pipeline and predictive risk checks.",
     ),
+    full: bool = typer.Option(
+        False, "--full",
+        help="Bypass diff and check all files (ignore last-scan tracking).",
+    ),
+    staged: bool = typer.Option(
+        False, "--staged",
+        help="Check only staged files (pre-commit mode).",
+    ),
 ) -> None:
     """
     Verify repository integrity against Clockwork rules.
 
     Runs the Rule Engine pipeline: diff → rule evaluation → brain analysis.
+    By default only checks files changed since last scan.
     """
     root = (repo_root or Path.cwd()).resolve()
     cw_dir = root / ".clockwork"
@@ -98,12 +107,28 @@ def cmd_verify(
     start = time.perf_counter()
     result = VerificationResult()
 
+    # ── Git diff analysis ──────────────────────────────────────────────
+    diff_info = None
+    if not full:
+        diff_info = _get_diff_info(root, staged=staged)
+        if diff_info and not as_json:
+            _display_diff_info(diff_info, staged=staged)
+        if diff_info and diff_info.get("changed_files"):
+            result.changed_files = diff_info["changed_files"]
+
     # Run each check stage
     _check_required_files(cw_dir, result)
     _check_context_schema(cw_dir, result)
     _check_repo_map(cw_dir, result)
     _check_protected_directories(cw_dir, result)
     _check_rules_parseable(cw_dir, result)
+
+    # Diff-aware rule checking (only changed files)
+    if diff_info and result.changed_files and not full:
+        _check_changed_files(cw_dir, result.changed_files, result)
+    elif not full and diff_info and not diff_info.get("has_changes", True):
+        result.ok("No files changed since last scan")
+
     if deep and result.passed:
         _run_deep_validation(cw_dir, result)
 
@@ -132,6 +157,119 @@ def cmd_verify(
             err=True,
         )
         raise typer.Exit(code=1)
+
+
+# ── Git diff helpers ───────────────────────────────────────────────────────
+
+def _get_diff_info(root: Path, staged: bool = False) -> Optional[dict]:
+    """Get git diff information. Returns None if not a git repo."""
+    try:
+        from clockwork.scanner.git_diff import GitDiffScanner
+        scanner = GitDiffScanner(root)
+        if not scanner.is_git_repo():
+            return None
+
+        if staged:
+            diff = scanner.diff_staged()
+        else:
+            diff = scanner.diff_since_last_scan()
+
+        changed = diff.all_changed()
+        return {
+            "is_git_repo": True,
+            "branch": diff.current_branch,
+            "commit": diff.last_commit_sha[:8] if diff.last_commit_sha else "",
+            "has_changes": bool(changed),
+            "changed_files": changed,
+            "added": diff.added,
+            "deleted": diff.deleted,
+            "modified": diff.modified,
+            "staged": diff.staged,
+            "untracked": diff.untracked,
+        }
+    except Exception:
+        return None
+
+
+def _display_diff_info(diff_info: dict, staged: bool = False) -> None:
+    """Display a summary of git diff info."""
+    mode = "staged" if staged else "since last scan"
+    info(f"Git: {diff_info.get('branch', '?')} @ {diff_info.get('commit', '?')}")
+
+    if not diff_info.get("has_changes"):
+        info(f"No changes {mode}")
+        return
+
+    added = diff_info.get("added", [])
+    deleted = diff_info.get("deleted", [])
+    modified = diff_info.get("modified", [])
+
+    parts = []
+    if added:
+        parts.append(f"{len(added)} added")
+    if deleted:
+        parts.append(f"{len(deleted)} deleted")
+    if modified:
+        parts.append(f"{len(modified)} modified")
+
+    info(f"Changes {mode}: {', '.join(parts)}")
+
+    # Show first few files
+    all_changed = diff_info.get("changed_files", [])
+    for f in all_changed[:5]:
+        prefix = "+"
+        if f in deleted:
+            prefix = "-"
+        elif f in modified:
+            prefix = "~"
+        step(f"  {prefix} {f}")
+    if len(all_changed) > 5:
+        info(f"  ... and {len(all_changed) - 5} more")
+
+    rule()
+
+
+def _check_changed_files(
+    cw_dir: Path, changed_files: list[str], result: VerificationResult
+) -> None:
+    """Run targeted checks on changed files only."""
+    rules_path = cw_dir / "rules.md"
+    if not rules_path.exists():
+        return
+
+    try:
+        rules_content = rules_path.read_text(encoding="utf-8")
+    except OSError:
+        return
+
+    # Check protected file rules
+    protected_patterns = _extract_protected_patterns(rules_content)
+    for f in changed_files:
+        for pattern, description in protected_patterns:
+            if pattern in f:
+                result.warn(
+                    f"Protected file modified: {f} ({description})"
+                )
+
+    result.ok(f"Checked {len(changed_files)} changed file(s) against rules")
+
+
+def _extract_protected_patterns(rules_content: str) -> list[tuple[str, str]]:
+    """Extract file protection patterns from rules.md."""
+    patterns: list[tuple[str, str]] = []
+    for line in rules_content.splitlines():
+        line = line.strip()
+        if not line.startswith("- "):
+            continue
+        lower = line.lower()
+        if "must not be" in lower or "should not be" in lower or "do not modify" in lower:
+            # Extract the file/dir being protected
+            words = line[2:].split()
+            if words:
+                target = words[0].strip("`").strip("*")
+                if target and len(target) > 2:
+                    patterns.append((target, line[2:]))
+    return patterns
 
 
 # ── Check stages ───────────────────────────────────────────────────────────
@@ -245,4 +383,3 @@ def _run_deep_validation(cw_dir: Path, result: VerificationResult) -> None:
             result.fail(f"Deep validation: {message}")
     for message in deep_result.warnings:
         result.warn(f"Deep validation: {message}")
-

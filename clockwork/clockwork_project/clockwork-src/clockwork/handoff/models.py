@@ -1,4 +1,4 @@
-﻿"""
+"""
 Clockwork — Agent Handoff System
 models.py: Data models for handoff structures.
 """
@@ -31,6 +31,11 @@ class HandoffData:
     generated_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()
     )
+    # Worktree-aware fields (Phase 6)
+    worktree_path: str = ""
+    branch_name: str = ""
+    base_branch: str = "main"
+    merge_conflicts_predicted: List[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         """Serialise to plain dictionary for JSON output."""
@@ -45,6 +50,10 @@ class HandoffData:
             "task_state": self.task_state,
             "rules_reference": self.rules_reference,
             "generated_at": self.generated_at,
+            "worktree_path": self.worktree_path,
+            "branch_name": self.branch_name,
+            "base_branch": self.base_branch,
+            "merge_conflicts_predicted": self.merge_conflicts_predicted,
         }
 
 

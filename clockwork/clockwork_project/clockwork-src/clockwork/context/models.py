@@ -19,7 +19,7 @@ import json
 
 
 CONTEXT_SCHEMA_VERSION = 1
-CLOCKWORK_VERSION = "0.1"
+CLOCKWORK_VERSION = "0.2.0"
 
 
 # ── Sub-models ─────────────────────────────────────────────────────────────
