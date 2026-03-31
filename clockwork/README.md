@@ -44,12 +44,49 @@ Clockwork instances are easily portable:
 Ensure you have Python 3.10+ installed.
 
 ```bash
-# Clone the repository and navigate to the CLI source
-cd clockwork_project/clockwork-src
+# Install directly from GitHub
+pip install "git+https://github.com/ShibilAhamed701212/clockwork.git"
 
-# Install Clockwork in editable mode
+# Or include extras
+pip install "clockwork[mcp] @ git+https://github.com/ShibilAhamed701212/clockwork.git"
+
+# Local development install
+git clone https://github.com/ShibilAhamed701212/clockwork.git
+cd clockwork
 pip install -e .
 ```
+
+---
+
+## 📦 Publish Releases
+
+Clockwork now includes GitHub Actions workflows for package validation and publishing.
+
+1. Bump `version` in `pyproject.toml`.
+2. Push the commit to `main` and confirm `Package Validate` passes.
+3. Create and push a stable version tag for production PyPI:
+
+```bash
+git tag v0.2.1
+git push origin v0.2.1
+```
+
+4. `Publish PyPI` runs automatically on stable tag push.
+
+For prerelease validation on TestPyPI, push an RC tag:
+
+```bash
+git tag v0.2.1-rc1
+git push origin v0.2.1-rc1
+```
+
+`Publish TestPyPI` runs automatically for `v*-rc*` tags.
+After a successful TestPyPI publish, `TestPyPI Smoke Test` runs automatically, installs the exact RC version from that tag, and checks `clockwork --help` and `clockwork-mcp --help`.
+
+Authentication options:
+- Preferred: PyPI Trusted Publishing (OIDC), with a PyPI project environment named `pypi`.
+- Fallback: add `PYPI_API_TOKEN` in GitHub repository secrets.
+- For TestPyPI, use environment `testpypi` or fallback secret `TEST_PYPI_API_TOKEN`.
 
 ---
 

@@ -8,7 +8,8 @@ version = "0.2.0"
 description = "Local-first repository intelligence and AI agent coordination system"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 
 dependencies = [
     "typer>=0.12",
@@ -43,6 +44,10 @@ all = [
 [project.scripts]
 clockwork = "clockwork.cli.app:main"
 clockwork-mcp = "clockwork.mcp_server:main"
+
+[project.urls]
+Homepage = "https://github.com/ShibilAhamed701212/clockwork"
+Repository = "https://github.com/ShibilAhamed701212/clockwork"
 
 [tool.setuptools.packages.find]
 where = ["."]

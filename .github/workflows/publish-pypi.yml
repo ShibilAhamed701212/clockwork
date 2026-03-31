@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    if: ${{ !contains(github.ref_name, '-rc') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +38,7 @@ jobs:
           path: dist/
 
   publish:
+    if: ${{ !contains(github.ref_name, '-rc') }}
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -51,7 +53,12 @@ jobs:
           name: python-dist
           path: dist/
 
-      - name: Publish to PyPI (Trusted Publishing or token)
+      - name: Publish to PyPI (Trusted Publishing)
+        if: ${{ secrets.PYPI_API_TOKEN == '' }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Publish to PyPI (API token fallback)
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}

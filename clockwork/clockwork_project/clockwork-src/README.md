@@ -22,14 +22,17 @@ Clockwork is a CLI tool that understands your codebase and makes AI coding assis
 ## Installation
 
 ```bash
-# From source (recommended during development)
-git clone https://github.com/ShibilAhamed701212/clockwork.git
-cd clockwork/clockwork/clockwork_project/clockwork-src
-pip install -e .
+# Install directly from GitHub
+pip install "git+https://github.com/ShibilAhamed701212/clockwork.git"
 
 # With optional dependencies
-pip install -e ".[mcp]"       # MCP server support
-pip install -e ".[graph]"     # Knowledge graph (networkx)
+pip install "clockwork[mcp] @ git+https://github.com/ShibilAhamed701212/clockwork.git"   # MCP server support
+pip install "clockwork[graph] @ git+https://github.com/ShibilAhamed701212/clockwork.git" # Knowledge graph (networkx)
+
+# Local development install
+git clone https://github.com/ShibilAhamed701212/clockwork.git
+cd clockwork
+pip install -e .
 pip install -e ".[dev]"       # Development tools (pytest)
 ```
 

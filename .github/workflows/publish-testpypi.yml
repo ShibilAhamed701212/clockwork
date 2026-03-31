@@ -36,6 +36,21 @@ jobs:
           name: python-dist-testpypi
           path: dist/
 
+      - name: Prepare smoke-test metadata
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        run: |
+          mkdir -p smoke
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          PYPI_VERSION="$(echo "$TAG_VERSION" | sed -E 's/-rc([0-9]+)$/rc\1/')"
+          echo "$PYPI_VERSION" > smoke/version.txt
+
+      - name: Upload smoke-test metadata
+        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: testpypi-smoke-metadata
+          path: smoke/version.txt
+
   publish:
     needs: build
     runs-on: ubuntu-latest
