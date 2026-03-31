@@ -27,6 +27,16 @@ jobs:
       - name: Build distribution
         run: python -m build
 
+      - name: Validate RC tag format
+        if: ${{ github.event_name == 'push' }}
+        shell: bash
+        run: |
+          if [[ ! "${GITHUB_REF_NAME}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-rc[0-9]+$ ]]; then
+            echo "Invalid RC tag format: ${GITHUB_REF_NAME}"
+            echo "Expected: v<major>.<minor>.<patch>-rc<build> (example: v0.2.1-rc1)"
+            exit 1
+          fi
+
       - name: Validate package metadata
         run: python -m twine check dist/*
 
@@ -37,15 +47,32 @@ jobs:
           path: dist/
 
       - name: Prepare smoke-test metadata
-        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
+        shell: bash
         run: |
           mkdir -p smoke
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-          PYPI_VERSION="$(echo "$TAG_VERSION" | sed -E 's/-rc([0-9]+)$/rc\1/')"
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            TAG_VERSION="${GITHUB_REF_NAME#v}"
+            PYPI_VERSION="$(echo "$TAG_VERSION" | sed -E 's/-rc([0-9]+)$/rc\1/')"
+          else
+            PYPI_VERSION="$(python - <<'PY'
+import glob
+import re
+from pathlib import Path
+wheels = sorted(glob.glob('dist/*.whl'))
+if not wheels:
+    raise SystemExit('No wheel produced in dist/')
+name = Path(wheels[-1]).name
+m = re.match(r'^[^-]+-([0-9][^-]*)-', name)
+if not m:
+    raise SystemExit(f'Unable to parse version from wheel: {name}')
+print(m.group(1))
+PY
+            )"
+          fi
           echo "$PYPI_VERSION" > smoke/version.txt
+          echo "Resolved smoke version: $PYPI_VERSION"
 
       - name: Upload smoke-test metadata
-        if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         uses: actions/upload-artifact@v4
         with:
           name: testpypi-smoke-metadata
