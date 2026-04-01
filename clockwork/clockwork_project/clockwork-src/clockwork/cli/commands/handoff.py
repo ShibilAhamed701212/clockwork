@@ -19,6 +19,7 @@ import typer
 import yaml
 
 from clockwork.cli.output import header, success, info, error, step, rule
+from clockwork.state import append_activity
 
 
 def cmd_handoff(
@@ -180,3 +181,14 @@ def _append_agent_history(cw_dir: Path, handoff: dict) -> None:
     })
 
     history_path.write_text(json.dumps(history, indent=2), encoding="utf-8")
+
+    append_activity(
+        cw_dir,
+        actor="handoff",
+        action="handoff_generated",
+        status="success",
+        details={
+            "project": handoff.get("project_name", "unknown"),
+            "tasks": handoff.get("current_tasks", []),
+        },
+    )

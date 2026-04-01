@@ -7,9 +7,61 @@ from pathlib import Path
 from typing import Optional
 
 
+INTEGRATION_FILENAMES: dict[str, str] = {
+    "claude-md": "agent-context.md",
+    "cursorrules": "agent-rules.md",
+    "agents-md": "agents.md",
+    "copilot": "copilot-instructions.md",
+}
+
+
+def resolve_integration_output_map(
+    repo_root: Path,
+    *,
+    include_legacy_root: bool = False,
+) -> dict[str, list[Path]]:
+    """
+    Resolve output destinations for generated integration files.
+
+    Primary destination is `.clockwork/integrations` unless overridden by
+    `.clockwork/config.yaml` key `integration_output_dir`.
+    """
+    cw_dir = repo_root / ".clockwork"
+    config_path = cw_dir / "config.yaml"
+
+    configured_dir = ".clockwork/integrations"
+    legacy_root = include_legacy_root
+
+    if config_path.exists():
+        try:
+            import yaml
+            config = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
+            configured_dir = str(config.get("integration_output_dir", configured_dir))
+            if not include_legacy_root:
+                legacy_root = bool(config.get("legacy_root_integrations", False))
+        except Exception:
+            pass
+
+    integration_dir = repo_root / configured_dir
+    target_map = {
+        "claude-md": [integration_dir / INTEGRATION_FILENAMES["claude-md"]],
+        "cursorrules": [integration_dir / INTEGRATION_FILENAMES["cursorrules"]],
+        "agents-md": [integration_dir / INTEGRATION_FILENAMES["agents-md"]],
+        "copilot": [integration_dir / INTEGRATION_FILENAMES["copilot"]],
+    }
+
+    if legacy_root:
+        target_map["claude-md"].append(repo_root / "CLAUDE.md")
+        target_map["cursorrules"].append(repo_root / ".cursorrules")
+        target_map["agents-md"].append(repo_root / "AGENTS.md")
+        target_map["copilot"].append(repo_root / ".github" / "copilot-instructions.md")
+
+    return target_map
+
+
 class IDEContextGenerator:
     """
-    Generates CLAUDE.md, .cursorrules, AGENTS.md, and Copilot instructions
+    Generates agent-context.md, agent-rules.md, agents.md, and copilot instructions
     from existing Clockwork context, rules, and graph data.
     """
 
@@ -18,29 +70,30 @@ class IDEContextGenerator:
         self.cw_dir = self.repo_root / ".clockwork"
 
     def generate_all(self) -> dict[str, Path]:
-        """Generate all formats and return {format: output_path}."""
+        """Generate all formats and return {format: primary output_path}."""
         results = {}
         ctx = self._load_context()
         rules_text = self._load_rules()
         graph_summary = self._load_graph_summary()
 
-        formats = {
-            "claude.md": (self.repo_root / "CLAUDE.md",
-                          self.generate_claude_md),
-            ".cursorrules": (self.repo_root / ".cursorrules",
-                             self.generate_cursorrules),
-            "agents.md": (self.repo_root / "AGENTS.md",
-                          self.generate_agents_md),
-            "copilot": (self.repo_root / ".github" /
-                        "copilot-instructions.md",
-                        self.generate_copilot_instructions),
+        output_map = resolve_integration_output_map(self.repo_root)
+        generators = {
+            "claude-md": self.generate_claude_md,
+            "cursorrules": self.generate_cursorrules,
+            "agents-md": self.generate_agents_md,
+            "copilot": self.generate_copilot_instructions,
         }
-        for name, (path, generator) in formats.items():
+
+        for fmt, destinations in output_map.items():
+            generator = generators.get(fmt)
+            if not generator:
+                continue
             try:
                 content = generator(ctx, rules_text, graph_summary)
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_text(content, encoding="utf-8")
-                results[name] = path
+                for path in destinations:
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_text(content, encoding="utf-8")
+                results[fmt] = destinations[0]
             except Exception:
                 pass
         return results
@@ -153,7 +206,7 @@ clockwork graph query depends-on <file>  # find dependents
 ## Project context
 
 {project} is a {primary_lang} project.{fw_note}
-Full context: read `CLAUDE.md` or run `clockwork handoff` for session state.
+Full context: read `agent-context.md` or run `clockwork handoff` for session state.
 
 ## Governance rules
 
@@ -220,7 +273,7 @@ The pre-commit hook does this automatically if installed.
 
 ## Required workflow
 
-1. Start: read `CLAUDE.md` for full context
+1. Start: read `agent-context.md` for full context
 2. Query dependencies before modifying files: `clockwork graph query depends-on <file>`  
 3. Validate before finishing: `clockwork verify`
 4. Handoff: run `clockwork handoff` before ending a session

@@ -1,0 +1,8 @@
+# IDE workspace files
+.idea/
+.vscode/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+

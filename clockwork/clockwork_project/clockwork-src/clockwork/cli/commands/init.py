@@ -90,6 +90,11 @@ scanner:
     - .pyc
     - .pyo
 
+# Generated IDE/client integration artifacts are written here.
+integration_output_dir: .clockwork/integrations
+# Set true to also write legacy root files (CLAUDE.md, .cursorrules, ...).
+legacy_root_integrations: false
+
 packaging:
   auto_snapshot: false
 
@@ -179,7 +184,7 @@ def _create_clockwork_dir(cw_dir: Path, project_name: str) -> None:
     }
 
     # Sub-directories
-    for sub in ("handoff", "packages", "plugins", "logs"):
+    for sub in ("handoff", "packages", "plugins", "logs", "integrations"):
         (cw_dir / sub).mkdir(parents=True, exist_ok=True)
         step(f"Created  .clockwork/{sub}/")
 
@@ -341,10 +346,18 @@ def _run_smart_init(root: Path, cw_dir: Path, ide_tools: list[str]) -> None:
     else:
         # Detect and import existing IDE context files
         existing_ide = []
-        if (root / "CLAUDE.md").exists():
-            existing_ide.append("CLAUDE.md")
-        if (root / ".cursorrules").exists():
-            existing_ide.append(".cursorrules")
+        integration_dir = root / ".clockwork" / "integrations"
+        candidates = [
+            "CLAUDE.md",
+            ".cursorrules",
+            "claude.md",
+            "cursor-rules.md",
+            "agent-context.md",
+            "agent-rules.md",
+        ]
+        for name in candidates:
+            if (root / name).exists() or (integration_dir / name).exists():
+                existing_ide.append(name)
         if existing_ide:
             info(f"  Detected existing: {', '.join(existing_ide)}")
             _import_ide_rules(root, cw_dir, existing_ide)
@@ -356,6 +369,9 @@ def _import_ide_rules(root: Path, cw_dir: Path, ide_files: list[str]) -> None:
 
     for filename in ide_files:
         ide_path = root / filename
+        if not ide_path.exists():
+            integration_path = root / ".clockwork" / "integrations" / filename
+            ide_path = integration_path if integration_path.exists() else ide_path
         if not ide_path.exists():
             continue
         try:

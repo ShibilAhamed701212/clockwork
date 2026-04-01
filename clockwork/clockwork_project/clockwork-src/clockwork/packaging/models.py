@@ -46,6 +46,11 @@ OPTIONAL_SOURCE_FILES: list[str] = [
     "handoff/handoff.json",
     "validation_log.json",
     "config.yaml",
+    "logs/activity_history.jsonl",
+    "integrations/agent-context.md",
+    "integrations/agent-rules.md",
+    "integrations/agents.md",
+    "integrations/copilot-instructions.md",
 ]
 
 

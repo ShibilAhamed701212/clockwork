@@ -15,6 +15,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from clockwork.state import append_activity
+
 
 def _server_version() -> str:
     """Return installed package version with a safe fallback for local runs."""
@@ -65,6 +67,8 @@ class ClockworkMCPServer:
       get_handoff_brief     — next_agent_brief.md content
       run_verify            — run rule engine on files
       search_codebase       — find relevant files by description
+      git_pull              — guarded git pull automation
+      git_push              — guarded git push automation
     """
 
     TOOL_DEFINITIONS = [
@@ -184,6 +188,40 @@ class ClockworkMCPServer:
                 "required": ["query"],
             },
         },
+        {
+            "name": "git_pull",
+            "description": (
+                "Perform a guarded git pull for the repository. "
+                "Useful for autonomous agent refresh before making edits."
+            ),
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "remote": {"type": "string", "default": "origin"},
+                    "branch": {"type": "string", "default": ""},
+                    "rebase": {"type": "boolean", "default": True},
+                    "allow_dirty": {"type": "boolean", "default": False},
+                },
+                "required": [],
+            },
+        },
+        {
+            "name": "git_push",
+            "description": (
+                "Perform a guarded git push for the repository. "
+                "Use after validations pass to publish agent-produced changes."
+            ),
+            "inputSchema": {
+                "type": "object",
+                "properties": {
+                    "remote": {"type": "string", "default": "origin"},
+                    "branch": {"type": "string", "default": ""},
+                    "set_upstream": {"type": "boolean", "default": False},
+                    "allow_dirty": {"type": "boolean", "default": False},
+                },
+                "required": [],
+            },
+        },
     ]
 
     def __init__(self, repo_root: Path) -> None:
@@ -239,19 +277,43 @@ class ClockworkMCPServer:
         return {"jsonrpc": "2.0", "id": req_id, "result": result}
 
     def _call_tool(self, name: str, args: dict) -> Any:
-        if name == "get_project_context":
-            return self._tool_get_context()
-        if name == "query_graph":
-            return self._tool_query_graph(args)
-        if name == "check_file_safety":
-            return self._tool_check_safety(args)
-        if name == "get_handoff_brief":
-            return self._tool_get_handoff()
-        if name == "run_verify":
-            return self._tool_run_verify(args)
-        if name == "search_codebase":
-            return self._tool_search(args)
-        raise ValueError(f"Unknown tool: {name}")
+        try:
+            if name == "get_project_context":
+                result = self._tool_get_context()
+            elif name == "query_graph":
+                result = self._tool_query_graph(args)
+            elif name == "check_file_safety":
+                result = self._tool_check_safety(args)
+            elif name == "get_handoff_brief":
+                result = self._tool_get_handoff()
+            elif name == "run_verify":
+                result = self._tool_run_verify(args)
+            elif name == "search_codebase":
+                result = self._tool_search(args)
+            elif name == "git_pull":
+                result = self._tool_git_pull(args)
+            elif name == "git_push":
+                result = self._tool_git_push(args)
+            else:
+                raise ValueError(f"Unknown tool: {name}")
+
+            append_activity(
+                self.cw_dir,
+                actor="mcp",
+                action=f"tool:{name}",
+                status="success",
+                details={"args": args},
+            )
+            return result
+        except Exception as exc:
+            append_activity(
+                self.cw_dir,
+                actor="mcp",
+                action=f"tool:{name}",
+                status="failed",
+                details={"args": args, "error": str(exc)},
+            )
+            raise
 
     def _tool_get_context(self) -> dict:
         try:
@@ -422,6 +484,64 @@ class ClockworkMCPServer:
             except Exception:
                 pass
         return results
+
+    def _tool_git_pull(self, args: dict) -> dict:
+        remote = args.get("remote", "origin")
+        branch = args.get("branch", "")
+        rebase = bool(args.get("rebase", True))
+        allow_dirty = bool(args.get("allow_dirty", False))
+
+        try:
+            import git
+
+            repo = git.Repo(self.repo_root)
+            if repo.is_dirty(untracked_files=True) and not allow_dirty:
+                return {
+                    "ok": False,
+                    "error": "Repository has uncommitted changes. Set allow_dirty=true to override.",
+                }
+            target_branch = branch or repo.active_branch.name
+            flags = ["--rebase"] if rebase else []
+            output = repo.git.pull(remote, target_branch, *flags)
+            return {
+                "ok": True,
+                "remote": remote,
+                "branch": target_branch,
+                "rebase": rebase,
+                "output": output.strip(),
+            }
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+
+    def _tool_git_push(self, args: dict) -> dict:
+        remote = args.get("remote", "origin")
+        branch = args.get("branch", "")
+        set_upstream = bool(args.get("set_upstream", False))
+        allow_dirty = bool(args.get("allow_dirty", False))
+
+        try:
+            import git
+
+            repo = git.Repo(self.repo_root)
+            if repo.is_dirty(untracked_files=True) and not allow_dirty:
+                return {
+                    "ok": False,
+                    "error": "Repository has uncommitted changes. Commit first or set allow_dirty=true.",
+                }
+            target_branch = branch or repo.active_branch.name
+            if set_upstream:
+                output = repo.git.push("-u", remote, target_branch)
+            else:
+                output = repo.git.push(remote, target_branch)
+            return {
+                "ok": True,
+                "remote": remote,
+                "branch": target_branch,
+                "set_upstream": set_upstream,
+                "output": output.strip(),
+            }
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
 
     async def run_http(self, port: int) -> None:
         """HTTP/SSE transport for Cursor and web IDEs."""

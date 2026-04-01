@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import Any
 import yaml
+from clockwork.state import append_activity
 
 PROTECTED_CORE_FILES = ["clockwork/cli/main.py","clockwork/scanner/repository_scanner.py","clockwork/context/context_engine.py","clockwork/rules/rule_engine.py","clockwork/brain/mini_brain.py","clockwork/handoff/handoff_engine.py","clockwork/packaging/packaging_engine.py","clockwork/graph/graph_engine.py"]
 SCHEMA_FILE_PATTERNS = ["schema.sql","schema.py","models.py","models.sql","create_tables","db_schema","database_schema"]
@@ -118,3 +119,11 @@ class RuleEngine:
             ex = []
         ex.append({"timestamp": datetime.now(timezone.utc).isoformat(), "agent": "rule_engine", "action": action, "result": "passed" if passed else "failed", "violations": violations})
         p.write_text(json.dumps(ex, indent=2), encoding="utf-8")
+
+        append_activity(
+            self.clockwork_dir,
+            actor="rule_engine",
+            action=action,
+            status="success" if passed else "failed",
+            details={"violations": violations},
+        )

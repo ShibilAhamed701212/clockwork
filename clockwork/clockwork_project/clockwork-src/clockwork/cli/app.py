@@ -23,6 +23,8 @@ from clockwork.cli.commands.ask import cmd_ask
 from clockwork.cli.commands.doctor import cmd_doctor
 from clockwork.cli.commands.mcp import mcp_app
 from clockwork.cli.commands.worktree import worktree_app
+from clockwork.cli.commands.git_ops import sync_app
+from clockwork.cli.commands.history import cmd_history
 
 app = typer.Typer(
     name="clockwork",
@@ -43,10 +45,11 @@ app.command("repair",   help="Wipe and rebuild the index + graph.")(cmd_repair)
 app.command("watch",    help="Start real-time repository monitoring.")(cmd_watch)
 app.command("status",   help="Show runtime state, validation, and recovery health.")(cmd_status)
 app.command("recover",  help="Trigger the recovery engine for a failure scenario.")(cmd_recover)
-app.command("generate", help="Generate IDE context files (CLAUDE.md, .cursorrules, etc.).")(cmd_generate)
+app.command("generate", help="Generate AI context files (agent-context.md, agent-rules.md, etc.).")(cmd_generate)
 app.command("diff",     help="Show changed files since last scan with impact analysis.")(cmd_diff)
 app.command("ask",      help="Ask natural language questions about the codebase.")(cmd_ask)
 app.command("doctor",   help="Diagnose Clockwork installation and project health.")(cmd_doctor)
+app.command("history",  help="Show agent/tool activity history from .clockwork logs.")(cmd_history)
 app.add_typer(graph_app,    name="graph")
 app.add_typer(agent_app,    name="agent")
 app.add_typer(task_app,     name="task")
@@ -56,6 +59,7 @@ app.add_typer(plugin_app,   name="plugin")
 app.add_typer(hooks_app,    name="hooks")
 app.add_typer(mcp_app,      name="mcp")
 app.add_typer(worktree_app, name="worktree")
+app.add_typer(sync_app,     name="sync")
 
 def main() -> None:
     app()

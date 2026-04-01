@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from .models import Agent, AgentLogEntry, Task, TaskStatus
+from clockwork.state import append_activity
 
 
 class AgentRegistry:
@@ -176,6 +177,18 @@ class AgentRegistry:
 
         self.log_path.write_text(
             json.dumps(entries, indent=2), encoding="utf-8"
+        )
+
+        append_activity(
+            self.clockwork_dir,
+            actor=agent,
+            action="task_status_update",
+            status=status,
+            details={
+                "task_id": task.task_id,
+                "task": task.description,
+                "message": message,
+            },
         )
 
     def read_log(self) -> list[dict[str, Any]]:
