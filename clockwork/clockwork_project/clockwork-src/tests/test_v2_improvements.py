@@ -31,7 +31,10 @@ class TestVersionConsistency:
 
     def test_pyproject_version(self):
         """pyproject.toml version should be 0.2.0."""
-        import tomllib
+        try:
+            import tomllib
+        except ModuleNotFoundError:  # Python < 3.11
+            import tomli as tomllib
         pyproject = Path(__file__).parent.parent / "pyproject.toml"
         if pyproject.exists():
             data = tomllib.loads(pyproject.read_text(encoding="utf-8"))
