@@ -73,7 +73,7 @@ commits that violate project rules.
 ## IDE Integration
 
 Generated context files carry rules into AI assistants:
-- **CLAUDE.md** → Claude Code reads this automatically
-- **.cursorrules** → Cursor reads this automatically
-- **AGENTS.md** → Codex/OpenAI agents read this
-- **.github/copilot-instructions.md** → GitHub Copilot reads this
+- **agent-context.md** → shared context file for AI coding tools
+- **agent-rules.md** → shared coding rules/conventions file
+- **agents.md** → Codex/OpenAI agents read this
+- **copilot-instructions.md** → GitHub Copilot instructions

@@ -12,7 +12,7 @@ Clockwork is a CLI tool that understands your codebase and makes AI coding assis
 ## Why Clockwork?
 
 - **Context persistence** — AI tools lose context between sessions. Clockwork stores project memory in `.clockwork/context.yaml` so every session starts informed.
-- **Style contracts** — Auto-generates `CLAUDE.md`, `.cursorrules`, `AGENTS.md`, and `copilot-instructions.md` from your actual codebase.
+- **Style contracts** — Auto-generates `agent-context.md`, `agent-rules.md`, `agents.md`, and `copilot-instructions.md` from your actual codebase.
 - **Pre-commit governance** — Block bad AI-generated code before it reaches `main` via git hooks.
 - **MCP integration** — Claude Code and Cursor can query your knowledge graph in real-time via Model Context Protocol.
 - **Parallel agent sessions** — Git worktree management for running multiple AI agents simultaneously.
@@ -77,6 +77,7 @@ clockwork init --interactive
 | `clockwork verify` | Verify repository against rules |
 | `clockwork handoff` | Generate agent handoff data |
 | `clockwork status` | Rich dashboard with git, context, graph info |
+| `clockwork history` | Show recent agent/tool activity from `.clockwork/logs/activity_history.jsonl` |
 
 ### Intelligence Commands
 
@@ -94,6 +95,9 @@ clockwork init --interactive
 | `clockwork hooks install` | Install pre-commit verification hook |
 | `clockwork hooks remove` | Remove the pre-commit hook |
 | `clockwork hooks status` | Check if hook is installed |
+| `clockwork sync pull` | Guarded `git pull` for agent workflows |
+| `clockwork sync push` | Guarded `git push` for agent workflows |
+| `clockwork sync run` | Run pull+push as one guarded sync action |
 | `clockwork worktree create <name>` | Create parallel worktree + branch |
 | `clockwork worktree list` | List active worktrees |
 | `clockwork worktree merge <name>` | Check conflicts and merge |
@@ -134,7 +138,7 @@ clockwork mcp install-claude
 clockwork generate --format claude-md
 ```
 
-This creates a `CLAUDE.md` in your project root with architecture, conventions, protected files, and current tasks — all derived from your actual codebase.
+This creates integration files inside `.clockwork/integrations/` by default (for a unified project footprint). Use `clockwork generate claude-md --legacy-root` if you also need a root-level `CLAUDE.md`.
 
 ### Cursor
 
@@ -149,15 +153,15 @@ clockwork generate --format cursorrules
 ### GitHub Copilot
 
 ```bash
-clockwork generate --format copilot
-# Creates .github/copilot-instructions.md
+clockwork generate copilot
+# Creates .clockwork/integrations/copilot-instructions.md
 ```
 
 ### OpenAI Codex / Agents
 
 ```bash
-clockwork generate --format agents-md
-# Creates AGENTS.md
+clockwork generate agents-md
+# Creates .clockwork/integrations/agents.md
 ```
 
 ### MCP Server (Advanced)
@@ -172,7 +176,7 @@ clockwork-mcp
 clockwork mcp start --port 8080
 ```
 
-Available MCP tools: `get_project_context`, `query_graph`, `check_file_safety`, `get_handoff_brief`, `run_verify`, `search_codebase`.
+Available MCP tools: `get_project_context`, `query_graph`, `check_file_safety`, `get_handoff_brief`, `run_verify`, `search_codebase`, `git_pull`, `git_push`.
 
 See [docs/mcp-integration.md](docs/mcp-integration.md) for full details.
 
@@ -236,13 +240,28 @@ clockwork init --from-existing
 clockwork generate --format all
 
 # The AI now has:
-#   CLAUDE.md          — project context for Claude
-#   .cursorrules       — conventions for Cursor
-#   AGENTS.md          — setup instructions for Codex
-#   .clockwork/        — full project memory
+#   .clockwork/integrations/agent-context.md — shared AI project context
+#   .clockwork/integrations/agent-rules.md   — shared AI rules/conventions
+#   .clockwork/integrations/agents.md        — setup instructions for Codex
+#   .clockwork/                              — full project memory
 ```
 
-### 5. CI/CD Integration
+### 5. Autonomous Sync with Remote
+
+Use guarded sync commands when an AI agent needs to refresh or publish safely:
+
+```bash
+# Pull latest changes (blocks if repo is dirty unless --allow-dirty is passed)
+clockwork sync pull
+
+# Push current branch
+clockwork sync push
+
+# Pull then push in one step
+clockwork sync run
+```
+
+### 6. CI/CD Integration
 
 Add Clockwork verification to your CI pipeline:
 
@@ -276,9 +295,10 @@ jobs:
 ├── knowledge_graph.db       # Dependency graph (SQLite)
 ├── live_index.db            # File index (SQLite)
 ├── handoff/                 # Agent handoff data
+├── integrations/            # Generated IDE/agent files (agent-context.md, agent-rules.md, agents.md, ...)
 ├── packages/                # Portable .clockwork archives
 ├── plugins/                 # Plugin registry
-└── logs/                    # Operation logs
+└── logs/                    # Operation logs (includes activity_history.jsonl)
 ```
 
 ---
@@ -302,6 +322,11 @@ auto_generate_ide_files: true
 ide_formats:
   - claude-md
   - cursorrules
+
+# Unified output location for generated integration files
+integration_output_dir: .clockwork/integrations
+# Also write legacy root-level files when needed
+legacy_root_integrations: false
 
 packaging:
   auto_snapshot: false

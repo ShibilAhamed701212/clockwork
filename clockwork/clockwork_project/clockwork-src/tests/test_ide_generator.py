@@ -55,6 +55,6 @@ def test_generate_agents_md_has_tasks(gen):
 
 def test_generate_all_writes_files(gen, tmp_path):
     results = gen.generate_all()
-    assert "claude.md" in results
-    assert (tmp_path / "CLAUDE.md").exists()
-    assert (tmp_path / ".cursorrules").exists()
+    assert "claude-md" in results
+    assert (tmp_path / ".clockwork" / "integrations" / "agent-context.md").exists()
+    assert (tmp_path / ".clockwork" / "integrations" / "agent-rules.md").exists()

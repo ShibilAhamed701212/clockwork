@@ -19,11 +19,13 @@ def server(tmp_path):
 def test_tools_list_has_six_tools(server):
     resp = server._handle({"method": "tools/list", "id": 1, "params": {}})
     tools = resp["result"]["tools"]
-    assert len(tools) == 6
+    assert len(tools) == 8
     names = {t["name"] for t in tools}
     assert "get_project_context" in names
     assert "query_graph" in names
     assert "check_file_safety" in names
+    assert "git_pull" in names
+    assert "git_push" in names
 
 
 def test_get_project_context(server):

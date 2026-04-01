@@ -13,6 +13,31 @@ clockwork doctor
 This checks Python version, dependencies, Ollama availability, project
 integrity, and graph/index freshness.
 
+## Activity History Quick Checks
+
+If you need to inspect what agents/tools did recently, use `clockwork history`
+(which reads `.clockwork/logs/activity_history.jsonl`).
+
+```bash
+# Show last 20 events (default)
+clockwork history
+
+# Show only entries from one actor (exact match)
+clockwork history --actor mcp
+
+# Show only one action (exact match)
+clockwork history --action tool:git_pull
+
+# Combine filters and limit output
+clockwork history --actor mcp --action tool:git_pull --limit 10
+
+# Machine-readable output for scripts
+clockwork history --json
+```
+
+Tip: If output is empty, verify that `.clockwork/logs/activity_history.jsonl`
+exists and that Clockwork commands have run in this repository.
+
 ## Common Issues
 
 ### `watchdog` crashes on Windows

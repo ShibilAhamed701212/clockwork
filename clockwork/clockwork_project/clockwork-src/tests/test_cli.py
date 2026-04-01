@@ -62,7 +62,7 @@ class TestInit:
 
     def test_creates_subdirectories(self, tmp_path):
         cw = _init_repo(tmp_path)
-        for sub in ["handoff", "packages", "plugins", "logs"]:
+        for sub in ["handoff", "packages", "plugins", "logs", "integrations"]:
             assert (cw / sub).is_dir(), f"Missing subdirectory {sub}"
 
     def test_context_yaml_is_valid(self, tmp_path):
