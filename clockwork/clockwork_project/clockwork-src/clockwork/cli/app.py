@@ -3,28 +3,28 @@ clockwork/cli/app.py
 """
 from __future__ import annotations
 import typer
-from clockwork.cli.commands.init import cmd_init
-from clockwork.cli.commands.scan import cmd_scan
-from clockwork.cli.commands.update import cmd_update
-from clockwork.cli.commands.verify import cmd_verify
-from clockwork.cli.commands.handoff import cmd_handoff
-from clockwork.cli.commands.index import cmd_index, cmd_repair, cmd_watch
-from clockwork.cli.commands.status import cmd_status
-from clockwork.cli.commands.recover import cmd_recover
-from clockwork.cli.commands.graph import graph_app
-from clockwork.cli.commands.agent import agent_app, task_app
-from clockwork.cli.commands.security import security_app
-from clockwork.cli.commands.registry import registry_app, plugin_app
-from clockwork.packaging.cli_commands import cmd_pack, cmd_load
-from clockwork.cli.commands.hooks import hooks_app
-from clockwork.cli.commands.generate import cmd_generate
-from clockwork.cli.commands.diff import cmd_diff
-from clockwork.cli.commands.ask import cmd_ask
-from clockwork.cli.commands.doctor import cmd_doctor
-from clockwork.cli.commands.mcp import mcp_app
-from clockwork.cli.commands.worktree import worktree_app
-from clockwork.cli.commands.git_ops import sync_app
-from clockwork.cli.commands.history import cmd_history
+from .commands.init import cmd_init
+from .commands.scan import cmd_scan
+from .commands.update import cmd_update
+from .commands.verify import cmd_verify
+from .commands.handoff import cmd_handoff
+from .commands.index import cmd_index, cmd_repair, cmd_watch
+from .commands.status import cmd_status
+from .commands.recover import cmd_recover
+from .commands.graph import graph_app
+from .commands.agent import agent_app, task_app
+from .commands.security import security_app
+from .commands.registry import registry_app, plugin_app
+from ..packaging.cli_commands import cmd_pack, cmd_load
+from .commands.hooks import hooks_app
+from .commands.generate import cmd_generate
+from .commands.diff import cmd_diff
+from .commands.ask import cmd_ask
+from .commands.doctor import cmd_doctor
+from .commands.mcp import mcp_app
+from .commands.worktree import worktree_app
+from .commands.git_ops import sync_app
+from .commands.history import cmd_history
 
 app = typer.Typer(
     name="clockwork",
