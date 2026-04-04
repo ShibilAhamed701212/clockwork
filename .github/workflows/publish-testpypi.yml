@@ -19,36 +19,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: 'pip'
 
       - name: Install build tools
         run: |
           python -m pip install --upgrade pip
           python -m pip install build twine
-
-      - name: Check pyproject consistency
-        shell: bash
-        run: |
-          python - <<'PY'
-          import tomllib
-          from pathlib import Path
-
-          root = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
-          nested = tomllib.loads(Path("clockwork/clockwork_project/clockwork-src/pyproject.toml").read_text(encoding="utf-8"))
-          checks = [
-              ("project.name", root["project"]["name"], nested["project"]["name"]),
-              ("project.version", root["project"]["version"], nested["project"]["version"]),
-              ("project.requires-python", root["project"]["requires-python"], nested["project"]["requires-python"]),
-              ("project.dependencies", root["project"]["dependencies"], nested["project"]["dependencies"]),
-              ("project.optional-dependencies", root["project"]["optional-dependencies"], nested["project"]["optional-dependencies"]),
-              ("project.scripts", root["project"]["scripts"], nested["project"]["scripts"]),
-          ]
-          mismatches = [name for name, a, b in checks if a != b]
-          if mismatches:
-              for name in mismatches:
-                  print(f"Mismatch: {name}")
-              raise SystemExit("pyproject metadata drift detected")
-          print("Root and nested pyproject metadata are consistent.")
-          PY
 
       - name: Build distribution
         run: python -m build

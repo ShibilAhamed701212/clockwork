@@ -1,14 +1,12 @@
 {
   "include": [
-    "clockwork/clockwork_project/clockwork-src/clockwork",
-    "clockwork/clockwork_project/clockwork-src/tests"
+    "clockwork",
+    "tests"
   ],
   "extraPaths": [
-    "clockwork/clockwork_project/clockwork-src"
+    "."
   ],
-  "venvPath": "clockwork",
-  "venv": ".venv",
+  "venvPath": ".",
   "pythonVersion": "3.10",
   "typeCheckingMode": "basic"
 }
-
