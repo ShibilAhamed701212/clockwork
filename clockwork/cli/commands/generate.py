@@ -1,6 +1,7 @@
 """
 clockwork generate — generate IDE context files from project intelligence.
 """
+
 from __future__ import annotations
 from pathlib import Path
 from typing import Optional
@@ -8,7 +9,7 @@ import typer
 from clockwork.cli.output import header, success, info, warn, error, step, rule
 from clockwork.context.ide_context_generator import resolve_integration_output_map
 
-FORMATS = ["claude-md", "cursorrules", "agents-md", "copilot", "all"]
+FORMATS = ["agent", "all"]
 
 
 def cmd_generate(
@@ -17,8 +18,9 @@ def cmd_generate(
         help=f"Format to generate: {', '.join(FORMATS)}",
     ),
     repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
-    preview: bool = typer.Option(False, "--preview",
-                                  help="Print to stdout instead of writing files."),
+    preview: bool = typer.Option(
+        False, "--preview", help="Print to stdout instead of writing files."
+    ),
     legacy_root: bool = typer.Option(
         False,
         "--legacy-root",
@@ -37,6 +39,7 @@ def cmd_generate(
 
     try:
         from clockwork.context.ide_context_generator import IDEContextGenerator
+
         gen = IDEContextGenerator(root)
     except Exception as e:
         error(f"Generator error: {e}")
@@ -49,14 +52,16 @@ def cmd_generate(
     output_map = resolve_integration_output_map(root, include_legacy_root=legacy_root)
 
     format_map = {
-        "claude-md": (output_map["claude-md"], gen.generate_claude_md),
-        "cursorrules": (output_map["cursorrules"], gen.generate_cursorrules),
-        "agents-md": (output_map["agents-md"], gen.generate_agents_md),
-        "copilot": (output_map["copilot"], gen.generate_copilot_instructions),
+        "agent": (output_map["agent"], gen.generate_agent_context),
     }
 
-    targets = list(format_map.items()) if fmt == "all" \
-              else [(fmt, format_map[fmt])] if fmt in format_map else []
+    targets = (
+        list(format_map.items())
+        if fmt == "all"
+        else [(fmt, format_map[fmt])]
+        if fmt in format_map
+        else []
+    )
 
     if not targets:
         error(f"Unknown format '{fmt}'. Choose: {', '.join(FORMATS)}")
@@ -80,15 +85,14 @@ def cmd_generate(
     rule()
     if not preview:
         info("Tip: re-run after `clockwork update` to keep files current.")
-        info("Add `auto_generate_ide_files: true` to .clockwork/config.yaml "
-             "to generate automatically on every update.")
+        info(
+            "Add `auto_generate_ide_files: true` to .clockwork/config.yaml "
+            "to generate automatically on every update."
+        )
 
 
 FORMAT_OUTPUTS: dict[str, str] = {
-    "claude-md": "agent-context.md",
-    "cursorrules": "agent-rules.md",
-    "agents-md": "agents.md",
-    "copilot": "copilot-instructions.md",
+    "agent": "agent-context.md",
 }
 
 
@@ -109,6 +113,7 @@ def generate_ide_files_auto(
 
     try:
         from clockwork.context.ide_context_generator import IDEContextGenerator
+
         gen = IDEContextGenerator(repo_root)
     except Exception:
         return []
@@ -123,14 +128,11 @@ def generate_ide_files_auto(
     )
 
     generated: list[str] = []
-    for fmt in (formats or list(FORMAT_OUTPUTS.keys())):
+    for fmt in formats or list(FORMAT_OUTPUTS.keys()):
         if fmt not in FORMAT_OUTPUTS:
             continue
         format_map = {
-            "claude-md": gen.generate_claude_md,
-            "cursorrules": gen.generate_cursorrules,
-            "agents-md": gen.generate_agents_md,
-            "copilot": gen.generate_copilot_instructions,
+            "agent": gen.generate_agent_context,
         }
         generator = format_map.get(fmt)
         if not generator:
@@ -145,4 +147,3 @@ def generate_ide_files_auto(
             pass
 
     return generated
-

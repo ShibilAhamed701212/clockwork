@@ -1,6 +1,7 @@
 """
-Tests for Phase 3: IDE Context File Generation.
+Tests for AI Agent Context File Generation.
 """
+
 from __future__ import annotations
 
 import pytest
@@ -44,70 +45,38 @@ def generator(tmp_path):
     return IDEContextGenerator(tmp_path)
 
 
-class TestCLAUDEMD:
+class TestAgentContext:
     def test_generates_nonempty(self, generator, sample_context, sample_rules):
-        result = generator.generate_claude_md(sample_context, sample_rules)
+        result = generator.generate_agent_context(sample_context, sample_rules)
         assert isinstance(result, str)
-        assert len(result) > 100
+        assert len(result) > 0
 
     def test_contains_project_name(self, generator, sample_context, sample_rules):
-        result = generator.generate_claude_md(sample_context, sample_rules)
+        result = generator.generate_agent_context(sample_context, sample_rules)
         assert "TestProject" in result
 
     def test_contains_tech_stack(self, generator, sample_context, sample_rules):
-        result = generator.generate_claude_md(sample_context, sample_rules)
-        assert "Python" in result
+        result = generator.generate_agent_context(sample_context, sample_rules)
         assert "Typer" in result
+        assert "pytest" in result
 
     def test_contains_conventions(self, generator, sample_context, sample_rules):
-        result = generator.generate_claude_md(sample_context, sample_rules)
+        result = generator.generate_agent_context(sample_context, sample_rules)
         assert "docstrings" in result
 
     def test_contains_entry_points(self, generator, sample_context, sample_rules):
-        result = generator.generate_claude_md(sample_context, sample_rules)
+        result = generator.generate_agent_context(sample_context, sample_rules)
         assert "main.py" in result
 
     def test_contains_tasks(self, generator, sample_context, sample_rules):
-        result = generator.generate_claude_md(sample_context, sample_rules)
+        result = generator.generate_agent_context(sample_context, sample_rules)
         assert "Add feature X" in result
 
     def test_empty_context_no_crash(self, generator):
-        result = generator.generate_claude_md({}, "")
+        result = generator.generate_agent_context({}, "")
         assert isinstance(result, str)
+        assert len(result) > 100
 
-
-class TestCursorRules:
-    def test_generates_nonempty(self, generator, sample_context, sample_rules):
-        result = generator.generate_cursorrules(sample_context, sample_rules)
-        assert isinstance(result, str)
-        assert len(result) > 50
-
-    def test_contains_project_name(self, generator, sample_context, sample_rules):
-        result = generator.generate_cursorrules(sample_context, sample_rules)
-        assert "TestProject" in result
-
-    def test_contains_conventions(self, generator, sample_context, sample_rules):
-        result = generator.generate_cursorrules(sample_context, sample_rules)
-        assert "docstrings" in result
-
-
-class TestAgentsMD:
-    def test_generates_nonempty(self, generator, sample_context, sample_rules):
-        result = generator.generate_agents_md(sample_context, sample_rules)
-        assert isinstance(result, str)
-        assert len(result) > 50
-
-    def test_contains_frameworks(self, generator, sample_context, sample_rules):
-        result = generator.generate_agents_md(sample_context, sample_rules)
-        assert "Typer" in result or "pytest" in result
-
-
-class TestCopilotInstructions:
-    def test_generates_nonempty(self, generator, sample_context, sample_rules):
-        result = generator.generate_copilot_instructions(sample_context, sample_rules)
-        assert isinstance(result, str)
-        assert len(result) > 30
-
-    def test_contains_language(self, generator, sample_context, sample_rules):
-        result = generator.generate_copilot_instructions(sample_context, sample_rules)
-        assert "Python" in result
+    def test_contains_clockwork_commands(self, generator, sample_context, sample_rules):
+        result = generator.generate_agent_context(sample_context, sample_rules)
+        assert "clockwork" in result.lower()
