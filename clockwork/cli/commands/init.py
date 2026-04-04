@@ -21,9 +21,7 @@ from typing import Optional
 
 import typer
 
-from clockwork.cli.output import (
-    header, success, info, warn, error, step, rule
-)
+from clockwork.cli.output import header, success, info, warn, error, step, rule
 
 # ── Default file contents ──────────────────────────────────────────────────
 
@@ -43,6 +41,24 @@ architecture_overview: ""
 primary_language: ""
 frameworks: []
 entry_points: []
+
+# CI/CD Pipeline Configuration
+# Run with: clockwork ci-run
+pipeline:
+  stages:
+    - name: test
+      command: pytest tests/ -v
+      max_retries: 3
+      continue_on_error: false
+    # Add more stages as needed:
+    # - name: build
+    #   command: npm run build
+    #   max_retries: 2
+    #   continue_on_error: false
+    # - name: lint
+    #   command: ruff check .
+    #   max_retries: 1
+    #   continue_on_error: false
 
 current_tasks: []
 recent_changes: []
@@ -109,21 +125,29 @@ _AGENT_HISTORY_JSON = json.dumps([], indent=2)
 
 # ── Command ────────────────────────────────────────────────────────────────
 
+
 def cmd_init(
     repo_root: Optional[Path] = typer.Option(
-        None, "--repo", "-r",
+        None,
+        "--repo",
+        "-r",
         help="Root directory of the repository (defaults to current directory).",
     ),
     force: bool = typer.Option(
-        False, "--force", "-f",
+        False,
+        "--force",
+        "-f",
         help="Re-initialise even if .clockwork/ already exists.",
     ),
     interactive: bool = typer.Option(
-        False, "--interactive", "-i",
+        False,
+        "--interactive",
+        "-i",
         help="Run interactive setup wizard.",
     ),
     from_existing: bool = typer.Option(
-        False, "--from-existing",
+        False,
+        "--from-existing",
         help="Smart init: scan codebase and pre-fill context automatically.",
     ),
 ) -> None:
@@ -196,6 +220,7 @@ def _create_clockwork_dir(cw_dir: Path, project_name: str) -> None:
 
 # ── Interactive wizard ─────────────────────────────────────────────────────
 
+
 def _run_interactive_wizard(root: Path) -> list[str]:
     """Run interactive setup prompts. Returns list of IDE tools selected."""
     info("")
@@ -260,9 +285,16 @@ def _detect_primary_language(root: Path) -> str:
     """Quick detection of primary language from file extensions."""
     ext_counts: dict[str, int] = {}
     lang_map = {
-        ".py": "Python", ".js": "JavaScript", ".ts": "TypeScript",
-        ".go": "Go", ".java": "Java", ".rs": "Rust", ".rb": "Ruby",
-        ".cpp": "C++", ".c": "C", ".cs": "C#",
+        ".py": "Python",
+        ".js": "JavaScript",
+        ".ts": "TypeScript",
+        ".go": "Go",
+        ".java": "Java",
+        ".rs": "Rust",
+        ".rb": "Ruby",
+        ".cpp": "C++",
+        ".c": "C",
+        ".cs": "C#",
     }
     try:
         for f in root.rglob("*"):
@@ -286,6 +318,7 @@ def _run_smart_init(root: Path, cw_dir: Path, ide_tools: list[str]) -> None:
     step("Running initial scan...")
     try:
         from clockwork.scanner.scanner import RepositoryScanner
+
         scanner = RepositoryScanner(repo_root=root, verbose=False)
         scan_result = scanner.scan()
         scan_result.save(cw_dir)
@@ -294,6 +327,7 @@ def _run_smart_init(root: Path, cw_dir: Path, ide_tools: list[str]) -> None:
         # Record git scan point
         try:
             from clockwork.scanner.git_diff import GitDiffScanner
+
             git_scanner = GitDiffScanner(root)
             git_scanner.record_scan()
         except Exception:
@@ -307,17 +341,21 @@ def _run_smart_init(root: Path, cw_dir: Path, ide_tools: list[str]) -> None:
     step("Updating context...")
     try:
         from clockwork.context.engine import ContextEngine
+
         engine = ContextEngine(cw_dir)
         context_obj = engine.merge_scan(scan_result)
 
         # Summarize
         try:
             from clockwork.brain.summarizer import CodebaseSummarizer
+
             summarizer = CodebaseSummarizer()
             if not context_obj.summary:
                 context_obj.summary = summarizer.summarize(scan_result)
             if not context_obj.architecture_overview:
-                context_obj.architecture_overview = summarizer.architecture_overview(scan_result)
+                context_obj.architecture_overview = summarizer.architecture_overview(
+                    scan_result
+                )
         except Exception:
             pass
 
@@ -331,6 +369,7 @@ def _run_smart_init(root: Path, cw_dir: Path, ide_tools: list[str]) -> None:
         step("Generating IDE context files...")
         try:
             from clockwork.cli.commands.generate import generate_ide_files_auto
+
             tool_to_format = {
                 "Claude Code": "claude-md",
                 "Cursor": "cursorrules",
@@ -382,8 +421,17 @@ def _import_ide_rules(root: Path, cw_dir: Path, ide_files: list[str]) -> None:
         # Extract rule-like lines: lines starting with "- " that contain
         # directive keywords (must, should, do not, always, never, etc.)
         _DIRECTIVE_KEYWORDS = (
-            "must", "should", "do not", "don't", "always", "never",
-            "avoid", "prefer", "use ", "ensure", "require",
+            "must",
+            "should",
+            "do not",
+            "don't",
+            "always",
+            "never",
+            "avoid",
+            "prefer",
+            "use ",
+            "ensure",
+            "require",
         )
         for line in content.splitlines():
             stripped = line.strip()
@@ -406,10 +454,7 @@ def _import_ide_rules(root: Path, cw_dir: Path, ide_files: list[str]) -> None:
             pass
 
     existing_lower = existing_content.lower()
-    novel_rules = [
-        r for r in imported_rules
-        if r.lower() not in existing_lower
-    ]
+    novel_rules = [r for r in imported_rules if r.lower() not in existing_lower]
 
     if not novel_rules:
         return
