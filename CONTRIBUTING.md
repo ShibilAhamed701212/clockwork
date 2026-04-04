@@ -21,7 +21,7 @@ Be respectful, collaborative, and constructive. We welcome contributors from all
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/clockwork.git
+git clone https://github.com/ShibilAhamed701212/clockwork.git
 cd clockwork
 
 # Install in development mode
