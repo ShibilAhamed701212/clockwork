@@ -260,7 +260,7 @@ def task_run(
 @task_app.command("fail")
 def task_fail(
     task_id: str = typer.Argument(..., help="Task ID to mark failed."),
-    reason: str = typer.Option("", "--reason", "-r"),
+    reason: str = typer.Option("", "--reason", help="Failure reason"),
     repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
 ) -> None:
     """Mark a task as failed."""
@@ -338,7 +338,10 @@ def agent_swarm(
         import json
 
         task_list = json.loads(tasks_json)
-        tasks = [TaskItem(description=d, capability="coding") for d in task_list]
+        tasks = [
+            TaskItem(name=d, action={"type": "coding", "description": d})
+            for d in task_list
+        ]
 
     if not tasks:
         info("No tasks to run.")
