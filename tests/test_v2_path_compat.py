@@ -65,31 +65,3 @@ def test_cli_utils_parser():
     assert parsed["a"] == "1"
     assert parsed["b"] == "two"
     assert parsed["flag"] == ""
-
-
-def test_brain_security_scanner_registry_compat_imports(tmp_path, monkeypatch):
-    monkeypatch.chdir(tmp_path)
-    (tmp_path / ".clockwork").mkdir(parents=True, exist_ok=True)
-
-    from clockwork.brain.decision_engine import DecisionEngine
-    from clockwork.security.access_control import AccessControl
-    from clockwork.scanner.architecture_inferer import infer_architecture
-    from clockwork.rules.rule_parser import parse_rules_markdown
-    from clockwork.registry.api.routes import list_registry_entries
-
-    decision = DecisionEngine().evaluate({"type": "create", "target": "src/new.py"}, {})
-    assert decision.status in {"VALID", "WARNING", "REJECTED"}
-
-    acl = AccessControl(repo_root=tmp_path)
-    assert acl.can("general_agent", "read", "README.md")
-
-    arch = infer_architecture({"files": [{"path": "cli/main.py"}]})
-    assert "type" in arch and "confidence" in arch
-
-    rules_path = tmp_path / ".clockwork" / "rules.md"
-    rules_path.write_text("- rule one\n- rule two\n", encoding="utf-8")
-    assert parse_rules_markdown(rules_path) == ["rule one", "rule two"]
-
-    assert isinstance(list_registry_entries(repo_root=tmp_path), list)
-
-

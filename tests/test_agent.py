@@ -1,4 +1,4 @@
-﻿"""
+"""
 tests/test_agent.py
 ---------------------
 Unit tests for the Agent Runtime subsystem (spec §11).
@@ -18,9 +18,7 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from clockwork.agent.models import (
-    Agent, Capability, Task, TaskStatus, ValidationResult
-)
+from clockwork.agent.models import Agent, Capability, Task, TaskStatus, ValidationResult
 from clockwork.agent.registry import AgentRegistry
 from clockwork.agent.lock_manager import FileLockError, LockManager
 from clockwork.agent.router import TaskRouter
@@ -28,6 +26,7 @@ from clockwork.agent.runtime import AgentRuntime
 
 
 # ── Fixtures ───────────────────────────────────────────────────────────────
+
 
 def _make_cw(tmp_path: Path) -> Path:
     cw = tmp_path / ".clockwork"
@@ -37,7 +36,7 @@ def _make_cw(tmp_path: Path) -> Path:
 
 def _make_registry(tmp_path: Path) -> AgentRegistry:
     cw = _make_cw(tmp_path)
-    r  = AgentRegistry(cw)
+    r = AgentRegistry(cw)
     r.initialise()
     return r
 
@@ -59,6 +58,7 @@ def _task(desc: str = "Do something", cap: str = Capability.CODING) -> Task:
 
 # ── Agent model ────────────────────────────────────────────────────────────
 
+
 class TestAgentModel:
     def test_can_handle_matching_cap(self):
         a = _agent("bot", [Capability.CODING, Capability.TESTING])
@@ -78,6 +78,7 @@ class TestAgentModel:
 
 
 # ── Task model ─────────────────────────────────────────────────────────────
+
 
 class TestTaskModel:
     def test_new_generates_unique_ids(self):
@@ -116,8 +117,8 @@ class TestTaskModel:
         assert t.is_terminal()
 
     def test_to_dict_roundtrip(self):
-        t  = Task.new("implement login", Capability.CODING)
-        d  = t.to_dict()
+        t = Task.new("implement login", Capability.CODING)
+        d = t.to_dict()
         t2 = Task.from_dict(d)
         assert t2.task_id == t.task_id
         assert t2.description == t.description
@@ -125,6 +126,7 @@ class TestTaskModel:
 
 
 # ── AgentRegistry ──────────────────────────────────────────────────────────
+
 
 class TestAgentRegistry:
     def test_register_and_list(self, tmp_path):
@@ -208,14 +210,18 @@ class TestAgentRegistry:
 
     def test_stats(self, tmp_path):
         r = _make_registry(tmp_path)
-        t1 = _task(); r.add_task(t1)
-        t2 = _task(); t2.complete(); r.add_task(t2)
+        t1 = _task()
+        r.add_task(t1)
+        t2 = _task()
+        t2.complete()
+        r.add_task(t2)
         s = r.stats()
-        assert s[TaskStatus.PENDING]   >= 1
+        assert s[TaskStatus.PENDING] >= 1
         assert s[TaskStatus.COMPLETED] >= 1
 
 
 # ── LockManager ────────────────────────────────────────────────────────────
+
 
 class TestLockManager:
     def test_acquire_and_release(self, tmp_path):
@@ -228,7 +234,7 @@ class TestLockManager:
     def test_double_acquire_same_agent_ok(self, tmp_path):
         lm = LockManager(_make_cw(tmp_path))
         lm.acquire("a.py", "agent_a")
-        lm.acquire("a.py", "agent_a")   # should not raise
+        lm.acquire("a.py", "agent_a")  # should not raise
         lm.release("a.py", "agent_a")
 
     def test_acquire_locked_by_other_raises(self, tmp_path):
@@ -280,8 +286,8 @@ class TestLockManager:
         lm.acquire("stale.py", "old_agent")
         # manually backdate the lock
         lp = lm._lock_path("stale.py")
-        d  = json.loads(lp.read_text())
-        d["acquired_at"] = time.time() - 400   # older than TTL
+        d = json.loads(lp.read_text())
+        d["acquired_at"] = time.time() - 400  # older than TTL
         lp.write_text(json.dumps(d))
         # now a new agent should be able to acquire it
         lm.acquire("stale.py", "new_agent")
@@ -291,22 +297,23 @@ class TestLockManager:
 
 # ── TaskRouter ─────────────────────────────────────────────────────────────
 
+
 class TestTaskRouter:
     def test_route_returns_best_agent(self, tmp_path):
-        r  = _make_registry(tmp_path)
+        r = _make_registry(tmp_path)
         r.register_agent(Agent("slow", [Capability.CODING], priority=5))
         r.register_agent(Agent("fast", [Capability.CODING], priority=1))
         router = TaskRouter(r)
-        t      = _task()
-        agent  = router.route(t)
+        t = _task()
+        agent = router.route(t)
         assert agent is not None
         assert agent.name == "fast"
 
     def test_route_returns_none_when_no_match(self, tmp_path):
-        r  = _make_registry(tmp_path)
+        r = _make_registry(tmp_path)
         r.register_agent(Agent("coder", [Capability.CODING]))
         router = TaskRouter(r)
-        t      = Task.new("write docs", Capability.DOCUMENTATION)
+        t = Task.new("write docs", Capability.DOCUMENTATION)
         assert router.route(t) is None
 
     def test_dispatch_assigns_task(self, tmp_path):
@@ -314,7 +321,7 @@ class TestTaskRouter:
         r.register_agent(Agent("bot", [Capability.CODING], priority=1))
         t = _task()
         r.add_task(t)
-        router  = TaskRouter(r)
+        router = TaskRouter(r)
         assigned = router.dispatch(t)
         assert assigned == "bot"
         updated = r.get_task(t.task_id)
@@ -322,6 +329,7 @@ class TestTaskRouter:
 
 
 # ── AgentRuntime ───────────────────────────────────────────────────────────
+
 
 class TestAgentRuntime:
     def test_register_and_list_agents(self, tmp_path):
@@ -337,7 +345,7 @@ class TestAgentRuntime:
         assert task.assigned_agent == "claude"
 
     def test_add_task_no_agent_stays_pending(self, tmp_path):
-        rt   = _make_runtime(tmp_path)
+        rt = _make_runtime(tmp_path)
         task = rt.add_task("Implement auth", Capability.CODING)
         assert task.status == TaskStatus.PENDING
         assert task.assigned_agent == ""
@@ -345,17 +353,17 @@ class TestAgentRuntime:
     def test_run_task_returns_validation_result(self, tmp_path):
         rt = _make_runtime(tmp_path)
         rt.register_agent(_agent("claude", [Capability.CODING], 1))
-        task   = rt.add_task("write tests", Capability.CODING)
+        task = rt.add_task("write tests", Capability.CODING)
         result = rt.run_task(task.task_id)
         assert isinstance(result, ValidationResult)
 
     def test_run_task_unknown_id(self, tmp_path):
-        rt     = _make_runtime(tmp_path)
+        rt = _make_runtime(tmp_path)
         result = rt.run_task("task_nonexistent")
         assert result.passed is False
 
     def test_fail_task(self, tmp_path):
-        rt   = _make_runtime(tmp_path)
+        rt = _make_runtime(tmp_path)
         task = rt.add_task("a task")
         rt.fail_task(task.task_id, "timeout")
         updated = rt.get_task(task.task_id)
@@ -392,3 +400,129 @@ class TestAgentRuntime:
         ids = {t.task_id for t in pending}
         assert t1.task_id in ids
 
+
+# ── Swarm Tests ─────────────────────────────────────────────────────────────
+
+from clockwork.agents.swarm.coordinator import SwarmCoordinator
+from clockwork.agents.swarm.consensus import ConsensusEngine
+from clockwork.agents.task_queue import TaskItem
+from clockwork.agents.load_balancer import LoadBalancer
+
+
+class TestSwarmCoordinator:
+    def test_coordinator_init(self, tmp_path):
+        _make_runtime(tmp_path)
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        coord = SwarmCoordinator(reg, dry_run=True)
+        assert coord is not None
+
+    def test_coordinator_run_empty(self, tmp_path):
+        _make_runtime(tmp_path)
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        coord = SwarmCoordinator(reg, dry_run=True)
+        results = coord.run([], mode="safe")
+        assert results == []
+
+    def test_coordinator_run_with_tasks(self, tmp_path):
+        _make_runtime(tmp_path)
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        coord = SwarmCoordinator(reg, dry_run=True)
+        task = TaskItem(name="test task", action={"type": "code", "target": "test.py"})
+        results = coord.run([task], mode="safe")
+        assert len(results) > 0
+
+
+class TestConsensusEngine:
+    def test_vote_empty(self):
+        ce = ConsensusEngine()
+        result = ce.vote([])
+        assert result is None
+
+    def test_vote_single(self):
+        ce = ConsensusEngine()
+        result = ce.vote([{"success": True, "output": "hello"}])
+        assert result["output"] == "hello"
+
+    def test_vote_multiple(self):
+        ce = ConsensusEngine()
+        results = [
+            {"success": True, "output": "hello"},
+            {"success": True, "output": "hello"},
+            {"success": True, "output": "world"},
+        ]
+        result = ce.vote(results)
+        assert result["output"] == "hello"
+
+    def test_majority_empty(self):
+        ce = ConsensusEngine()
+        assert ce.majority([]) == "REJECTED"
+
+    def test_majority(self):
+        ce = ConsensusEngine()
+        assert ce.majority(["A", "A", "B"]) == "A"
+
+    def test_confidence_empty(self):
+        ce = ConsensusEngine()
+        assert ce.confidence([]) == 0.0
+
+    def test_confidence(self):
+        ce = ConsensusEngine()
+        results = [{"success": True}, {"success": True}, {"success": False}]
+        assert ce.confidence(results) == pytest.approx(0.667, rel=0.01)
+
+    def test_merge_explanations(self):
+        ce = ConsensusEngine()
+        results = [
+            {"explanation": {"change": "add", "impact": "low"}},
+            {"explanation": {"change": "add", "impact": "high"}},
+        ]
+        merged = ce.merge_explanations(results)
+        assert "add" in merged["changes"]
+        assert merged["agents"] == 2
+
+
+# ── LoadBalancer Tests ───────────────────────────────────────────────────────
+
+
+class TestLoadBalancer:
+    def test_distribute_empty(self):
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        lb = LoadBalancer(reg)
+        result = lb.distribute([])
+        assert result == []
+
+    def test_distribute_tasks(self):
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        lb = LoadBalancer(reg)
+        tasks = [{"id": 1}, {"id": 2}]
+        result = lb.distribute(tasks)
+        assert len(result) == 2
+        assert all("agent" in r for r in result)
+
+    def test_rebalance(self):
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        lb = LoadBalancer(reg)
+        assignments = [{"task": 1, "agent": "A"}, {"task": 2, "agent": "B"}]
+        result = lb.rebalance(assignments)
+        assert len(result) == 2
+
+    def test_stats(self):
+        from clockwork.agents.agent_registry import AgentRegistry
+
+        reg = AgentRegistry()
+        lb = LoadBalancer(reg)
+        stats = lb.stats()
+        assert "total_agents" in stats
+        assert stats["total_agents"] > 0

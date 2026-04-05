@@ -1,4 +1,4 @@
-﻿"""
+"""
 clockwork/cli/commands/security.py
 ------------------------------------
 CLI commands for the Security subsystem (spec §14).
@@ -18,7 +18,16 @@ from typing import Optional
 
 import typer
 
-from clockwork.cli.output import header, success, info, warn, error, step, rule, json_output
+from clockwork.cli.output import (
+    header,
+    success,
+    info,
+    warn,
+    error,
+    step,
+    rule,
+    json_output,
+)
 
 security_app = typer.Typer(
     name="security",
@@ -29,20 +38,24 @@ security_app = typer.Typer(
 
 def _engine(repo_root: Optional[Path]):
     root = (repo_root or Path.cwd()).resolve()
-    cw   = root / ".clockwork"
+    cw = root / ".clockwork"
     if not cw.is_dir():
         error("Clockwork not initialised.\nRun:  clockwork init")
         raise typer.Exit(code=1)
     from clockwork.security import SecurityEngine
+    from clockwork.security.secrets_protection import SecretsProtection
+    from clockwork.security.sandbox import Sandbox
+
     return SecurityEngine(root)
 
 
 # ── clockwork security scan ────────────────────────────────────────────────
 
+
 @security_app.command("scan")
 def security_scan(
     repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
-    as_json:   bool           = typer.Option(False, "--json"),
+    as_json: bool = typer.Option(False, "--json"),
 ) -> None:
     """Scan the repository for security issues."""
     eng = _engine(repo_root)
@@ -91,10 +104,11 @@ def security_scan(
 
 # ── clockwork security audit ───────────────────────────────────────────────
 
+
 @security_app.command("audit")
 def security_audit(
     repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
-    as_json:   bool           = typer.Option(False, "--json"),
+    as_json: bool = typer.Option(False, "--json"),
 ) -> None:
     """Run a full security audit (scan + plugins + agents + log review)."""
     eng = _engine(repo_root)
@@ -124,7 +138,10 @@ def security_audit(
     info(f"  Agent issues  : {len(report.get('agent_issues', []))}")
     info(f"  Log events    : {len(report.get('recent_events', []))}")
 
-    for section, key in [("Plugin issues", "plugin_issues"), ("Agent issues", "agent_issues")]:
+    for section, key in [
+        ("Plugin issues", "plugin_issues"),
+        ("Agent issues", "agent_issues"),
+    ]:
         items = report.get(key, [])
         if items:
             rule()
@@ -135,15 +152,15 @@ def security_audit(
 
 # ── clockwork security log ─────────────────────────────────────────────────
 
+
 @security_app.command("log")
 def security_log(
-    n:         int            = typer.Option(20, "--last", "-n",
-                                    help="Number of recent events to show."),
+    n: int = typer.Option(20, "--last", "-n", help="Number of recent events to show."),
     repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
-    as_json:   bool           = typer.Option(False, "--json"),
+    as_json: bool = typer.Option(False, "--json"),
 ) -> None:
     """Show recent security log events."""
-    eng     = _engine(repo_root)
+    eng = _engine(repo_root)
     entries = eng.logger.recent(n)
 
     if as_json:
@@ -156,12 +173,12 @@ def security_log(
         return
 
     for e in entries:
-        risk  = e.get("risk_level", "").upper()
+        risk = e.get("risk_level", "").upper()
         event = e.get("event", "")
-        ts    = e.get("timestamp", "")[:19].replace("T", " ")
-        fp    = e.get("file", "")
+        ts = e.get("timestamp", "")[:19].replace("T", " ")
+        fp = e.get("file", "")
         detail = e.get("detail", "")
-        line  = f"  [{ts}] [{risk:<8}] {event}"
+        line = f"  [{ts}] [{risk:<8}] {event}"
         if fp:
             line += f"  {fp}"
         if detail and detail != f"Access to restricted path blocked: {fp}":
@@ -171,12 +188,14 @@ def security_log(
 
 # ── clockwork security verify ──────────────────────────────────────────────
 
+
 @security_app.command("verify")
 def security_verify(
-    plugin_path: Path          = typer.Argument(...,
-                                    help="Path to the plugin directory to verify."),
-    repo_root:   Optional[Path] = typer.Option(None, "--repo", "-r"),
-    as_json:     bool           = typer.Option(False, "--json"),
+    plugin_path: Path = typer.Argument(
+        ..., help="Path to the plugin directory to verify."
+    ),
+    repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
+    as_json: bool = typer.Option(False, "--json"),
 ) -> None:
     """Verify a plugin before installing it."""
     eng = _engine(repo_root)
@@ -198,3 +217,69 @@ def security_verify(
         for iss in issues:
             info(f"  ✗ {iss}")
 
+
+# ── clockwork security secrets ───────────────────────────────────────────────
+
+
+@security_app.command("secrets")
+def security_secrets(
+    repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
+    path: str = typer.Option(".", "--path", "-p", help="Directory to scan"),
+    redact: bool = typer.Option(False, "--redact", help="Redact found secrets"),
+    as_json: bool = typer.Option(False, "--json"),
+) -> None:
+    """Scan for exposed secrets (API keys, tokens, passwords)."""
+    root = (repo_root or Path.cwd()).resolve()
+
+    if not as_json:
+        header("Secret Scanning")
+        step(f"Scanning: {path}")
+
+    scanner = SecretsProtection()
+    findings = scanner.scan_directory(str(root / path))
+
+    if as_json:
+        if redact:
+            for f in findings:
+                f["redacted"] = scanner.redact(f.get("file", ""))
+        json_output({"findings": findings, "count": len(findings)})
+        return
+
+    rule()
+    if not findings:
+        success("No secrets found.")
+    else:
+        error(f"Found {len(findings)} secret(s):")
+        for f in findings:
+            info(f"  ! {f['type']}: {f['file']}")
+
+
+# ── clockwork security sandbox ───────────────────────────────────────────────
+
+
+@security_app.command("sandbox")
+def security_sandbox(
+    command: str = typer.Option(..., "--exec", "-e", help="Command to test in sandbox"),
+    repo_root: Optional[Path] = typer.Option(None, "--repo", "-r"),
+    dry_run: bool = typer.Option(True, "--dry-run/--no-dry-run", help="Dry run mode"),
+    as_json: bool = typer.Option(False, "--json"),
+) -> None:
+    """Test a command in the sandbox before running for real."""
+    root = (repo_root or Path.cwd()).resolve()
+
+    if not as_json:
+        header("Sandbox Execution")
+        step(f"Command: {command}")
+
+    sandbox = Sandbox(dry_run=dry_run, repo_root=root)
+    ok, msg = sandbox.is_safe_command(command)
+
+    if as_json:
+        json_output({"safe": ok, "message": msg, "command": command})
+        return
+
+    rule()
+    if ok:
+        success("Command is safe.")
+    else:
+        error(f"Command blocked: {msg}")

@@ -27,6 +27,8 @@ from .commands.mcp import mcp_app
 from .commands.worktree import worktree_app
 from .commands.git_ops import sync_app
 from .commands.history import cmd_history
+from .commands.validate import validate_app
+from .commands.session import session_app
 
 app = typer.Typer(
     name="clockwork",
@@ -76,6 +78,8 @@ app.add_typer(hooks_app, name="hooks")
 app.add_typer(mcp_app, name="mcp")
 app.add_typer(worktree_app, name="worktree")
 app.add_typer(sync_app, name="sync")
+app.add_typer(validate_app, name="validate")
+app.add_typer(session_app, name="session")
 
 
 def main() -> None:

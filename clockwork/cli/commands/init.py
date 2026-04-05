@@ -46,6 +46,22 @@ entry_points: []
 # Run with: clockwork ci-run
 pipeline:
   stages:
+    - name: security-scan
+      command: clockwork security scan
+      max_retries: 1
+      continue_on_error: false
+    - name: secrets-scan
+      command: clockwork security secrets
+      max_retries: 1
+      continue_on_error: false
+    - name: validate-json
+      command: clockwork validate json .clockwork/context.yaml
+      max_retries: 1
+      continue_on_error: false
+    - name: validate-yaml
+      command: clockwork validate yaml .clockwork/rules.yaml
+      max_retries: 1
+      continue_on_error: false
     - name: test
       command: pytest tests/ -v
       max_retries: 3

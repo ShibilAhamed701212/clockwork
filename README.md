@@ -137,6 +137,16 @@ pip install -e .
 | `clockwork scan` | Analyze code |
 | `clockwork verify` | Check rules |
 | `clockwork doctor` | Diagnose issues |
+| `clockwork security scan` | Security scan |
+| `clockwork security secrets` | Scan for secrets |
+| `clockwork security sandbox` | Test commands safely |
+| `clockwork validate json` | Validate JSON |
+| `clockwork validate yaml` | Validate YAML |
+| `clockwork validate syntax` | Validate Python syntax |
+| `clockwork validate guard` | Check for hallucinations |
+| `clockwork session show` | Show session info |
+| `clockwork agent swarm` | Run agent swarm |
+| `clockwork agent consensus` | Consensus voting |
 
 ---
 
