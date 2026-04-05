@@ -225,6 +225,12 @@ class TestSecurityFull:
         result = runner.invoke(app, ["security", "audit", "--help"])
         assert result.exit_code == 0
 
+    def test_security_log_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["security", "log", "--help"])
+        assert result.exit_code == 0
+
     def test_security_verify_help(self, tmp_path):
         _init_clockwork_dir(tmp_path)
         runner = CliRunner()
@@ -257,6 +263,18 @@ class TestAgentFull:
         result = runner.invoke(app, ["agent", "register", "--help"])
         assert result.exit_code == 0
 
+    def test_agent_status_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["agent", "status", "--help"])
+        assert result.exit_code == 0
+
+    def test_agent_remove_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["agent", "remove", "--help"])
+        assert result.exit_code == 0
+
     def test_task_add_help(self, tmp_path):
         _init_clockwork_dir(tmp_path)
         runner = CliRunner()
@@ -275,6 +293,62 @@ class TestAgentFull:
         result = runner.invoke(app, ["task", "run", "--help"])
         assert result.exit_code == 0
 
+    def test_task_fail_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["task", "fail", "--help"])
+        assert result.exit_code == 0
+
+    def test_task_retry_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["task", "retry", "--help"])
+        assert result.exit_code == 0
+
+    def test_task_locks_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["task", "locks", "--help"])
+        assert result.exit_code == 0
+
+    def test_agent_swarm_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["agent", "swarm", "--help"])
+        assert result.exit_code == 0
+
+    def test_agent_consensus_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["agent", "consensus", "--help"])
+        assert result.exit_code == 0
+
+
+class TestGraphFull:
+    def test_graph_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["graph", "--help"])
+        assert result.exit_code == 0
+
+    def test_graph_stats_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["graph", "stats", "--help"])
+        assert result.exit_code == 0
+
+    def test_graph_query_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["graph", "query", "--help"])
+        assert result.exit_code == 0
+
+    def test_graph_export_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["graph", "export", "--help"])
+        assert result.exit_code == 0
+
 
 class TestValidateFull:
     def test_validate_output_help(self, tmp_path):
@@ -289,8 +363,41 @@ class TestValidateFull:
         result = runner.invoke(app, ["validate", "guard", "--help"])
         assert result.exit_code == 0
 
+    def test_validate_syntax_valid(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        (tmp_path / "test.py").write_text("def hello():\n    print('world')")
+        runner = CliRunner()
+        result = runner.invoke(
+            app, ["validate", "syntax", "test.py", "--repo", str(tmp_path)]
+        )
+        assert result.exit_code == 0
+
+    def test_validate_json_valid(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        (tmp_path / "test.json").write_text('{"key": "value"}')
+        runner = CliRunner()
+        result = runner.invoke(
+            app, ["validate", "json", "test.json", "--repo", str(tmp_path)]
+        )
+        assert result.exit_code == 0
+
+    def test_validate_yaml_valid(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        (tmp_path / "test.yaml").write_text("key: value")
+        runner = CliRunner()
+        result = runner.invoke(
+            app, ["validate", "yaml", "test.yaml", "--repo", str(tmp_path)]
+        )
+        assert result.exit_code == 0
+
 
 class TestSessionFull:
+    def test_session_show_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["session", "show", "--help"])
+        assert result.exit_code == 0
+
     def test_session_log_help(self, tmp_path):
         _init_clockwork_dir(tmp_path)
         runner = CliRunner()
@@ -301,6 +408,100 @@ class TestSessionFull:
         _init_clockwork_dir(tmp_path)
         runner = CliRunner()
         result = runner.invoke(app, ["session", "stats", "--help"])
+        assert result.exit_code == 0
+
+
+class TestMcpFull:
+    def test_mcp_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["mcp", "--help"])
+        assert result.exit_code == 0
+
+    def test_mcp_start_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["mcp", "start", "--help"])
+        assert result.exit_code == 0
+
+    def test_mcp_install_claude_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["mcp", "install-claude", "--help"])
+        assert result.exit_code == 0
+
+    def test_mcp_install_cursor_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["mcp", "install-cursor", "--help"])
+        assert result.exit_code == 0
+
+
+class TestHooksFull:
+    def test_hooks_install_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["hooks", "install", "--help"])
+        assert result.exit_code == 0
+
+    def test_hooks_remove_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["hooks", "remove", "--help"])
+        assert result.exit_code == 0
+
+    def test_hooks_status_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["hooks", "status", "--help"])
+        assert result.exit_code == 0
+
+
+class TestWorktreeFull:
+    def test_worktree_create_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["worktree", "create", "--help"])
+        assert result.exit_code == 0
+
+    def test_worktree_list_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["worktree", "list", "--help"])
+        assert result.exit_code == 0
+
+    def test_worktree_merge_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["worktree", "merge", "--help"])
+        assert result.exit_code == 0
+
+    def test_worktree_clean_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["worktree", "clean", "--help"])
+        assert result.exit_code == 0
+
+
+class TestSyncFull:
+    def test_sync_push_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["sync", "push", "--help"])
+        assert result.exit_code == 0
+
+    def test_sync_pull_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["sync", "pull", "--help"])
+        assert result.exit_code == 0
+
+
+class TestDiffFull:
+    def test_diff_staged_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["diff", "--staged", "--help"])
         assert result.exit_code == 0
 
 
@@ -315,6 +516,26 @@ class TestRegistryFull:
         _init_clockwork_dir(tmp_path)
         runner = CliRunner()
         result = runner.invoke(app, ["plugin", "list", "--help"])
+        assert result.exit_code == 0
+
+    def test_registry_info(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["registry", "info", "--help"])
+        assert result.exit_code == 0
+
+
+class TestPluginFull:
+    def test_plugin_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["plugin", "--help"])
+        assert result.exit_code == 0
+
+    def test_plugin_install_help(self, tmp_path):
+        _init_clockwork_dir(tmp_path)
+        runner = CliRunner()
+        result = runner.invoke(app, ["plugin", "install", "--help"])
         assert result.exit_code == 0
 
 
